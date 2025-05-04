@@ -7,20 +7,21 @@ import jakarta.inject.Inject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import uk.ac.york.eng2.products.domain.Product;
-import uk.ac.york.eng2.products.domain.ProductTag;
-import uk.ac.york.eng2.products.dto.ProductTagCreateDTO;
+import uk.ac.york.eng2.products.domain.Tag;
+import uk.ac.york.eng2.products.dto.TagCreateDTO;
 import uk.ac.york.eng2.products.repository.OrdersByDayRepository;
 import uk.ac.york.eng2.products.repository.ProductRepository;
-import uk.ac.york.eng2.products.repository.ProductTagRepository;
+import uk.ac.york.eng2.products.repository.TagRepository;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @MicronautTest(transactional = false)
-public class ProductTagsControllerTest {
+public class TagsControllerTest {
 
-    @Inject ProductTagsClient tagsClient;
+    @Inject
+    TagsClient tagsClient;
 
     @Inject
     private ProductRepository productRepository;
@@ -29,9 +30,9 @@ public class ProductTagsControllerTest {
     private OrdersByDayRepository ordersByDayRepository;
 
     @Inject
-    ProductTagRepository tagRepository;
+    TagRepository tagRepository;
     @Inject
-    private ProductTagsClient productTagsClient;
+    private TagsClient productTagsClient;
 
     @BeforeEach
     public void setup() {
@@ -46,22 +47,21 @@ public class ProductTagsControllerTest {
 
     @Test
     public void createThenFetchTags() {
-        ProductTagCreateDTO dto = new ProductTagCreateDTO();
+        TagCreateDTO dto = new TagCreateDTO();
         dto.setName("test");
-        HttpResponse<Void> response = tagsClient.createTag(dto);
-        long id = Long.parseLong(response.header(HttpHeaders.LOCATION).split("/")[2]);
+        long id = createTag(dto);
 
-        var createdTag = productTagsClient.getTag(id);
+        Tag createdTag = productTagsClient.getTag(id);
         assertEquals("test", createdTag.getName());
 
-        var listedTags = tagsClient.listTags();
+        List<Tag> listedTags = tagsClient.listTags();
         assertEquals(1, listedTags.size());
         assertEquals(id, listedTags.get(0).getId());
     }
 
     @Test
     public void listTagProducts() {
-        ProductTag tag = new ProductTag();
+        Tag tag = new Tag();
         tag.setName("test");
         tag = tagRepository.save(tag);
 
@@ -79,24 +79,29 @@ public class ProductTagsControllerTest {
 
     @Test
     public void updateTag() {
-        ProductTag tag = new ProductTag();
+        Tag tag = new Tag();
         tag.setName("old");
         tag = tagRepository.save(tag);
 
-        ProductTagCreateDTO dto = new ProductTagCreateDTO();
+        TagCreateDTO dto = new TagCreateDTO();
         dto.setName("new");
         tagsClient.updateTag(dto, tag.getId());
-        var updatedTag = productTagsClient.getTag(tag.getId());
+        Tag updatedTag = productTagsClient.getTag(tag.getId());
         assertEquals(dto.getName(), updatedTag.getName());
     }
 
     @Test
     public void deleteTag() {
-        ProductTag tag = new ProductTag();
+        Tag tag = new Tag();
         tag.setName("test");
         tag = tagRepository.save(tag);
 
         tagsClient.deleteTag(tag.getId());
         assertEquals(0, tagsClient.listTags().size());
+    }
+
+    private Long createTag(TagCreateDTO dto) {
+        HttpResponse<Void> createResponse = tagsClient.createTag(dto);
+        return Long.valueOf(createResponse.header(HttpHeaders.LOCATION).split("/")[2]);
     }
 }

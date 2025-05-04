@@ -1,7 +1,10 @@
 package uk.ac.york.eng2.products.dto;
 
+import io.micronaut.serde.annotation.Serdeable;
+
 import java.time.LocalDate;
 
+@Serdeable
 public class OrdersByDayCreateDTO {
     private Long productId;
     private LocalDate day;

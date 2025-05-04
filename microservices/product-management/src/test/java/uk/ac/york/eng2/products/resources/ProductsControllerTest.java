@@ -11,7 +11,9 @@ import uk.ac.york.eng2.products.domain.Product;
 import uk.ac.york.eng2.products.dto.ProductCreateDTO;
 import uk.ac.york.eng2.products.repository.OrdersByDayRepository;
 import uk.ac.york.eng2.products.repository.ProductRepository;
-import uk.ac.york.eng2.products.repository.ProductTagRepository;
+import uk.ac.york.eng2.products.repository.TagRepository;
+
+import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -29,7 +31,7 @@ public class ProductsControllerTest {
     private OrdersByDayRepository ordersByDayRepository;
 
     @Inject
-    ProductTagRepository tagRepository;
+    TagRepository tagRepository;
 
     @BeforeEach
     public void setup() {
@@ -74,6 +76,7 @@ public class ProductsControllerTest {
         Long productId = createProduct(p);
 
         p.setName("test2");
+        productsClient.updateProduct(productId, p);
         Product updatedProduct = productsClient.getProduct(productId);
         assertEquals(p.getName(), updatedProduct.getName());
     }
@@ -82,12 +85,13 @@ public class ProductsControllerTest {
     public void updateOnlyUnitPrice() {
         ProductCreateDTO p = new ProductCreateDTO();
         p.setName("test");
-        p.setUnit_price(10);
+        p.setUnitPrice(new BigDecimal("10.00"));
         Long productId = createProduct(p);
 
-        p.setUnit_price(20);
+        p.setUnitPrice(new BigDecimal("20.00"));
+        productsClient.updateProduct(productId, p);
         Product updatedProduct = productsClient.getProduct(productId);
-        assertEquals(p.getUnit_price(), updatedProduct.getUnit_price());
+        assertEquals(p.getUnitPrice(), updatedProduct.getUnitPrice());
 
     }
 

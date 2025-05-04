@@ -1,8 +1,10 @@
 package uk.ac.york.eng2.products.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.micronaut.serde.annotation.Serdeable;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,14 +21,17 @@ public class Product {
     @Column
     private String name;
 
-    @Column
-    private float unit_price;
 
+    @Column(precision = 12, scale = 2)
+    private BigDecimal unitPrice = BigDecimal.ZERO;
+
+    @JsonIgnore
     @OneToMany(mappedBy = "product")
     private Set<OrdersByDay> ordersByDay = new HashSet<OrdersByDay>();
 
-    @ManyToMany(mappedBy = "products")
-    private Set<ProductTag> tags;
+    @JsonIgnore
+    @ManyToMany
+    private Set<Tag> tags = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -44,12 +49,12 @@ public class Product {
         this.name = name;
     }
 
-    public float getUnit_price() {
-        return unit_price;
+    public BigDecimal getUnitPrice() {
+        return unitPrice;
     }
 
-    public void setUnit_price(float unit_price) {
-        this.unit_price = unit_price;
+    public void setUnitPrice(BigDecimal unitPrice) {
+        this.unitPrice = unitPrice;
     }
 
     public Set<OrdersByDay> getOrdersByDay() {
@@ -60,11 +65,11 @@ public class Product {
         this.ordersByDay = ordersByDay;
     }
 
-    public Set<ProductTag> getTags() {
+    public Set<Tag> getTags() {
         return tags;
     }
 
-    public void setTags(Set<ProductTag> tags) {
+    public void setTags(Set<Tag> tags) {
         this.tags = tags;
     }
 }

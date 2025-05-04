@@ -6,35 +6,34 @@ import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.*;
 import io.micronaut.http.exceptions.HttpStatusException;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import uk.ac.york.eng2.products.domain.Product;
-import uk.ac.york.eng2.products.dto.ProductTagCreateDTO;
+import uk.ac.york.eng2.products.dto.TagCreateDTO;
 import uk.ac.york.eng2.products.repository.ProductRepository;
-import uk.ac.york.eng2.products.repository.ProductTagRepository;
-import uk.ac.york.eng2.products.domain.ProductTag;
+import uk.ac.york.eng2.products.repository.TagRepository;
+import uk.ac.york.eng2.products.domain.Tag;
 
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
-@Tag(name="Tags")
+@io.swagger.v3.oas.annotations.tags.Tag(name="Tags")
 @Controller("/tags")
-public class ProductTagsController {
+public class TagsController {
     @Inject
-    private ProductTagRepository tagRepository;
+    private TagRepository tagRepository;
 
     @Inject
     private ProductRepository productRepository;
 
     @Get
-    public List<ProductTag> listTags() {
+    public List<Tag> listTags() {
         return tagRepository.findAll();
     }
 
     @Get("/{id}")
-    public ProductTag getTag(@PathVariable Long id) {
+    public Tag getTag(@PathVariable Long id) {
         return tagRepository.findById(id).orElse(null);
     }
 
@@ -44,8 +43,8 @@ public class ProductTagsController {
     }
 
     @Post
-    public HttpResponse<Void> createTag(@Body ProductTagCreateDTO dto) {
-        ProductTag tag = new ProductTag();
+    public HttpResponse<Void> createTag(@Body TagCreateDTO dto) {
+        Tag tag = new Tag();
         tag.setName(dto.getName());
 
         tag = tagRepository.save(tag);
@@ -54,13 +53,13 @@ public class ProductTagsController {
 
     @Transactional
     @Put("/{id}")
-    public void updateTag(@Body ProductTagCreateDTO dto, @PathVariable long id) {
-        @NonNull Optional<ProductTag> oProductTag = tagRepository.findById(id);
+    public void updateTag(@Body TagCreateDTO dto, @PathVariable long id) {
+        @NonNull Optional<Tag> oProductTag = tagRepository.findById(id);
         if (!oProductTag.isPresent()) {
             throw new HttpStatusException(HttpStatus.NOT_FOUND, "Tag not found");
         }
 
-        ProductTag tag = oProductTag.get();
+        Tag tag = oProductTag.get();
         tag.setName(dto.getName());
         tag = tagRepository.save(tag);
     }

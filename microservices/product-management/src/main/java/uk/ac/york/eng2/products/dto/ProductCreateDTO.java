@@ -2,20 +2,14 @@ package uk.ac.york.eng2.products.dto;
 
 import io.micronaut.serde.annotation.Serdeable;
 
+import java.math.BigDecimal;
+
 @Serdeable
 public class ProductCreateDTO {
 
-    private Long id;
+
     private String name;
-    private float unit_price;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private BigDecimal unitPrice = BigDecimal.ZERO;
 
     public String getName() {
         return name;
@@ -25,11 +19,11 @@ public class ProductCreateDTO {
         this.name = name;
     }
 
-    public float getUnit_price() {
-        return unit_price;
+    public BigDecimal getUnitPrice() {
+        return unitPrice;
     }
 
-    public void setUnit_price(float unit_price) {
-        this.unit_price = unit_price;
+    public void setUnitPrice(BigDecimal unitPrice) {
+        this.unitPrice = unitPrice;
     }
 }

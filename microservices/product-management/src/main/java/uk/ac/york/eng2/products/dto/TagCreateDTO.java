@@ -1,6 +1,9 @@
 package uk.ac.york.eng2.products.dto;
 
-public class ProductTagCreateDTO {
+import io.micronaut.serde.annotation.Serdeable;
+
+@Serdeable
+public class TagCreateDTO {
     private String name;
 
     public String getName() {

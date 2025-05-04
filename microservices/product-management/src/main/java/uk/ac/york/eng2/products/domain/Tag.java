@@ -1,5 +1,6 @@
 package uk.ac.york.eng2.products.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.micronaut.serde.annotation.Serdeable;
 import jakarta.persistence.*;
 
@@ -8,7 +9,7 @@ import java.util.Set;
 
 @Serdeable
 @Entity
-public class ProductTag {
+public class Tag {
 
     @Id
     @GeneratedValue
@@ -17,7 +18,8 @@ public class ProductTag {
     @Column
     private String name;
 
-    @ManyToMany
+    @JsonIgnore
+    @ManyToMany(mappedBy = "tags")
     private Set<Product> products = new HashSet<Product>();
 
     public Long getId() {

@@ -9,11 +9,11 @@ import org.junit.jupiter.api.Test;
 import uk.ac.york.eng2.products.domain.OrdersByDay;
 import uk.ac.york.eng2.products.domain.Product;
 import uk.ac.york.eng2.products.dto.OrdersByDayCreateDTO;
-import uk.ac.york.eng2.products.dto.ProductCreateDTO;
 import uk.ac.york.eng2.products.repository.OrdersByDayRepository;
 import uk.ac.york.eng2.products.repository.ProductRepository;
-import uk.ac.york.eng2.products.repository.ProductTagRepository;
+import uk.ac.york.eng2.products.repository.TagRepository;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,7 +31,7 @@ public class OrdersByDayControllerTest {
     private OrdersByDayRepository ordersByDayRepository;
 
     @Inject
-    ProductTagRepository tagRepository;
+    TagRepository tagRepository;
 
     @BeforeEach
     public void setup() {
@@ -52,7 +52,7 @@ public class OrdersByDayControllerTest {
 
         Product product = new Product();
         product.setName("test");
-        product.setUnit_price(2f);
+        product.setUnitPrice(new BigDecimal("12.99"));
         product = productRepository.save(product);
 
         dto.setProductId(product.getId());
@@ -71,7 +71,7 @@ public class OrdersByDayControllerTest {
 
         Product product = new Product();
         product.setName("test");
-        product.setUnit_price(2f);
+        product.setUnitPrice(new BigDecimal("12.99"));
         product = productRepository.save(product);
 
         dto.setProductId(product.getId());

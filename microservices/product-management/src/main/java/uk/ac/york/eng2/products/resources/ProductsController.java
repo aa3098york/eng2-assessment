@@ -38,10 +38,11 @@ public class ProductsController {
         return ordersByDayRepository.findByProductId(id);
     }
 
-    public HttpResponse<Product> createProduct(@Body ProductCreateDTO dto) {
+    @Post
+    public HttpResponse<Void> createProduct(@Body ProductCreateDTO dto) {
         Product product = new Product();
         product.setName(dto.getName());
-        product.setUnit_price(dto.getUnit_price());
+        product.setUnitPrice(dto.getUnitPrice());
 
         product = productRepository.save(product);
         return HttpResponse.created(URI.create("/products/" + product.getId()));
@@ -57,6 +58,7 @@ public class ProductsController {
 
         Product product = oProduct.get();
         product.setName(dto.getName());
+        product.setUnitPrice(dto.getUnitPrice());
 
         productRepository.save(product);
     }
