@@ -9,7 +9,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import uk.ac.york.eng2.products.domain.Product;
 import uk.ac.york.eng2.products.dto.ProductCreateDTO;
+import uk.ac.york.eng2.products.repository.OrdersByDayRepository;
 import uk.ac.york.eng2.products.repository.ProductRepository;
+import uk.ac.york.eng2.products.repository.ProductTagRepository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -23,8 +25,16 @@ public class ProductsControllerTest {
     @Inject
     private ProductRepository productRepository;
 
+    @Inject
+    private OrdersByDayRepository ordersByDayRepository;
+
+    @Inject
+    ProductTagRepository tagRepository;
+
     @BeforeEach
     public void setup() {
+        ordersByDayRepository.deleteAll();
+        tagRepository.deleteAll();
         productRepository.deleteAll();
     }
 

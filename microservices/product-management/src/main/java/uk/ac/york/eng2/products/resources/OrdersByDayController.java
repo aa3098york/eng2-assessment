@@ -10,7 +10,6 @@ import jakarta.transaction.Transactional;
 import uk.ac.york.eng2.products.domain.OrdersByDay;
 import uk.ac.york.eng2.products.domain.Product;
 import uk.ac.york.eng2.products.dto.OrdersByDayCreateDTO;
-import uk.ac.york.eng2.products.dto.ProductCreateDTO;
 import uk.ac.york.eng2.products.repository.OrdersByDayRepository;
 import uk.ac.york.eng2.products.repository.ProductRepository;
 
@@ -27,7 +26,7 @@ public class OrdersByDayController {
     private ProductRepository productRepository;
 
     @Get
-    public @NonNull List<OrdersByDay> getOrdersByDay() {
+    public @NonNull List<OrdersByDay> listOrdersByDay() {
         return ordersByDayRepository.findAll();
     }
 

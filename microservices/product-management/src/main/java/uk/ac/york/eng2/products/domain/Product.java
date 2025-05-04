@@ -25,6 +25,9 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private Set<OrdersByDay> ordersByDay = new HashSet<OrdersByDay>();
 
+    @ManyToMany(mappedBy = "products")
+    private Set<ProductTag> tags;
+
     public Long getId() {
         return id;
     }
@@ -47,5 +50,21 @@ public class Product {
 
     public void setUnit_price(float unit_price) {
         this.unit_price = unit_price;
+    }
+
+    public Set<OrdersByDay> getOrdersByDay() {
+        return ordersByDay;
+    }
+
+    public void setOrdersByDay(Set<OrdersByDay> ordersByDay) {
+        this.ordersByDay = ordersByDay;
+    }
+
+    public Set<ProductTag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<ProductTag> tags) {
+        this.tags = tags;
     }
 }
