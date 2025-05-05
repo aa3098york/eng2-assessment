@@ -38,7 +38,9 @@ public class OrdersByDayController {
     @Transactional
     @Get("/{id}/product")
     public Product getOrderByDayProduct(@PathVariable long id) {
-        return productRepository.findByOrdersByDayId(id);
+        ordersByDayRepository.findById(id)
+                .orElseThrow(() -> new HttpStatusException(HttpStatus.NOT_FOUND, "Order By DayNot Found"));
+        return productRepository.findByOrdersByDayId(id).orElse(null);
     }
 
     @Post
@@ -60,20 +62,19 @@ public class OrdersByDayController {
 
     @Transactional
     @Put("/{id}")
-    public void updateProduct(@PathVariable long id, @Body OrdersByDayCreateDTO dto) {
+    public void updateOrdersByDay(@PathVariable long id, @Body OrdersByDayCreateDTO dto) {
         @NonNull Optional<OrdersByDay> o_obd = ordersByDayRepository.findById(id);
         if (o_obd.isEmpty()) {
-            throw new HttpStatusException(HttpStatus.NOT_FOUND, "Product not found");
+            throw new HttpStatusException(HttpStatus.NOT_FOUND, "Order By Day not found");
         }
 
         OrdersByDay obd = o_obd.get();
-
         obd.setCount(dto.getCount());
         obd.setDay(dto.getDay());
 
         @NonNull Optional<Product> product = productRepository.findById(dto.getProductId());
         if (!product.isPresent()) {
-            throw new HttpStatusException(HttpStatus.BAD_REQUEST, "Product not found");
+            throw new HttpStatusException(HttpStatus.NOT_FOUND, "Product not found");
         }
         obd.setProduct(product.get());
 
@@ -81,9 +82,9 @@ public class OrdersByDayController {
     }
 
     @Delete("/{id}")
-    public void deleteProduct(@PathVariable long id) {
+    public void deleteOrdersByDay(@PathVariable long id) {
         if(!ordersByDayRepository.existsById(id)){
-            throw new HttpStatusException(HttpStatus.NOT_FOUND, "HTTP ERROR 404: ORDER BY DAY NOT FOUND");
+            throw new HttpStatusException(HttpStatus.NOT_FOUND, "Order By Day not found");
         }
         else {
             ordersByDayRepository.deleteById(id);

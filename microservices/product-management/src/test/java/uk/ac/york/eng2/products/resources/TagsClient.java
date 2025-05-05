@@ -19,14 +19,14 @@ public interface TagsClient {
     public Tag getTag(@PathVariable Long id);
 
     @Get("/{id}/products")
-    public List<Product> listProducts(@PathVariable Long id);
+    List<Product> listProducts(@PathVariable Long id);
 
     @Post
-    public HttpResponse<Void> createTag(@Body TagCreateDTO dto);
+    HttpResponse<Void> createTag(@Body TagCreateDTO dto);
 
     @Put("/{id}")
-    public void updateTag(@Body TagCreateDTO dto, @PathVariable long id);
+    HttpResponse updateTag(@Body TagCreateDTO dto, @PathVariable long id);
 
     @Delete("/{id}")
-    public void deleteTag(@PathVariable long id);
+    HttpResponse deleteTag(@PathVariable long id);
 }

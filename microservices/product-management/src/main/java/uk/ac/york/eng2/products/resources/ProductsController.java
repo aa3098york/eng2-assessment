@@ -45,8 +45,43 @@ public class ProductsController {
     }
 
     @Get("/{id}/tags")
-    public List<Tag> listTags(@PathVariable long id) {
+    public List<Tag> getProductTags(@PathVariable long id) {
         return tagRepository.findByProductsId(id);
+    }
+
+    @Transactional
+    @Put("/{id}/tags/{tagId}")
+    public void addProductTag(@PathVariable long id, @PathVariable long tagId) {
+        ProductTag result = getProductTag(id, tagId);
+        result.product.getTags().add(result.tag);
+        productRepository.save(result.product);
+    }
+
+    @Transactional
+    @Delete("/{id}/tags/{tagId}")
+    public void removeProductTag(@PathVariable long id, @PathVariable long tagId) {
+        ProductTag result = getProductTag(id, tagId);
+        result.product.getTags().remove(result.tag);
+        productRepository.save(result.product());
+    }
+
+    private record ProductTag(Product product, Tag tag) {}
+
+    private ProductTag getProductTag(long id, long tagId) {
+        @NonNull Optional<Tag> oTag = tagRepository.findById(tagId);
+        if (!oTag.isPresent()) {
+            throw new HttpStatusException(HttpStatus.NOT_FOUND, "Tag not found");
+        }
+        Tag tag = oTag.get();
+
+        @NonNull Optional<Product> oProduct = productRepository.findById(id);
+        if (!oProduct.isPresent()) {
+            throw new HttpStatusException(HttpStatus.NOT_FOUND, "Product not found");
+        }
+        Product product = oProduct.get();
+        ProductTag result = new ProductTag(product, tag);
+
+        return result;
     }
 
     @Post
@@ -54,6 +89,7 @@ public class ProductsController {
         Product product = new Product();
         product.setName(dto.getName());
         product.setUnitPrice(dto.getUnitPrice());
+
 
         product = productRepository.save(product);
         return HttpResponse.created(URI.create("/products/" + product.getId()));

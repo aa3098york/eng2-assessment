@@ -20,16 +20,16 @@ public interface OrdersByDayClient {
 
 
     @Get("/{id}/product")
-    Product getOrderByDayProduct(@PathVariable long id);
+    HttpResponse<Product> getOrderByDayProduct(@PathVariable long id);
 
     @Post
     HttpResponse<Void> createOrdersByDay(@Body OrdersByDayCreateDTO dto);
 
 
     @Put("/{id}")
-    void updateProduct(@PathVariable long id, @Body OrdersByDayCreateDTO dto);
+    HttpResponse updateOrdersByDay(@PathVariable long id, @Body OrdersByDayCreateDTO dto);
 
     @Delete("/{id}")
-    void deleteProduct(@PathVariable long id);
+    HttpResponse deleteOrdersByDay(@PathVariable long id);
 }
 

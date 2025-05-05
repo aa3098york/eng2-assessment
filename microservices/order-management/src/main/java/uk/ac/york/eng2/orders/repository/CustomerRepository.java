@@ -4,7 +4,10 @@ import io.micronaut.data.annotation.Repository;
 import io.micronaut.data.repository.PageableRepository;
 import uk.ac.york.eng2.orders.domain.Customer;
 
+
+import java.util.Optional;
+
 @Repository
 public interface CustomerRepository extends PageableRepository<Customer, Long> {
-    Customer findByOrdersId(Long orderId);
+    Optional<Customer> findByOrdersId(Long orderId);
 }

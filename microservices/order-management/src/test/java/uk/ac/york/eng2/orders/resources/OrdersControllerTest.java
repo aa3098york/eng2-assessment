@@ -1,0 +1,390 @@
+package uk.ac.york.eng2.orders.resources;
+
+import io.micronaut.http.HttpHeaders;
+import io.micronaut.http.HttpResponse;
+import io.micronaut.http.HttpStatus;
+import io.micronaut.http.annotation.PathVariable;
+import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+import jakarta.inject.Inject;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import uk.ac.york.eng2.orders.domain.Customer;
+import uk.ac.york.eng2.orders.domain.Order;
+import uk.ac.york.eng2.orders.domain.OrderItem;
+import uk.ac.york.eng2.orders.dto.OrderCreateDTO;
+import uk.ac.york.eng2.orders.repository.CustomerRepository;
+import uk.ac.york.eng2.orders.repository.OrderItemRepository;
+import uk.ac.york.eng2.orders.repository.OrderRepository;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@MicronautTest(transactional = false)
+public class OrdersControllerTest {
+    @Inject
+    OrdersClient ordersClient;
+
+    @Inject
+    OrderRepository orderRepository;
+
+    @Inject
+    OrderItemRepository orderItemRepository;
+
+    @Inject
+    CustomerRepository customerRepository;
+
+    @BeforeEach
+    void setUp() {
+        orderItemRepository.deleteAll();
+        orderRepository.deleteAll();
+        customerRepository.deleteAll();
+    }
+
+    @Test
+    public void noOrders() {
+        assertEquals(0, ordersClient.getOrders().size());
+    }
+
+    @Test
+    public void createThenFetch() {
+        Customer customer = new Customer();
+        customer.setFirstName("John");
+        customer.setFamilyName("Smith");
+        customer.setEmail("john.smith@example.com");
+        customer = customerRepository.save(customer);
+
+        OrderCreateDTO dto = new OrderCreateDTO();
+        dto.setDelivered(false);
+        dto.setDateCreated(LocalDate.of(2025,12,31));
+        dto.setAddress("Dummy Address");
+        dto.setPaid(false);
+        dto.setTotalAmount(new BigDecimal("9.99"));
+        dto.setCustomerId(customer.getId());
+
+        Long id = createOrder(dto);
+
+        Order fetchedOrder = ordersClient.getOrder(id);
+
+        HttpResponse<Customer> orderCustomerResponse = ordersClient.getOrderCustomer(id);
+        Customer fetchedCustomer = orderCustomerResponse.getBody().get();
+
+        assertEquals(dto.getAddress(), fetchedOrder.getAddress());
+        assertEquals(dto.getDateCreated(), fetchedOrder.getDateCreated());
+        assertEquals(dto.getPaid(), fetchedOrder.getPaid());
+        assertEquals(dto.getTotalAmount(), fetchedOrder.getTotalAmount());
+        assertEquals(dto.getDelivered(), fetchedOrder.getDelivered());
+        assertEquals(dto.getCustomerId(), fetchedCustomer.getId());
+    }
+
+    @Test
+    public void updateOnlyAddress() {
+        Customer customer = new Customer();
+        customer.setFirstName("John");
+        customer.setFamilyName("Smith");
+        customer.setEmail("john.smith@example.com");
+        customer = customerRepository.save(customer);
+
+        OrderCreateDTO dto = new OrderCreateDTO();
+        dto.setDelivered(false);
+        dto.setDateCreated(LocalDate.of(2025,12,31));
+        dto.setAddress("Dummy Address");
+        dto.setPaid(false);
+        dto.setTotalAmount(new BigDecimal("9.99"));
+        dto.setCustomerId(customer.getId());
+
+        Long id = createOrder(dto);
+
+        dto.setAddress("Real Address");
+
+        ordersClient.updateOrder(id, dto);
+        Order updatedOrder = ordersClient.getOrder(id);
+
+        assertEquals(dto.getAddress(), updatedOrder.getAddress());
+    }
+
+    @Test
+    public void updateOnlyDateCreated() {
+        Customer customer = new Customer();
+        customer.setFirstName("John");
+        customer.setFamilyName("Smith");
+        customer.setEmail("john.smith@example.com");
+        customer = customerRepository.save(customer);
+
+        OrderCreateDTO dto = new OrderCreateDTO();
+        dto.setDelivered(false);
+        dto.setDateCreated(LocalDate.of(2025,12,31));
+        dto.setAddress("Dummy Address");
+        dto.setPaid(false);
+        dto.setTotalAmount(new BigDecimal("9.99"));
+        dto.setCustomerId(customer.getId());
+
+        Long id = createOrder(dto);
+
+        dto.setDateCreated(LocalDate.of(1997,1,31));
+
+        ordersClient.updateOrder(id, dto);
+        Order updatedOrder = ordersClient.getOrder(id);
+
+        assertEquals(dto.getDateCreated(), updatedOrder.getDateCreated());
+    }
+
+    @Test
+    public void updateOnlyDelivered() {
+        Customer customer = new Customer();
+        customer.setFirstName("John");
+        customer.setFamilyName("Smith");
+        customer.setEmail("john.smith@example.com");
+        customer = customerRepository.save(customer);
+
+        OrderCreateDTO dto = new OrderCreateDTO();
+        dto.setDelivered(false);
+        dto.setDateCreated(LocalDate.of(2025,12,31));
+        dto.setAddress("Dummy Address");
+        dto.setPaid(false);
+        dto.setTotalAmount(new BigDecimal("9.99"));
+        dto.setCustomerId(customer.getId());
+
+        Long id = createOrder(dto);
+
+        dto.setDelivered(true);
+
+        ordersClient.updateOrder(id, dto);
+        Order updatedOrder = ordersClient.getOrder(id);
+
+        assertEquals(dto.getDelivered(), updatedOrder.getDelivered());
+    }
+
+    @Test
+    public void updateOnlyPaid() {
+        Customer customer = new Customer();
+        customer.setFirstName("John");
+        customer.setFamilyName("Smith");
+        customer.setEmail("john.smith@example.com");
+        customer = customerRepository.save(customer);
+
+        OrderCreateDTO dto = new OrderCreateDTO();
+        dto.setDelivered(false);
+        dto.setDateCreated(LocalDate.of(2025,12,31));
+        dto.setAddress("Dummy Address");
+        dto.setPaid(false);
+        dto.setTotalAmount(new BigDecimal("9.99"));
+        dto.setCustomerId(customer.getId());
+
+        Long id = createOrder(dto);
+
+        dto.setPaid(true);
+
+        ordersClient.updateOrder(id, dto);
+        Order updatedOrder = ordersClient.getOrder(id);
+
+        assertEquals(dto.getPaid(), updatedOrder.getPaid());
+    }
+
+    @Test
+    public void updateOnlyTotalAmount() {
+        Customer customer = new Customer();
+        customer.setFirstName("John");
+        customer.setFamilyName("Smith");
+        customer.setEmail("john.smith@example.com");
+        customer = customerRepository.save(customer);
+
+        OrderCreateDTO dto = new OrderCreateDTO();
+        dto.setDelivered(false);
+        dto.setDateCreated(LocalDate.of(2025,12,31));
+        dto.setAddress("Dummy Address");
+        dto.setPaid(false);
+        dto.setTotalAmount(new BigDecimal("9.99"));
+        dto.setCustomerId(customer.getId());
+
+        Long id = createOrder(dto);
+
+        dto.setTotalAmount(new BigDecimal("999.99"));
+
+        ordersClient.updateOrder(id, dto);
+        Order updatedOrder = ordersClient.getOrder(id);
+
+        assertEquals(dto.getTotalAmount(), updatedOrder.getTotalAmount());
+    }
+
+    @Test
+    public void updateOnlyCustomer() {
+        Customer customer1 = new Customer();
+        customer1.setFirstName("John");
+        customer1.setFamilyName("Smith");
+        customer1.setEmail("john.smith@example.com");
+        customer1 = customerRepository.save(customer1);
+
+        Customer customer2 = new Customer();
+        customer2.setFirstName("Jane");
+        customer2.setFamilyName("Doe");
+        customer2.setEmail("jane.doe@example.com");
+        customer2 = customerRepository.save(customer2);
+
+        OrderCreateDTO dto = new OrderCreateDTO();
+        dto.setDelivered(false);
+        dto.setDateCreated(LocalDate.of(2025,12,31));
+        dto.setAddress("Dummy Address");
+        dto.setPaid(false);
+        dto.setTotalAmount(new BigDecimal("9.99"));
+        dto.setCustomerId(customer1.getId());
+
+        Long id = createOrder(dto);
+
+        dto.setCustomerId(customer2.getId());
+
+        ordersClient.updateOrder(id, dto);
+        Order updatedOrder = ordersClient.getOrder(id);
+
+        HttpResponse<Customer> orderCustomerResponse = ordersClient.getOrderCustomer(id);
+        Customer fetchedCustomer = orderCustomerResponse.getBody().get();
+
+        assertEquals(dto.getCustomerId(), fetchedCustomer.getId());
+    }
+
+    @Test
+    public void updateMissing() {
+        Customer customer = new Customer();
+        customer.setFirstName("John");
+        customer.setFamilyName("Smith");
+        customer.setEmail("john.smith@example.com");
+        customer = customerRepository.save(customer);
+
+        OrderCreateDTO dto = new OrderCreateDTO();
+        dto.setDelivered(false);
+        dto.setDateCreated(LocalDate.of(2025,12,31));
+        dto.setAddress("Dummy Address");
+        dto.setPaid(false);
+        dto.setTotalAmount(new BigDecimal("9.99"));
+        dto.setCustomerId(customer.getId());
+
+        HttpResponse response = ordersClient.updateOrder(123,dto);
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatus());
+    }
+
+    @Test
+    public void updateMissingCustomer() {
+        Customer customer = new Customer();
+        customer.setFirstName("John");
+        customer.setFamilyName("Smith");
+        customer.setEmail("john.smith@example.com");
+        customer = customerRepository.save(customer);
+
+        OrderCreateDTO dto = new OrderCreateDTO();
+        dto.setDelivered(false);
+        dto.setDateCreated(LocalDate.of(2025,12,31));
+        dto.setAddress("Dummy Address");
+        dto.setPaid(false);
+        dto.setTotalAmount(new BigDecimal("9.99"));
+        dto.setCustomerId(customer.getId());
+
+        Long id = createOrder(dto);
+        dto.setCustomerId(123L);
+
+        HttpResponse response = ordersClient.updateOrder(id,dto);
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatus());
+    }
+
+    @Test
+    public void deleteMissing() {
+        HttpResponse response = ordersClient.deleteOrder(123);
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatus());
+    }
+
+    @Test
+    public void deleteWithActiveOrderItem() {
+        Customer customer = new Customer();
+        customer.setFirstName("John");
+        customer.setFamilyName("Smith");
+        customer.setEmail("john.smith@example.com");
+        customer = customerRepository.save(customer);
+
+        Order order = new Order();
+        order.setDelivered(false);
+        order.setDateCreated(LocalDate.of(2025,12,31));
+        order.setAddress("Dummy Address");
+        order.setPaid(false);
+        order.setTotalAmount(new BigDecimal("9.99"));
+        order.setCustomer(customer);
+        order = orderRepository.save(order);
+
+
+        OrderItem item1 = new OrderItem();
+        item1.setQuantity(1);
+        item1.setProductId(1L);
+        item1.setUnitPrice(new BigDecimal(1));
+        item1.setOrder(order);
+        orderItemRepository.save(item1);
+
+        HttpResponse response = ordersClient.deleteOrder(order.getId());
+        assertEquals(HttpStatus.CONFLICT, response.getStatus());
+    }
+
+    @Test
+    public void createThenDelete() {
+        Customer customer = new Customer();
+        customer.setFirstName("John");
+        customer.setFamilyName("Smith");
+        customer.setEmail("john.smith@example.com");
+        customer = customerRepository.save(customer);
+
+        OrderCreateDTO dto = new OrderCreateDTO();
+        dto.setDelivered(false);
+        dto.setDateCreated(LocalDate.of(2025,12,31));
+        dto.setAddress("Dummy Address");
+        dto.setPaid(false);
+        dto.setTotalAmount(new BigDecimal("9.99"));
+        dto.setCustomerId(customer.getId());
+
+        Long id = createOrder(dto);
+
+        ordersClient.deleteOrder(id);
+
+        assertEquals(0, ordersClient.getOrders().size());
+    }
+
+    @Test
+    public void listOrderItems() {
+        Customer customer = new Customer();
+        customer.setFirstName("John");
+        customer.setFamilyName("Smith");
+        customer.setEmail("john.smith@example.com");
+        customer = customerRepository.save(customer);
+
+        Order order = new Order();
+        order.setDelivered(false);
+        order.setDateCreated(LocalDate.of(2025,12,31));
+        order.setAddress("Dummy Address");
+        order.setPaid(false);
+        order.setTotalAmount(new BigDecimal("9.99"));
+        order.setCustomer(customer);
+        order = orderRepository.save(order);
+
+
+        OrderItem item1 = new OrderItem();
+        item1.setQuantity(1);
+        item1.setProductId(1L);
+        item1.setUnitPrice(new BigDecimal(1));
+        item1.setOrder(order);
+        orderItemRepository.save(item1);
+
+        OrderItem item2 = new OrderItem();
+        item2.setQuantity(2);
+        item2.setProductId(2L);
+        item2.setUnitPrice(new BigDecimal(2));
+        item2.setOrder(order);
+        orderItemRepository.save(item2);
+
+        List<OrderItem> orderItems = ordersClient.getOrderItems(order.getId());
+        assertEquals(2, orderItems.size());
+    }
+
+
+
+    private Long createOrder(OrderCreateDTO dto) {
+        HttpResponse<Void> createResponse = ordersClient.createOrder(dto);
+        return Long.valueOf(createResponse.header(HttpHeaders.LOCATION).split("/")[2]);
+    }
+}

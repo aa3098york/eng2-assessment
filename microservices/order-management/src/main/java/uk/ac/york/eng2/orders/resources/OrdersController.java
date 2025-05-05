@@ -44,7 +44,7 @@ public class OrdersController {
 
     @Get("/{id}/customer")
     public Customer getOrderCustomer(@PathVariable long id) {
-        return customerRepository.findByOrdersId(id);
+        return customerRepository.findByOrdersId(id).orElse(null);
     }
 
     @Get("/{id}/order-items")
@@ -55,7 +55,7 @@ public class OrdersController {
     @Post
     public HttpResponse<Void> createOrder(@Body OrderCreateDTO dto) {
         Order order = new Order();
-        if(dto.getDateCreated() == null || dto.getAddress() == null ||
+        if(dto.getDateCreated() == null || dto.getAddress() == null || dto.getCustomerId() == null ||
                 dto.getPaid() == null || dto.getDelivered() == null || dto.getTotalAmount() == null) {
             throw new HttpStatusException(HttpStatus.BAD_REQUEST, "Required fields cannot be null");
         }
@@ -94,7 +94,7 @@ public class OrdersController {
         order.setTotalAmount(dto.getTotalAmount());
         Optional<Customer> customer = customerRepository.findById(dto.getCustomerId());
         if (!customer.isPresent()) {
-            throw new HttpStatusException(HttpStatus.BAD_REQUEST, "Customer not found");
+            throw new HttpStatusException(HttpStatus.NOT_FOUND, "Customer not found");
         }
         order.setCustomer(customer.get());
         orderRepository.save(order);

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.micronaut.serde.annotation.Serdeable;
 import jakarta.persistence.*;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,7 +21,7 @@ public class Tag {
 
     @JsonIgnore
     @ManyToMany(mappedBy = "tags")
-    private Set<Product> products = new HashSet<Product>();
+    private Set<Product> products = Collections.emptySet();
 
     public Long getId() {
         return id;

@@ -19,10 +19,16 @@ public interface ProductsClient {
     Product getProduct(@PathVariable long id);
 
     @Get("/{id}/orders-by-day")
-    public List<OrdersByDay> listOrdersByDay(@PathVariable long id);
+    List<OrdersByDay> listOrdersByDay(@PathVariable long id);
 
     @Get("/{id}/tags")
-    public List<Tag> listTags(@PathVariable long id);
+    List<Tag> getProductTags(@PathVariable long id);
+
+    @Put("/{id}/tags/{tagId}")
+    void addProductTag(@PathVariable long id, @PathVariable long tagId);
+
+    @Delete("/{id}/tags/{tagId}")
+    void removeProductTag(@PathVariable long id, @PathVariable long tagId);
 
     @Post
     HttpResponse<Void> createProduct(@Body ProductCreateDTO dto);
