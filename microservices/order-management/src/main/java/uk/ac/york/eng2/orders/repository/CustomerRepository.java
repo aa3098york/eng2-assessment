@@ -6,4 +6,5 @@ import uk.ac.york.eng2.orders.domain.Customer;
 
 @Repository
 public interface CustomerRepository extends PageableRepository<Customer, Long> {
+    Customer findByOrdersId(Long orderId);
 }

@@ -8,9 +8,11 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import uk.ac.york.eng2.products.domain.OrdersByDay;
 import uk.ac.york.eng2.products.domain.Product;
+import uk.ac.york.eng2.products.domain.Tag;
 import uk.ac.york.eng2.products.dto.ProductCreateDTO;
 import uk.ac.york.eng2.products.repository.OrdersByDayRepository;
 import uk.ac.york.eng2.products.repository.ProductRepository;
+import uk.ac.york.eng2.products.repository.TagRepository;
 
 import java.net.URI;
 import java.util.*;
@@ -21,10 +23,14 @@ public class ProductsController {
     @Inject
     private ProductRepository productRepository;
 
+    @Inject
     private OrdersByDayRepository ordersByDayRepository;
 
+    @Inject
+    private TagRepository tagRepository;
+
     @Get
-    public @NonNull List<Product> getProducts() {
+    public List<Product> getProducts() {
         return productRepository.findAll();
     }
 
@@ -36,6 +42,11 @@ public class ProductsController {
     @Get("/{id}/orders-by-day")
     public List<OrdersByDay> listOrdersByDay(@PathVariable long id) {
         return ordersByDayRepository.findByProductId(id);
+    }
+
+    @Get("/{id}/tags")
+    public List<Tag> listTags(@PathVariable long id) {
+        return tagRepository.findByProductsId(id);
     }
 
     @Post
@@ -68,7 +79,7 @@ public class ProductsController {
     @Delete("/{id}")
     public void deleteProduct(@PathVariable long id) {
         if(!productRepository.existsById(id)){
-            throw new HttpStatusException(HttpStatus.NOT_FOUND, "HTTP ERROR 404: PRODUCT NOT FOUND");
+            throw new HttpStatusException(HttpStatus.NOT_FOUND, "Product not found");
         }
         else {
             productRepository.deleteById(id);

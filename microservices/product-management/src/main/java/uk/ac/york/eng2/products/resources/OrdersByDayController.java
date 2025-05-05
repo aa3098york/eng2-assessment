@@ -38,7 +38,7 @@ public class OrdersByDayController {
     @Transactional
     @Get("/{id}/product")
     public Product getOrderByDayProduct(@PathVariable long id) {
-        return productRepository.findById(id).orElse(null);
+        return productRepository.findByOrdersByDayId(id);
     }
 
     @Post

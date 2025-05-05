@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends PageableRepository<Product, Long> {
     List<Product> findByTagsId(Long id);
+    Product findByOrdersByDayId(Long ordersByDayId);
 }

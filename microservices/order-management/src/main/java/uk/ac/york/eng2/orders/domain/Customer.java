@@ -1,8 +1,10 @@
 package uk.ac.york.eng2.orders.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.micronaut.core.annotation.NonNull;
 import io.micronaut.serde.annotation.Serdeable;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,15 +16,19 @@ public class Customer {
     @GeneratedValue
     private Long id;
 
+    @NotNull
     @Column
     private String email;
 
+    @NotNull
     @Column
     private String firstName;
 
+    @NotNull
     @Column
     private String familyName;
 
+    @NotNull
     @JsonIgnore
     @OneToMany(mappedBy = "customer")
     private Set<Order> orders = new HashSet<>();

@@ -1,11 +1,16 @@
 package uk.ac.york.eng2.orders.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.micronaut.serde.annotation.Serdeable;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+@Serdeable
 @Entity(name="orders")
 public class Order {
     @Id
@@ -25,11 +30,15 @@ public class Order {
     private Boolean delivered;
 
     @Column
-    private BigDecimal total_amount = BigDecimal.ZERO;
+    private BigDecimal totalAmount = BigDecimal.ZERO;
 
     @JsonIgnore
     @ManyToOne
     private Customer customer;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "order")
+    private Set<OrderItem> orderItems = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -71,12 +80,12 @@ public class Order {
         this.delivered = delivered;
     }
 
-    public BigDecimal getTotal_amount() {
-        return total_amount;
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
     }
 
-    public void setTotal_amount(BigDecimal total_amount) {
-        this.total_amount = total_amount;
+    public void setTotalAmount(BigDecimal total_amount) {
+        this.totalAmount = total_amount;
     }
 
     public Customer getCustomer() {
@@ -85,5 +94,13 @@ public class Order {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public Set<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(Set<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 }

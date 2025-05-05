@@ -7,19 +7,19 @@ import java.time.LocalDate;
 
 @Serdeable
 public class OrderCreateDTO {
-    private LocalDate date;
+    private LocalDate dateCreated;
     private String address;
     private Boolean paid;
     private Boolean delivered;
-    private BigDecimal total_amount;
-    private Long customer_id;
+    private BigDecimal totalAmount;
+    private Long customerId;
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getDateCreated() {
+        return dateCreated;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setDateCreated(LocalDate dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
     public String getAddress() {
@@ -46,20 +46,20 @@ public class OrderCreateDTO {
         this.delivered = delivered;
     }
 
-    public BigDecimal getTotal_amount() {
-        return total_amount;
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
     }
 
-    public void setTotal_amount(BigDecimal total_amount) {
-        this.total_amount = total_amount;
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
-    public Long getCustomer_id() {
-        return customer_id;
+    public Long getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer_id(Long customer_id) {
-        this.customer_id = customer_id;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
 
