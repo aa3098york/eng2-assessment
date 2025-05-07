@@ -66,9 +66,71 @@ public class OffersSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case OffersPackage.MODEL: {
-				Model model = (Model)theEObject;
-				T result = caseModel(model);
+			case OffersPackage.OFFER: {
+				Offer offer = (Offer)theEObject;
+				T result = caseOffer(offer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OffersPackage.CATEGORY: {
+				Category category = (Category)theEObject;
+				T result = caseCategory(category);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OffersPackage.PRODUCT: {
+				Product product = (Product)theEObject;
+				T result = caseProduct(product);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OffersPackage.TAG: {
+				Tag tag = (Tag)theEObject;
+				T result = caseTag(tag);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OffersPackage.ORDER: {
+				Order order = (Order)theEObject;
+				T result = caseOrder(order);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OffersPackage.ORDER_ITEMS: {
+				OrderItems orderItems = (OrderItems)theEObject;
+				T result = caseOrderItems(orderItems);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OffersPackage.ORDERS_BY_DAY: {
+				OrdersByDay ordersByDay = (OrdersByDay)theEObject;
+				T result = caseOrdersByDay(ordersByDay);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OffersPackage.OFFER_RULE: {
+				OfferRule offerRule = (OfferRule)theEObject;
+				T result = caseOfferRule(offerRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OffersPackage.PERCENTAGE_DISCOUNT_RULE: {
+				PercentageDiscountRule percentageDiscountRule = (PercentageDiscountRule)theEObject;
+				T result = casePercentageDiscountRule(percentageDiscountRule);
+				if (result == null) result = caseOfferRule(percentageDiscountRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OffersPackage.FIXED_AMOUNT_DISCOUNT_RULE: {
+				FixedAmountDiscountRule fixedAmountDiscountRule = (FixedAmountDiscountRule)theEObject;
+				T result = caseFixedAmountDiscountRule(fixedAmountDiscountRule);
+				if (result == null) result = caseOfferRule(fixedAmountDiscountRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OffersPackage.TRIGGER_RULE: {
+				TriggerRule triggerRule = (TriggerRule)theEObject;
+				T result = caseTriggerRule(triggerRule);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -77,17 +139,167 @@ public class OffersSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Offer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Offer</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModel(Model object) {
+	public T caseOffer(Offer object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Category</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Category</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCategory(Category object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Product</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Product</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseProduct(Product object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Tag</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Tag</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTag(Tag object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Order</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Order</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOrder(Order object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Order Items</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Order Items</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOrderItems(OrderItems object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Orders By Day</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Orders By Day</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOrdersByDay(OrdersByDay object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Offer Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Offer Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOfferRule(OfferRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Percentage Discount Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Percentage Discount Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePercentageDiscountRule(PercentageDiscountRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Fixed Amount Discount Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Fixed Amount Discount Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFixedAmountDiscountRule(FixedAmountDiscountRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Trigger Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Trigger Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTriggerRule(TriggerRule object) {
 		return null;
 	}
 

@@ -72,26 +72,233 @@ public class OffersItemProviderAdapterFactory extends OffersAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link uk.ac.york.cs.eng2.offers.Model} instances.
+	 * This keeps track of the one adapter used for all {@link uk.ac.york.cs.eng2.offers.Offer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelItemProvider modelItemProvider;
+	protected OfferItemProvider offerItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link uk.ac.york.cs.eng2.offers.Model}.
+	 * This creates an adapter for a {@link uk.ac.york.cs.eng2.offers.Offer}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createModelAdapter() {
-		if (modelItemProvider == null) {
-			modelItemProvider = new ModelItemProvider(this);
+	public Adapter createOfferAdapter() {
+		if (offerItemProvider == null) {
+			offerItemProvider = new OfferItemProvider(this);
 		}
 
-		return modelItemProvider;
+		return offerItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link uk.ac.york.cs.eng2.offers.Category} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CategoryItemProvider categoryItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link uk.ac.york.cs.eng2.offers.Category}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCategoryAdapter() {
+		if (categoryItemProvider == null) {
+			categoryItemProvider = new CategoryItemProvider(this);
+		}
+
+		return categoryItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link uk.ac.york.cs.eng2.offers.Product} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ProductItemProvider productItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link uk.ac.york.cs.eng2.offers.Product}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createProductAdapter() {
+		if (productItemProvider == null) {
+			productItemProvider = new ProductItemProvider(this);
+		}
+
+		return productItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link uk.ac.york.cs.eng2.offers.Tag} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TagItemProvider tagItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link uk.ac.york.cs.eng2.offers.Tag}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTagAdapter() {
+		if (tagItemProvider == null) {
+			tagItemProvider = new TagItemProvider(this);
+		}
+
+		return tagItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link uk.ac.york.cs.eng2.offers.Order} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OrderItemProvider orderItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link uk.ac.york.cs.eng2.offers.Order}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOrderAdapter() {
+		if (orderItemProvider == null) {
+			orderItemProvider = new OrderItemProvider(this);
+		}
+
+		return orderItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link uk.ac.york.cs.eng2.offers.OrderItems} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OrderItemsItemProvider orderItemsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link uk.ac.york.cs.eng2.offers.OrderItems}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOrderItemsAdapter() {
+		if (orderItemsItemProvider == null) {
+			orderItemsItemProvider = new OrderItemsItemProvider(this);
+		}
+
+		return orderItemsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link uk.ac.york.cs.eng2.offers.OrdersByDay} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OrdersByDayItemProvider ordersByDayItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link uk.ac.york.cs.eng2.offers.OrdersByDay}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOrdersByDayAdapter() {
+		if (ordersByDayItemProvider == null) {
+			ordersByDayItemProvider = new OrdersByDayItemProvider(this);
+		}
+
+		return ordersByDayItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link uk.ac.york.cs.eng2.offers.PercentageDiscountRule} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PercentageDiscountRuleItemProvider percentageDiscountRuleItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link uk.ac.york.cs.eng2.offers.PercentageDiscountRule}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPercentageDiscountRuleAdapter() {
+		if (percentageDiscountRuleItemProvider == null) {
+			percentageDiscountRuleItemProvider = new PercentageDiscountRuleItemProvider(this);
+		}
+
+		return percentageDiscountRuleItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link uk.ac.york.cs.eng2.offers.FixedAmountDiscountRule} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FixedAmountDiscountRuleItemProvider fixedAmountDiscountRuleItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link uk.ac.york.cs.eng2.offers.FixedAmountDiscountRule}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFixedAmountDiscountRuleAdapter() {
+		if (fixedAmountDiscountRuleItemProvider == null) {
+			fixedAmountDiscountRuleItemProvider = new FixedAmountDiscountRuleItemProvider(this);
+		}
+
+		return fixedAmountDiscountRuleItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link uk.ac.york.cs.eng2.offers.TriggerRule} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TriggerRuleItemProvider triggerRuleItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link uk.ac.york.cs.eng2.offers.TriggerRule}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTriggerRuleAdapter() {
+		if (triggerRuleItemProvider == null) {
+			triggerRuleItemProvider = new TriggerRuleItemProvider(this);
+		}
+
+		return triggerRuleItemProvider;
 	}
 
 	/**
@@ -199,7 +406,16 @@ public class OffersItemProviderAdapterFactory extends OffersAdapterFactory imple
 	 */
 	@Override
 	public void dispose() {
-		if (modelItemProvider != null) modelItemProvider.dispose();
+		if (offerItemProvider != null) offerItemProvider.dispose();
+		if (categoryItemProvider != null) categoryItemProvider.dispose();
+		if (productItemProvider != null) productItemProvider.dispose();
+		if (tagItemProvider != null) tagItemProvider.dispose();
+		if (orderItemProvider != null) orderItemProvider.dispose();
+		if (orderItemsItemProvider != null) orderItemsItemProvider.dispose();
+		if (ordersByDayItemProvider != null) ordersByDayItemProvider.dispose();
+		if (percentageDiscountRuleItemProvider != null) percentageDiscountRuleItemProvider.dispose();
+		if (fixedAmountDiscountRuleItemProvider != null) fixedAmountDiscountRuleItemProvider.dispose();
+		if (triggerRuleItemProvider != null) triggerRuleItemProvider.dispose();
 	}
 
 }

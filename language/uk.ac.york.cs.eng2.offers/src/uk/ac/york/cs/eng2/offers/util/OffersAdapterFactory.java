@@ -68,8 +68,48 @@ public class OffersAdapterFactory extends AdapterFactoryImpl {
 	protected OffersSwitch<Adapter> modelSwitch =
 		new OffersSwitch<Adapter>() {
 			@Override
-			public Adapter caseModel(Model object) {
-				return createModelAdapter();
+			public Adapter caseOffer(Offer object) {
+				return createOfferAdapter();
+			}
+			@Override
+			public Adapter caseCategory(Category object) {
+				return createCategoryAdapter();
+			}
+			@Override
+			public Adapter caseProduct(Product object) {
+				return createProductAdapter();
+			}
+			@Override
+			public Adapter caseTag(Tag object) {
+				return createTagAdapter();
+			}
+			@Override
+			public Adapter caseOrder(Order object) {
+				return createOrderAdapter();
+			}
+			@Override
+			public Adapter caseOrderItems(OrderItems object) {
+				return createOrderItemsAdapter();
+			}
+			@Override
+			public Adapter caseOrdersByDay(OrdersByDay object) {
+				return createOrdersByDayAdapter();
+			}
+			@Override
+			public Adapter caseOfferRule(OfferRule object) {
+				return createOfferRuleAdapter();
+			}
+			@Override
+			public Adapter casePercentageDiscountRule(PercentageDiscountRule object) {
+				return createPercentageDiscountRuleAdapter();
+			}
+			@Override
+			public Adapter caseFixedAmountDiscountRule(FixedAmountDiscountRule object) {
+				return createFixedAmountDiscountRuleAdapter();
+			}
+			@Override
+			public Adapter caseTriggerRule(TriggerRule object) {
+				return createTriggerRuleAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -92,16 +132,156 @@ public class OffersAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.cs.eng2.offers.Model <em>Model</em>}'.
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.cs.eng2.offers.Offer <em>Offer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see uk.ac.york.cs.eng2.offers.Model
+	 * @see uk.ac.york.cs.eng2.offers.Offer
 	 * @generated
 	 */
-	public Adapter createModelAdapter() {
+	public Adapter createOfferAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.cs.eng2.offers.Category <em>Category</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.cs.eng2.offers.Category
+	 * @generated
+	 */
+	public Adapter createCategoryAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.cs.eng2.offers.Product <em>Product</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.cs.eng2.offers.Product
+	 * @generated
+	 */
+	public Adapter createProductAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.cs.eng2.offers.Tag <em>Tag</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.cs.eng2.offers.Tag
+	 * @generated
+	 */
+	public Adapter createTagAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.cs.eng2.offers.Order <em>Order</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.cs.eng2.offers.Order
+	 * @generated
+	 */
+	public Adapter createOrderAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.cs.eng2.offers.OrderItems <em>Order Items</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.cs.eng2.offers.OrderItems
+	 * @generated
+	 */
+	public Adapter createOrderItemsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.cs.eng2.offers.OrdersByDay <em>Orders By Day</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.cs.eng2.offers.OrdersByDay
+	 * @generated
+	 */
+	public Adapter createOrdersByDayAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.cs.eng2.offers.OfferRule <em>Offer Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.cs.eng2.offers.OfferRule
+	 * @generated
+	 */
+	public Adapter createOfferRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.cs.eng2.offers.PercentageDiscountRule <em>Percentage Discount Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.cs.eng2.offers.PercentageDiscountRule
+	 * @generated
+	 */
+	public Adapter createPercentageDiscountRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.cs.eng2.offers.FixedAmountDiscountRule <em>Fixed Amount Discount Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.cs.eng2.offers.FixedAmountDiscountRule
+	 * @generated
+	 */
+	public Adapter createFixedAmountDiscountRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.cs.eng2.offers.TriggerRule <em>Trigger Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.cs.eng2.offers.TriggerRule
+	 * @generated
+	 */
+	public Adapter createTriggerRuleAdapter() {
 		return null;
 	}
 
