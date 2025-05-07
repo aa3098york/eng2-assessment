@@ -9,6 +9,69 @@ package offers;
 //
 // You may want to delete the old generated code in src/ before generating code from the .genmodel.
 
-class Model {
-	
+class Offer {
+    attr String name;
+    ref Category[*] categories;
+    ref OfferRule[*] rules;
+}
+
+class Category {
+    attr String name;
+    ref Product[*] products;
+}
+
+class Product {
+    attr String name;
+    attr float unitPrice;
+    ref Tag[*] tags;
+}
+
+class Tag {
+    attr String name;
+}
+
+
+class Order {
+    attr String orderId;
+    attr float totalPrice;
+    attr EDate orderDate;
+    ref OrderItems[*] orderItems;
+}
+
+class OrderItems {
+	attr float unitPrice;
+	attr int quantity;
+	ref Product product;
+}
+
+class OrdersByDay {
+    attr String dateCreated;
+    attr int count;
+    ref Product product;
+}
+
+abstract class OfferRule {
+    attr String name;
+    attr float minOrderValue;
+    ref TriggerRule[*] triggers;
+    ref OrdersByDay ordersByDay;
+}
+
+class PercentageDiscountRule extends OfferRule {
+    attr float discountPercentage;
+}
+
+class FixedAmountDiscountRule extends OfferRule {
+    attr float discountAmount;
+}
+
+class TriggerRule {
+    attr TriggerType triggerType;
+    ref OfferRule targetRule;
+}
+
+enum TriggerType {
+    IF_MATCH;
+    IF_NOT_MATCH;
+    ALWAYS;
 }

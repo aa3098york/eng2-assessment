@@ -11,20 +11,20 @@ import java.util.List;
 @Client("/order-items")
 public interface OrderItemsClient {
     @Get
-    public List<OrderItem> getOrderItems();
+    List<OrderItem> getOrderItems();
 
     @Get("/{id}")
-    public OrderItem getOrderItem(@PathVariable long id);
+    OrderItem getOrderItem(@PathVariable long id);
 
     @Get("/{id}/order")
-    public Order getOrder(@PathVariable long id);
+    HttpResponse<Order> getOrder(@PathVariable long id);
 
     @Post
-    public HttpResponse<Void> createOrderItem(OrderItemCreateDTO dto);
+    HttpResponse<Void> createOrderItem(OrderItemCreateDTO dto);
 
     @Put("/{id}")
-    public void updateOrderItem(@PathVariable long id,@Body OrderItemCreateDTO dto);
+    HttpResponse updateOrderItem(@PathVariable long id,@Body OrderItemCreateDTO dto);
 
     @Delete("/{id}")
-    public void deleteOrderItem(@PathVariable long id);
+    HttpResponse deleteOrderItem(@PathVariable long id);
 }

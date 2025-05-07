@@ -60,5 +60,19 @@ micronaut {
     }
     openapi {
         // add OpenAPI configuration here
+        client("order-service", file("src/main/openapi/order-management-0.0.yml")) {
+            apiPackageName = "uk.ac.york.eng2.orders.api"
+            clientId = "order-service"
+            modelPackageName = "uk.ac.york.eng2.orders.model"
+            alwaysUseGenerateHttpResponse = true
+            useReactive = false
+        }
+        client("product-service", file("src/main/openapi/product-management-0.0.yml")) {
+            apiPackageName = "uk.ac.york.eng2.products.api"
+            clientId = "product-service"
+            modelPackageName = "uk.ac.york.eng2.products.model"
+            alwaysUseGenerateHttpResponse = true
+            useReactive = false
+        }
     }
 }

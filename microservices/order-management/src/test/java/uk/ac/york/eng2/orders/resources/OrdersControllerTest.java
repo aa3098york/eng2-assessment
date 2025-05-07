@@ -4,6 +4,7 @@ import io.micronaut.http.HttpHeaders;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.PathVariable;
+import io.micronaut.http.client.exceptions.HttpClientResponseException;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,6 +22,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 @MicronautTest(transactional = false)
 public class OrdersControllerTest {
@@ -77,6 +79,23 @@ public class OrdersControllerTest {
         assertEquals(dto.getTotalAmount(), fetchedOrder.getTotalAmount());
         assertEquals(dto.getDelivered(), fetchedOrder.getDelivered());
         assertEquals(dto.getCustomerId(), fetchedCustomer.getId());
+    }
+
+    @Test
+    public void createWithMissingCustomer() {
+        OrderCreateDTO dto = new OrderCreateDTO();
+        dto.setAddress("Dummy Address");
+        dto.setDateCreated(LocalDate.of(2025,12,31));
+        dto.setPaid(false);
+        dto.setTotalAmount(new BigDecimal("9.99"));
+        dto.setDelivered(false);
+
+        try {
+            ordersClient.createOrder(dto); // This will throw an exception
+            fail("Expected HttpClientResponseException but none was thrown.");
+        } catch (HttpClientResponseException e) {
+            assertEquals(HttpStatus.BAD_REQUEST, e.getResponse().getStatus());
+        }
     }
 
     @Test
@@ -317,9 +336,15 @@ public class OrdersControllerTest {
         item1.setUnitPrice(new BigDecimal(1));
         item1.setOrder(order);
         orderItemRepository.save(item1);
+        try {
+            ordersClient.deleteOrder(order.getId()); // This will throw an exception
+            fail("Expected HttpClientResponseException but none was thrown.");
+        } catch (HttpClientResponseException e) {
+            assertEquals(HttpStatus.CONFLICT, e.getResponse().getStatus());
+        }
 
-        HttpResponse response = ordersClient.deleteOrder(order.getId());
-        assertEquals(HttpStatus.CONFLICT, response.getStatus());
+//        HttpResponse response = ordersClient.deleteOrder(order.getId());
+//        assertEquals(HttpStatus.CONFLICT, response.getStatus());
     }
 
     @Test

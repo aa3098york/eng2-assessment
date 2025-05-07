@@ -5,6 +5,7 @@ import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.*;
 import io.micronaut.http.exceptions.HttpStatusException;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import uk.ac.york.eng2.products.domain.OrdersByDay;
@@ -17,6 +18,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+@Tag(name="orders-by-day")
 @Controller("/orders-by-day")
 public class OrdersByDayController {
     @Inject
@@ -52,7 +54,7 @@ public class OrdersByDayController {
 
         @NonNull Optional<Product> product = productRepository.findById(dto.getProductId());
         if (!product.isPresent()) {
-            throw new HttpStatusException(HttpStatus.BAD_REQUEST, "Product not found");
+            throw new HttpStatusException(HttpStatus.NOT_FOUND, "Product not found");
         }
         obd.setProduct(product.get());
 

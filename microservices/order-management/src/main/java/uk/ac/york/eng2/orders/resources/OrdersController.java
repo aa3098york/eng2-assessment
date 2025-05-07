@@ -6,6 +6,7 @@ import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.*;
 import io.micronaut.http.exceptions.HttpStatusException;
 import io.micronaut.transaction.annotation.Transactional;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.inject.Inject;
 import uk.ac.york.eng2.orders.domain.Customer;
 import uk.ac.york.eng2.orders.domain.Order;
@@ -19,6 +20,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+@Tag(name="orders")
 @Controller(OrdersController.PREFIX)
 public class OrdersController {
     public static final String PREFIX = "/orders";
@@ -67,7 +69,7 @@ public class OrdersController {
 
         Optional<Customer> customer = customerRepository.findById(dto.getCustomerId());
         if (!customer.isPresent()) {
-            throw new HttpStatusException(HttpStatus.BAD_REQUEST, "Customer not found");
+            throw new HttpStatusException(HttpStatus.NOT_FOUND, "Customer not found");
         }
         order.setCustomer(customer.get());
 
@@ -100,6 +102,7 @@ public class OrdersController {
         orderRepository.save(order);
     }
 
+    @Transactional
     @Delete("/{id}")
     public void deleteOrder(@PathVariable long id) {
         if(!orderRepository.existsById(id)) {

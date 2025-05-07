@@ -18,6 +18,7 @@ import java.net.URI;
 import java.util.*;
 
 
+@io.swagger.v3.oas.annotations.tags.Tag(name="products")
 @Controller("/products")
 public class ProductsController {
     @Inject
