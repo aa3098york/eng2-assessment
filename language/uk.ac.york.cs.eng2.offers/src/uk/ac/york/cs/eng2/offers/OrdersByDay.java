@@ -2,6 +2,8 @@
  */
 package uk.ac.york.cs.eng2.offers;
 
+import java.util.Date;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -13,9 +15,9 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.york.cs.eng2.offers.OrdersByDay#getDateCreated <em>Date Created</em>}</li>
- *   <li>{@link uk.ac.york.cs.eng2.offers.OrdersByDay#getCount <em>Count</em>}</li>
  *   <li>{@link uk.ac.york.cs.eng2.offers.OrdersByDay#getProduct <em>Product</em>}</li>
+ *   <li>{@link uk.ac.york.cs.eng2.offers.OrdersByDay#getDay <em>Day</em>}</li>
+ *   <li>{@link uk.ac.york.cs.eng2.offers.OrdersByDay#getCount <em>Count</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.cs.eng2.offers.OffersPackage#getOrdersByDay()
@@ -24,26 +26,48 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface OrdersByDay extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Date Created</b></em>' attribute.
+	 * Returns the value of the '<em><b>Product</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Date Created</em>' attribute.
-	 * @see #setDateCreated(String)
-	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getOrdersByDay_DateCreated()
+	 * @return the value of the '<em>Product</em>' reference.
+	 * @see #setProduct(Product)
+	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getOrdersByDay_Product()
 	 * @model
 	 * @generated
 	 */
-	String getDateCreated();
+	Product getProduct();
 
 	/**
-	 * Sets the value of the '{@link uk.ac.york.cs.eng2.offers.OrdersByDay#getDateCreated <em>Date Created</em>}' attribute.
+	 * Sets the value of the '{@link uk.ac.york.cs.eng2.offers.OrdersByDay#getProduct <em>Product</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Date Created</em>' attribute.
-	 * @see #getDateCreated()
+	 * @param value the new value of the '<em>Product</em>' reference.
+	 * @see #getProduct()
 	 * @generated
 	 */
-	void setDateCreated(String value);
+	void setProduct(Product value);
+
+	/**
+	 * Returns the value of the '<em><b>Day</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Day</em>' attribute.
+	 * @see #setDay(Date)
+	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getOrdersByDay_Day()
+	 * @model
+	 * @generated
+	 */
+	Date getDay();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.cs.eng2.offers.OrdersByDay#getDay <em>Day</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Day</em>' attribute.
+	 * @see #getDay()
+	 * @generated
+	 */
+	void setDay(Date value);
 
 	/**
 	 * Returns the value of the '<em><b>Count</b></em>' attribute.
@@ -66,27 +90,5 @@ public interface OrdersByDay extends EObject {
 	 * @generated
 	 */
 	void setCount(int value);
-
-	/**
-	 * Returns the value of the '<em><b>Product</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Product</em>' reference.
-	 * @see #setProduct(Product)
-	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getOrdersByDay_Product()
-	 * @model
-	 * @generated
-	 */
-	Product getProduct();
-
-	/**
-	 * Sets the value of the '{@link uk.ac.york.cs.eng2.offers.OrdersByDay#getProduct <em>Product</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Product</em>' reference.
-	 * @see #getProduct()
-	 * @generated
-	 */
-	void setProduct(Product value);
 
 } // OrdersByDay

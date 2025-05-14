@@ -36,16 +36,16 @@ public class OrderEventConsumer {
 
 
     @Topic(OrderTopics.TOPIC_ORDER_UPDATED)
-    public HttpStatus orderUpdated(@KafkaKey long orderId, ProductInfoChanges productInfoChanges) {
-        for(OrderInfo orderInfo : productInfoChanges.newOrderInfos()){
+    public HttpStatus orderUpdated(@KafkaKey long orderId, OrderInfoChanges orderInfoChanges) {
+        for(OrderInfo orderInfo : orderInfoChanges.newOrderInfos()){
             if(!productRepository.findById(orderInfo.product_id()).isPresent()) {
                 return HttpStatus.NOT_FOUND;
             }
         }
-        for(OrderInfo orderInfo : productInfoChanges.oldOrderInfos()){
+        for(OrderInfo orderInfo : orderInfoChanges.oldOrderInfos()){
             removeFromOrdersByDay(orderInfo);
         }
-        for(OrderInfo orderInfo : productInfoChanges.newOrderInfos()){
+        for(OrderInfo orderInfo : orderInfoChanges.newOrderInfos()){
             addToOrdersByDay(orderInfo);
         }
         return HttpStatus.OK;

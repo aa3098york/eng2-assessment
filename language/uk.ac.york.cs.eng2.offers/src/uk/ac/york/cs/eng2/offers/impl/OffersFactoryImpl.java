@@ -57,16 +57,26 @@ public class OffersFactoryImpl extends EFactoryImpl implements OffersFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case OffersPackage.OFFER: return createOffer();
+			case OffersPackage.MODEL: return createModel();
 			case OffersPackage.CATEGORY: return createCategory();
+			case OffersPackage.OFFER: return createOffer();
+			case OffersPackage.FIXED_AMOUNT_DISCOUNT_ACTION: return createFixedAmountDiscountAction();
+			case OffersPackage.FIXED_PRICE_DISCOUNT_ACTION: return createFixedPriceDiscountAction();
+			case OffersPackage.PERCENTAGE_DISCOUNT_ACTION: return createPercentageDiscountAction();
+			case OffersPackage.PERCENTAGE_PRODUCT_DISCOUNT_ACTION: return createPercentageProductDiscountAction();
+			case OffersPackage.FREE_ITEM_ACTION: return createFreeItemAction();
+			case OffersPackage.SINGLE_OFFER_RULE: return createSingleOfferRule();
+			case OffersPackage.MULTI_OFFER_RULE: return createMultiOfferRule();
+			case OffersPackage.TRIGGER_RULE: return createTriggerRule();
+			case OffersPackage.MIN_ORDER_VALUE_CONDITION: return createMinOrderValueCondition();
+			case OffersPackage.PRODUCT_TAG_CONDITION: return createProductTagCondition();
+			case OffersPackage.PRODUCT_CATEGORY_CONDITION: return createProductCategoryCondition();
+			case OffersPackage.FIRST_NORDERS_CONDITION: return createFirstNOrdersCondition();
 			case OffersPackage.PRODUCT: return createProduct();
 			case OffersPackage.TAG: return createTag();
-			case OffersPackage.ORDER: return createOrder();
-			case OffersPackage.ORDER_ITEMS: return createOrderItems();
 			case OffersPackage.ORDERS_BY_DAY: return createOrdersByDay();
-			case OffersPackage.PERCENTAGE_DISCOUNT_RULE: return createPercentageDiscountRule();
-			case OffersPackage.FIXED_AMOUNT_DISCOUNT_RULE: return createFixedAmountDiscountRule();
-			case OffersPackage.TRIGGER_RULE: return createTriggerRule();
+			case OffersPackage.ORDER: return createOrder();
+			case OffersPackage.ORDER_ITEM: return createOrderItem();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -108,9 +118,9 @@ public class OffersFactoryImpl extends EFactoryImpl implements OffersFactory {
 	 * @generated
 	 */
 	@Override
-	public Offer createOffer() {
-		OfferImpl offer = new OfferImpl();
-		return offer;
+	public Model createModel() {
+		ModelImpl model = new ModelImpl();
+		return model;
 	}
 
 	/**
@@ -122,6 +132,149 @@ public class OffersFactoryImpl extends EFactoryImpl implements OffersFactory {
 	public Category createCategory() {
 		CategoryImpl category = new CategoryImpl();
 		return category;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Offer createOffer() {
+		OfferImpl offer = new OfferImpl();
+		return offer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FixedAmountDiscountAction createFixedAmountDiscountAction() {
+		FixedAmountDiscountActionImpl fixedAmountDiscountAction = new FixedAmountDiscountActionImpl();
+		return fixedAmountDiscountAction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FixedPriceDiscountAction createFixedPriceDiscountAction() {
+		FixedPriceDiscountActionImpl fixedPriceDiscountAction = new FixedPriceDiscountActionImpl();
+		return fixedPriceDiscountAction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PercentageDiscountAction createPercentageDiscountAction() {
+		PercentageDiscountActionImpl percentageDiscountAction = new PercentageDiscountActionImpl();
+		return percentageDiscountAction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PercentageProductDiscountAction createPercentageProductDiscountAction() {
+		PercentageProductDiscountActionImpl percentageProductDiscountAction = new PercentageProductDiscountActionImpl();
+		return percentageProductDiscountAction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FreeItemAction createFreeItemAction() {
+		FreeItemActionImpl freeItemAction = new FreeItemActionImpl();
+		return freeItemAction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SingleOfferRule createSingleOfferRule() {
+		SingleOfferRuleImpl singleOfferRule = new SingleOfferRuleImpl();
+		return singleOfferRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MultiOfferRule createMultiOfferRule() {
+		MultiOfferRuleImpl multiOfferRule = new MultiOfferRuleImpl();
+		return multiOfferRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public TriggerRule createTriggerRule() {
+		TriggerRuleImpl triggerRule = new TriggerRuleImpl();
+		return triggerRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MinOrderValueCondition createMinOrderValueCondition() {
+		MinOrderValueConditionImpl minOrderValueCondition = new MinOrderValueConditionImpl();
+		return minOrderValueCondition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ProductTagCondition createProductTagCondition() {
+		ProductTagConditionImpl productTagCondition = new ProductTagConditionImpl();
+		return productTagCondition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ProductCategoryCondition createProductCategoryCondition() {
+		ProductCategoryConditionImpl productCategoryCondition = new ProductCategoryConditionImpl();
+		return productCategoryCondition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FirstNOrdersCondition createFirstNOrdersCondition() {
+		FirstNOrdersConditionImpl firstNOrdersCondition = new FirstNOrdersConditionImpl();
+		return firstNOrdersCondition;
 	}
 
 	/**
@@ -152,28 +305,6 @@ public class OffersFactoryImpl extends EFactoryImpl implements OffersFactory {
 	 * @generated
 	 */
 	@Override
-	public Order createOrder() {
-		OrderImpl order = new OrderImpl();
-		return order;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public OrderItems createOrderItems() {
-		OrderItemsImpl orderItems = new OrderItemsImpl();
-		return orderItems;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public OrdersByDay createOrdersByDay() {
 		OrdersByDayImpl ordersByDay = new OrdersByDayImpl();
 		return ordersByDay;
@@ -185,9 +316,9 @@ public class OffersFactoryImpl extends EFactoryImpl implements OffersFactory {
 	 * @generated
 	 */
 	@Override
-	public PercentageDiscountRule createPercentageDiscountRule() {
-		PercentageDiscountRuleImpl percentageDiscountRule = new PercentageDiscountRuleImpl();
-		return percentageDiscountRule;
+	public Order createOrder() {
+		OrderImpl order = new OrderImpl();
+		return order;
 	}
 
 	/**
@@ -196,20 +327,9 @@ public class OffersFactoryImpl extends EFactoryImpl implements OffersFactory {
 	 * @generated
 	 */
 	@Override
-	public FixedAmountDiscountRule createFixedAmountDiscountRule() {
-		FixedAmountDiscountRuleImpl fixedAmountDiscountRule = new FixedAmountDiscountRuleImpl();
-		return fixedAmountDiscountRule;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public TriggerRule createTriggerRule() {
-		TriggerRuleImpl triggerRule = new TriggerRuleImpl();
-		return triggerRule;
+	public OrderItem createOrderItem() {
+		OrderItemImpl orderItem = new OrderItemImpl();
+		return orderItem;
 	}
 
 	/**

@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface ProductRepository extends PageableRepository<Product, Long> {
     List<Product> findByTagsId(Long id);
     Optional<Product> findByOrdersByDayId(Long ordersByDayId);
+    Optional<Product> findByName(String name);
 }

@@ -5,15 +5,19 @@ package uk.ac.york.cs.eng2.offers.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import uk.ac.york.cs.eng2.offers.Category;
 import uk.ac.york.cs.eng2.offers.OffersPackage;
@@ -28,6 +32,7 @@ import uk.ac.york.cs.eng2.offers.Product;
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.cs.eng2.offers.impl.CategoryImpl#getName <em>Name</em>}</li>
+ *   <li>{@link uk.ac.york.cs.eng2.offers.impl.CategoryImpl#getSubcategories <em>Subcategories</em>}</li>
  *   <li>{@link uk.ac.york.cs.eng2.offers.impl.CategoryImpl#getProducts <em>Products</em>}</li>
  * </ul>
  *
@@ -53,6 +58,16 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getSubcategories() <em>Subcategories</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSubcategories()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Category> subcategories;
 
 	/**
 	 * The cached value of the '{@link #getProducts() <em>Products</em>}' reference list.
@@ -112,6 +127,19 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
 	 * @generated
 	 */
 	@Override
+	public EList<Category> getSubcategories() {
+		if (subcategories == null) {
+			subcategories = new EObjectContainmentEList<Category>(Category.class, this, OffersPackage.CATEGORY__SUBCATEGORIES);
+		}
+		return subcategories;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<Product> getProducts() {
 		if (products == null) {
 			products = new EObjectResolvingEList<Product>(Product.class, this, OffersPackage.CATEGORY__PRODUCTS);
@@ -125,10 +153,26 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case OffersPackage.CATEGORY__SUBCATEGORIES:
+				return ((InternalEList<?>)getSubcategories()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case OffersPackage.CATEGORY__NAME:
 				return getName();
+			case OffersPackage.CATEGORY__SUBCATEGORIES:
+				return getSubcategories();
 			case OffersPackage.CATEGORY__PRODUCTS:
 				return getProducts();
 		}
@@ -146,6 +190,10 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
 		switch (featureID) {
 			case OffersPackage.CATEGORY__NAME:
 				setName((String)newValue);
+				return;
+			case OffersPackage.CATEGORY__SUBCATEGORIES:
+				getSubcategories().clear();
+				getSubcategories().addAll((Collection<? extends Category>)newValue);
 				return;
 			case OffersPackage.CATEGORY__PRODUCTS:
 				getProducts().clear();
@@ -166,6 +214,9 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
 			case OffersPackage.CATEGORY__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case OffersPackage.CATEGORY__SUBCATEGORIES:
+				getSubcategories().clear();
+				return;
 			case OffersPackage.CATEGORY__PRODUCTS:
 				getProducts().clear();
 				return;
@@ -183,6 +234,8 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
 		switch (featureID) {
 			case OffersPackage.CATEGORY__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case OffersPackage.CATEGORY__SUBCATEGORIES:
+				return subcategories != null && !subcategories.isEmpty();
 			case OffersPackage.CATEGORY__PRODUCTS:
 				return products != null && !products.isEmpty();
 		}

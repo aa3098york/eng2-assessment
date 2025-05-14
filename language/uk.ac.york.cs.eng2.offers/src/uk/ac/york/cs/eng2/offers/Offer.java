@@ -2,8 +2,6 @@
  */
 package uk.ac.york.cs.eng2.offers;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -16,8 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.cs.eng2.offers.Offer#getName <em>Name</em>}</li>
- *   <li>{@link uk.ac.york.cs.eng2.offers.Offer#getCategories <em>Categories</em>}</li>
- *   <li>{@link uk.ac.york.cs.eng2.offers.Offer#getRules <em>Rules</em>}</li>
+ *   <li>{@link uk.ac.york.cs.eng2.offers.Offer#getOfferRule <em>Offer Rule</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.cs.eng2.offers.OffersPackage#getOffer()
@@ -48,27 +45,25 @@ public interface Offer extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Categories</b></em>' reference list.
-	 * The list contents are of type {@link uk.ac.york.cs.eng2.offers.Category}.
+	 * Returns the value of the '<em><b>Offer Rule</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Categories</em>' reference list.
-	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getOffer_Categories()
-	 * @model
+	 * @return the value of the '<em>Offer Rule</em>' containment reference.
+	 * @see #setOfferRule(OfferRule)
+	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getOffer_OfferRule()
+	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Category> getCategories();
+	OfferRule getOfferRule();
 
 	/**
-	 * Returns the value of the '<em><b>Rules</b></em>' reference list.
-	 * The list contents are of type {@link uk.ac.york.cs.eng2.offers.OfferRule}.
+	 * Sets the value of the '{@link uk.ac.york.cs.eng2.offers.Offer#getOfferRule <em>Offer Rule</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Rules</em>' reference list.
-	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getOffer_Rules()
-	 * @model
+	 * @param value the new value of the '<em>Offer Rule</em>' containment reference.
+	 * @see #getOfferRule()
 	 * @generated
 	 */
-	EList<OfferRule> getRules();
+	void setOfferRule(OfferRule value);
 
 } // Offer

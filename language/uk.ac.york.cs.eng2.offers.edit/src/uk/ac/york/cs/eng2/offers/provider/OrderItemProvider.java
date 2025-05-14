@@ -11,6 +11,8 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -22,6 +24,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import uk.ac.york.cs.eng2.offers.OffersFactory;
 import uk.ac.york.cs.eng2.offers.OffersPackage;
 import uk.ac.york.cs.eng2.offers.Order;
 
@@ -60,50 +63,25 @@ public class OrderItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addOrderIdPropertyDescriptor(object);
-			addTotalPricePropertyDescriptor(object);
-			addOrderDatePropertyDescriptor(object);
-			addOrderItemsPropertyDescriptor(object);
+			addTotalAmountPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Order Id feature.
+	 * This adds a property descriptor for the Total Amount feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOrderIdPropertyDescriptor(Object object) {
+	protected void addTotalAmountPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Order_orderId_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Order_orderId_feature", "_UI_Order_type"),
-				 OffersPackage.Literals.ORDER__ORDER_ID,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Total Price feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTotalPricePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Order_totalPrice_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Order_totalPrice_feature", "_UI_Order_type"),
-				 OffersPackage.Literals.ORDER__TOTAL_PRICE,
+				 getString("_UI_Order_totalAmount_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Order_totalAmount_feature", "_UI_Order_type"),
+				 OffersPackage.Literals.ORDER__TOTAL_AMOUNT,
 				 true,
 				 false,
 				 false,
@@ -113,47 +91,33 @@ public class OrderItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Order Date feature.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOrderDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Order_orderDate_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Order_orderDate_feature", "_UI_Order_type"),
-				 OffersPackage.Literals.ORDER__ORDER_DATE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(OffersPackage.Literals.ORDER__ORDER_ITEMS);
+		}
+		return childrenFeatures;
 	}
 
 	/**
-	 * This adds a property descriptor for the Order Items feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOrderItemsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Order_orderItems_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Order_orderItems_feature", "_UI_Order_type"),
-				 OffersPackage.Literals.ORDER__ORDER_ITEMS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
 	}
 
 	/**
@@ -175,10 +139,8 @@ public class OrderItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Order)object).getOrderId();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Order_type") :
-			getString("_UI_Order_type") + " " + label;
+		Order order = (Order)object;
+		return getString("_UI_Order_type") + " " + order.getTotalAmount();
 	}
 
 
@@ -194,10 +156,11 @@ public class OrderItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Order.class)) {
-			case OffersPackage.ORDER__ORDER_ID:
-			case OffersPackage.ORDER__TOTAL_PRICE:
-			case OffersPackage.ORDER__ORDER_DATE:
+			case OffersPackage.ORDER__TOTAL_AMOUNT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case OffersPackage.ORDER__ORDER_ITEMS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -213,6 +176,11 @@ public class OrderItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OffersPackage.Literals.ORDER__ORDER_ITEMS,
+				 OffersFactory.eINSTANCE.createOrderItem()));
 	}
 
 	/**

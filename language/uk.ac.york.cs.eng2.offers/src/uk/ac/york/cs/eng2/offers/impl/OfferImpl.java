@@ -2,20 +2,15 @@
  */
 package uk.ac.york.cs.eng2.offers.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
-import uk.ac.york.cs.eng2.offers.Category;
 import uk.ac.york.cs.eng2.offers.Offer;
 import uk.ac.york.cs.eng2.offers.OfferRule;
 import uk.ac.york.cs.eng2.offers.OffersPackage;
@@ -29,8 +24,7 @@ import uk.ac.york.cs.eng2.offers.OffersPackage;
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.cs.eng2.offers.impl.OfferImpl#getName <em>Name</em>}</li>
- *   <li>{@link uk.ac.york.cs.eng2.offers.impl.OfferImpl#getCategories <em>Categories</em>}</li>
- *   <li>{@link uk.ac.york.cs.eng2.offers.impl.OfferImpl#getRules <em>Rules</em>}</li>
+ *   <li>{@link uk.ac.york.cs.eng2.offers.impl.OfferImpl#getOfferRule <em>Offer Rule</em>}</li>
  * </ul>
  *
  * @generated
@@ -57,24 +51,14 @@ public class OfferImpl extends MinimalEObjectImpl.Container implements Offer {
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getCategories() <em>Categories</em>}' reference list.
+	 * The cached value of the '{@link #getOfferRule() <em>Offer Rule</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCategories()
+	 * @see #getOfferRule()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Category> categories;
-
-	/**
-	 * The cached value of the '{@link #getRules() <em>Rules</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRules()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<OfferRule> rules;
+	protected OfferRule offerRule;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -124,11 +108,23 @@ public class OfferImpl extends MinimalEObjectImpl.Container implements Offer {
 	 * @generated
 	 */
 	@Override
-	public EList<Category> getCategories() {
-		if (categories == null) {
-			categories = new EObjectResolvingEList<Category>(Category.class, this, OffersPackage.OFFER__CATEGORIES);
+	public OfferRule getOfferRule() {
+		return offerRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOfferRule(OfferRule newOfferRule, NotificationChain msgs) {
+		OfferRule oldOfferRule = offerRule;
+		offerRule = newOfferRule;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OffersPackage.OFFER__OFFER_RULE, oldOfferRule, newOfferRule);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
-		return categories;
+		return msgs;
 	}
 
 	/**
@@ -137,11 +133,32 @@ public class OfferImpl extends MinimalEObjectImpl.Container implements Offer {
 	 * @generated
 	 */
 	@Override
-	public EList<OfferRule> getRules() {
-		if (rules == null) {
-			rules = new EObjectResolvingEList<OfferRule>(OfferRule.class, this, OffersPackage.OFFER__RULES);
+	public void setOfferRule(OfferRule newOfferRule) {
+		if (newOfferRule != offerRule) {
+			NotificationChain msgs = null;
+			if (offerRule != null)
+				msgs = ((InternalEObject)offerRule).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OffersPackage.OFFER__OFFER_RULE, null, msgs);
+			if (newOfferRule != null)
+				msgs = ((InternalEObject)newOfferRule).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OffersPackage.OFFER__OFFER_RULE, null, msgs);
+			msgs = basicSetOfferRule(newOfferRule, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
-		return rules;
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OffersPackage.OFFER__OFFER_RULE, newOfferRule, newOfferRule));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case OffersPackage.OFFER__OFFER_RULE:
+				return basicSetOfferRule(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -154,10 +171,8 @@ public class OfferImpl extends MinimalEObjectImpl.Container implements Offer {
 		switch (featureID) {
 			case OffersPackage.OFFER__NAME:
 				return getName();
-			case OffersPackage.OFFER__CATEGORIES:
-				return getCategories();
-			case OffersPackage.OFFER__RULES:
-				return getRules();
+			case OffersPackage.OFFER__OFFER_RULE:
+				return getOfferRule();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -167,20 +182,14 @@ public class OfferImpl extends MinimalEObjectImpl.Container implements Offer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case OffersPackage.OFFER__NAME:
 				setName((String)newValue);
 				return;
-			case OffersPackage.OFFER__CATEGORIES:
-				getCategories().clear();
-				getCategories().addAll((Collection<? extends Category>)newValue);
-				return;
-			case OffersPackage.OFFER__RULES:
-				getRules().clear();
-				getRules().addAll((Collection<? extends OfferRule>)newValue);
+			case OffersPackage.OFFER__OFFER_RULE:
+				setOfferRule((OfferRule)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -197,11 +206,8 @@ public class OfferImpl extends MinimalEObjectImpl.Container implements Offer {
 			case OffersPackage.OFFER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case OffersPackage.OFFER__CATEGORIES:
-				getCategories().clear();
-				return;
-			case OffersPackage.OFFER__RULES:
-				getRules().clear();
+			case OffersPackage.OFFER__OFFER_RULE:
+				setOfferRule((OfferRule)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -217,10 +223,8 @@ public class OfferImpl extends MinimalEObjectImpl.Container implements Offer {
 		switch (featureID) {
 			case OffersPackage.OFFER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case OffersPackage.OFFER__CATEGORIES:
-				return categories != null && !categories.isEmpty();
-			case OffersPackage.OFFER__RULES:
-				return rules != null && !rules.isEmpty();
+			case OffersPackage.OFFER__OFFER_RULE:
+				return offerRule != null;
 		}
 		return super.eIsSet(featureID);
 	}

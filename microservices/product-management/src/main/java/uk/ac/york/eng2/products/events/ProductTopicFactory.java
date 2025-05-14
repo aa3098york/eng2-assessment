@@ -10,10 +10,14 @@ import org.apache.kafka.clients.admin.NewTopic;
 @Factory
 public class ProductTopicFactory {
     public static final String TOPIC_UNIT_PRICING_CONFIRMATION = "unit_pricing_confirmation";
+    public static final String TOPIC_ORDER_ITEM_ADDED = "order_item_added";
 
     @Bean
     public NewTopic orderPlacedTopic() {
         return new NewTopic(TOPIC_UNIT_PRICING_CONFIRMATION, 3, (short) 1);
     }
+
+    @Bean
+    public NewTopic orderItemAddedTopic() { return new NewTopic(TOPIC_ORDER_ITEM_ADDED, 3, (short) 1); }
 
 }

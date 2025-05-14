@@ -1,77 +1,112 @@
-// You should customise the URI, replacing 202425 with your examination number.
-//
-// You will need to set the namespaceURI in the uk.ac.york.cs.eng2.offers.evl/plugin.xml to the same URI.
-
 @namespace(uri="http://cs.york.ac.uk/eng2/202425/offers", prefix="dis")
 package offers;
 
-// Placeholder class to generate some code - replace from here on with your metamodel.
-//
-// You may want to delete the old generated code in src/ before generating code from the .genmodel.
-
-class Offer {
-    attr String name;
-    ref Category[*] categories;
-    ref OfferRule[*] rules;
+class Model {
+	val Product[*] products;
+	val Tag[*] tags;
+	val Offer[*] offers;
+	val Category[*] categories;
 }
 
 class Category {
-    attr String name;
-    ref Product[*] products;
+	attr String name;
+	val Category[*] subcategories;
+	ref Product[*] products;
 }
 
-class Product {
-    attr String name;
-    attr float unitPrice;
-    ref Tag[*] tags;
+class Offer {
+	attr String name;
+	val OfferRule offerRule;
 }
 
-class Tag {
-    attr String name;
+abstract class Action {
 }
 
-
-class Order {
-    attr String orderId;
-    attr float totalPrice;
-    attr EDate orderDate;
-    ref OrderItems[*] orderItems;
+class FixedAmountDiscountAction extends Action {
+	attr float discountAmount;
 }
 
-class OrderItems {
-	attr float unitPrice;
+class SetFixedPriceAction extends Action {
+	attr float fixedPrice;
+	ref Product product;
 	attr int quantity;
+}
+
+class PercentageDiscountAction extends Action {
+	attr int discountPercentage;
+}
+
+class PercentageProductDiscountAction extends PercentageDiscountAction {
 	ref Product product;
 }
 
-class OrdersByDay {
-    attr String dateCreated;
-    attr int count;
-    ref Product product;
+class FreeItemAction extends Action {
+	ref Product product;
+	attr int quantity;
 }
 
 abstract class OfferRule {
-    attr String name;
-    attr float minOrderValue;
-    ref TriggerRule[*] triggers;
-    ref OrdersByDay ordersByDay;
+	attr String name;
+	val Condition[*] conditions;
+	val Action[*] actions;
 }
 
-class PercentageDiscountRule extends OfferRule {
-    attr float discountPercentage;
+class SingleOfferRule extends OfferRule {
 }
 
-class FixedAmountDiscountRule extends OfferRule {
-    attr float discountAmount;
+class MultiOfferRule extends OfferRule {
+	val TriggerRule triggerRule;
 }
 
 class TriggerRule {
-    attr TriggerType triggerType;
-    ref OfferRule targetRule;
+	attr TriggerType trigger;
+	ref SingleOfferRule secondaryRule;
+}
+
+abstract class Condition {
+}
+
+class MinOrderValueCondition extends Condition {
+	attr float minimumAmount;
+}
+
+class ContainsProductCondition extends Condition {
+	ref Product product;
+}
+
+class ProductTagCondition extends Condition {
+	ref Tag[*] tags;
+}
+
+
+class OrderDateCondition extends Condition {
+	attr EDate date;
+}
+
+class FirstNOrdersCondition extends Condition {
+	attr int numberOfOrders;
+	attr EDate day;
+	ref Product product;
+}
+
+class ProductQuantityCondition extends Condition {
+	ref Product product;
+	attr int quantity;
+}
+
+class Product {
+	attr String name;
+	attr float unitPrice;
+	ref Tag[*] tags;
+}
+
+class Tag {
+	attr String name;
 }
 
 enum TriggerType {
-    IF_MATCH;
-    IF_NOT_MATCH;
-    ALWAYS;
+	IF_MATCH = 0;
+	IF_NOT_MATCH = 1;
+	ALWAYS = 2;
 }
+

@@ -2,6 +2,8 @@
  */
 package uk.ac.york.cs.eng2.offers.impl;
 
+import java.util.Date;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -22,33 +24,43 @@ import uk.ac.york.cs.eng2.offers.Product;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.york.cs.eng2.offers.impl.OrdersByDayImpl#getDateCreated <em>Date Created</em>}</li>
- *   <li>{@link uk.ac.york.cs.eng2.offers.impl.OrdersByDayImpl#getCount <em>Count</em>}</li>
  *   <li>{@link uk.ac.york.cs.eng2.offers.impl.OrdersByDayImpl#getProduct <em>Product</em>}</li>
+ *   <li>{@link uk.ac.york.cs.eng2.offers.impl.OrdersByDayImpl#getDay <em>Day</em>}</li>
+ *   <li>{@link uk.ac.york.cs.eng2.offers.impl.OrdersByDayImpl#getCount <em>Count</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class OrdersByDayImpl extends MinimalEObjectImpl.Container implements OrdersByDay {
 	/**
-	 * The default value of the '{@link #getDateCreated() <em>Date Created</em>}' attribute.
+	 * The cached value of the '{@link #getProduct() <em>Product</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDateCreated()
+	 * @see #getProduct()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String DATE_CREATED_EDEFAULT = null;
+	protected Product product;
 
 	/**
-	 * The cached value of the '{@link #getDateCreated() <em>Date Created</em>}' attribute.
+	 * The default value of the '{@link #getDay() <em>Day</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDateCreated()
+	 * @see #getDay()
 	 * @generated
 	 * @ordered
 	 */
-	protected String dateCreated = DATE_CREATED_EDEFAULT;
+	protected static final Date DAY_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDay() <em>Day</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDay()
+	 * @generated
+	 * @ordered
+	 */
+	protected Date day = DAY_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getCount() <em>Count</em>}' attribute.
@@ -71,16 +83,6 @@ public class OrdersByDayImpl extends MinimalEObjectImpl.Container implements Ord
 	protected int count = COUNT_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getProduct() <em>Product</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProduct()
-	 * @generated
-	 * @ordered
-	 */
-	protected Product product;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -97,52 +99,6 @@ public class OrdersByDayImpl extends MinimalEObjectImpl.Container implements Ord
 	@Override
 	protected EClass eStaticClass() {
 		return OffersPackage.Literals.ORDERS_BY_DAY;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getDateCreated() {
-		return dateCreated;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setDateCreated(String newDateCreated) {
-		String oldDateCreated = dateCreated;
-		dateCreated = newDateCreated;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OffersPackage.ORDERS_BY_DAY__DATE_CREATED, oldDateCreated, dateCreated));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int getCount() {
-		return count;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setCount(int newCount) {
-		int oldCount = count;
-		count = newCount;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OffersPackage.ORDERS_BY_DAY__COUNT, oldCount, count));
 	}
 
 	/**
@@ -191,15 +147,61 @@ public class OrdersByDayImpl extends MinimalEObjectImpl.Container implements Ord
 	 * @generated
 	 */
 	@Override
+	public Date getDay() {
+		return day;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDay(Date newDay) {
+		Date oldDay = day;
+		day = newDay;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OffersPackage.ORDERS_BY_DAY__DAY, oldDay, day));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int getCount() {
+		return count;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setCount(int newCount) {
+		int oldCount = count;
+		count = newCount;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OffersPackage.ORDERS_BY_DAY__COUNT, oldCount, count));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OffersPackage.ORDERS_BY_DAY__DATE_CREATED:
-				return getDateCreated();
-			case OffersPackage.ORDERS_BY_DAY__COUNT:
-				return getCount();
 			case OffersPackage.ORDERS_BY_DAY__PRODUCT:
 				if (resolve) return getProduct();
 				return basicGetProduct();
+			case OffersPackage.ORDERS_BY_DAY__DAY:
+				return getDay();
+			case OffersPackage.ORDERS_BY_DAY__COUNT:
+				return getCount();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -212,14 +214,14 @@ public class OrdersByDayImpl extends MinimalEObjectImpl.Container implements Ord
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OffersPackage.ORDERS_BY_DAY__DATE_CREATED:
-				setDateCreated((String)newValue);
+			case OffersPackage.ORDERS_BY_DAY__PRODUCT:
+				setProduct((Product)newValue);
+				return;
+			case OffersPackage.ORDERS_BY_DAY__DAY:
+				setDay((Date)newValue);
 				return;
 			case OffersPackage.ORDERS_BY_DAY__COUNT:
 				setCount((Integer)newValue);
-				return;
-			case OffersPackage.ORDERS_BY_DAY__PRODUCT:
-				setProduct((Product)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -233,14 +235,14 @@ public class OrdersByDayImpl extends MinimalEObjectImpl.Container implements Ord
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OffersPackage.ORDERS_BY_DAY__DATE_CREATED:
-				setDateCreated(DATE_CREATED_EDEFAULT);
+			case OffersPackage.ORDERS_BY_DAY__PRODUCT:
+				setProduct((Product)null);
+				return;
+			case OffersPackage.ORDERS_BY_DAY__DAY:
+				setDay(DAY_EDEFAULT);
 				return;
 			case OffersPackage.ORDERS_BY_DAY__COUNT:
 				setCount(COUNT_EDEFAULT);
-				return;
-			case OffersPackage.ORDERS_BY_DAY__PRODUCT:
-				setProduct((Product)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -254,12 +256,12 @@ public class OrdersByDayImpl extends MinimalEObjectImpl.Container implements Ord
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OffersPackage.ORDERS_BY_DAY__DATE_CREATED:
-				return DATE_CREATED_EDEFAULT == null ? dateCreated != null : !DATE_CREATED_EDEFAULT.equals(dateCreated);
-			case OffersPackage.ORDERS_BY_DAY__COUNT:
-				return count != COUNT_EDEFAULT;
 			case OffersPackage.ORDERS_BY_DAY__PRODUCT:
 				return product != null;
+			case OffersPackage.ORDERS_BY_DAY__DAY:
+				return DAY_EDEFAULT == null ? day != null : !DAY_EDEFAULT.equals(day);
+			case OffersPackage.ORDERS_BY_DAY__COUNT:
+				return count != COUNT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -274,8 +276,8 @@ public class OrdersByDayImpl extends MinimalEObjectImpl.Container implements Ord
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (dateCreated: ");
-		result.append(dateCreated);
+		result.append(" (day: ");
+		result.append(day);
 		result.append(", count: ");
 		result.append(count);
 		result.append(')');

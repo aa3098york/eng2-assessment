@@ -5,6 +5,7 @@ package uk.ac.york.cs.eng2.offers.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -14,12 +15,13 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
+import uk.ac.york.cs.eng2.offers.Action;
+import uk.ac.york.cs.eng2.offers.Condition;
 import uk.ac.york.cs.eng2.offers.OfferRule;
 import uk.ac.york.cs.eng2.offers.OffersPackage;
-import uk.ac.york.cs.eng2.offers.OrdersByDay;
-import uk.ac.york.cs.eng2.offers.TriggerRule;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,74 +31,53 @@ import uk.ac.york.cs.eng2.offers.TriggerRule;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.york.cs.eng2.offers.impl.OfferRuleImpl#getName <em>Name</em>}</li>
- *   <li>{@link uk.ac.york.cs.eng2.offers.impl.OfferRuleImpl#getMinOrderValue <em>Min Order Value</em>}</li>
- *   <li>{@link uk.ac.york.cs.eng2.offers.impl.OfferRuleImpl#getTriggers <em>Triggers</em>}</li>
- *   <li>{@link uk.ac.york.cs.eng2.offers.impl.OfferRuleImpl#getOrdersByDay <em>Orders By Day</em>}</li>
+ *   <li>{@link uk.ac.york.cs.eng2.offers.impl.OfferRuleImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link uk.ac.york.cs.eng2.offers.impl.OfferRuleImpl#getConditions <em>Conditions</em>}</li>
+ *   <li>{@link uk.ac.york.cs.eng2.offers.impl.OfferRuleImpl#getActions <em>Actions</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class OfferRuleImpl extends MinimalEObjectImpl.Container implements OfferRule {
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getDescription()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
+	protected static final String DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getDescription()
 	 * @generated
 	 * @ordered
 	 */
-	protected String name = NAME_EDEFAULT;
+	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getMinOrderValue() <em>Min Order Value</em>}' attribute.
+	 * The cached value of the '{@link #getConditions() <em>Conditions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMinOrderValue()
+	 * @see #getConditions()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float MIN_ORDER_VALUE_EDEFAULT = 0.0F;
+	protected EList<Condition> conditions;
 
 	/**
-	 * The cached value of the '{@link #getMinOrderValue() <em>Min Order Value</em>}' attribute.
+	 * The cached value of the '{@link #getActions() <em>Actions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMinOrderValue()
+	 * @see #getActions()
 	 * @generated
 	 * @ordered
 	 */
-	protected float minOrderValue = MIN_ORDER_VALUE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getTriggers() <em>Triggers</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTriggers()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TriggerRule> triggers;
-
-	/**
-	 * The cached value of the '{@link #getOrdersByDay() <em>Orders By Day</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOrdersByDay()
-	 * @generated
-	 * @ordered
-	 */
-	protected OrdersByDay ordersByDay;
+	protected EList<Action> actions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -123,8 +104,8 @@ public abstract class OfferRuleImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public String getName() {
-		return name;
+	public String getDescription() {
+		return description;
 	}
 
 	/**
@@ -133,11 +114,11 @@ public abstract class OfferRuleImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
+	public void setDescription(String newDescription) {
+		String oldDescription = description;
+		description = newDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OffersPackage.OFFER_RULE__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, OffersPackage.OFFER_RULE__DESCRIPTION, oldDescription, description));
 	}
 
 	/**
@@ -146,34 +127,11 @@ public abstract class OfferRuleImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public float getMinOrderValue() {
-		return minOrderValue;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setMinOrderValue(float newMinOrderValue) {
-		float oldMinOrderValue = minOrderValue;
-		minOrderValue = newMinOrderValue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OffersPackage.OFFER_RULE__MIN_ORDER_VALUE, oldMinOrderValue, minOrderValue));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<TriggerRule> getTriggers() {
-		if (triggers == null) {
-			triggers = new EObjectResolvingEList<TriggerRule>(TriggerRule.class, this, OffersPackage.OFFER_RULE__TRIGGERS);
+	public EList<Condition> getConditions() {
+		if (conditions == null) {
+			conditions = new EObjectContainmentEList<Condition>(Condition.class, this, OffersPackage.OFFER_RULE__CONDITIONS);
 		}
-		return triggers;
+		return conditions;
 	}
 
 	/**
@@ -182,25 +140,11 @@ public abstract class OfferRuleImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public OrdersByDay getOrdersByDay() {
-		if (ordersByDay != null && ordersByDay.eIsProxy()) {
-			InternalEObject oldOrdersByDay = (InternalEObject)ordersByDay;
-			ordersByDay = (OrdersByDay)eResolveProxy(oldOrdersByDay);
-			if (ordersByDay != oldOrdersByDay) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OffersPackage.OFFER_RULE__ORDERS_BY_DAY, oldOrdersByDay, ordersByDay));
-			}
+	public EList<Action> getActions() {
+		if (actions == null) {
+			actions = new EObjectContainmentEList<Action>(Action.class, this, OffersPackage.OFFER_RULE__ACTIONS);
 		}
-		return ordersByDay;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OrdersByDay basicGetOrdersByDay() {
-		return ordersByDay;
+		return actions;
 	}
 
 	/**
@@ -209,11 +153,14 @@ public abstract class OfferRuleImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public void setOrdersByDay(OrdersByDay newOrdersByDay) {
-		OrdersByDay oldOrdersByDay = ordersByDay;
-		ordersByDay = newOrdersByDay;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OffersPackage.OFFER_RULE__ORDERS_BY_DAY, oldOrdersByDay, ordersByDay));
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case OffersPackage.OFFER_RULE__CONDITIONS:
+				return ((InternalEList<?>)getConditions()).basicRemove(otherEnd, msgs);
+			case OffersPackage.OFFER_RULE__ACTIONS:
+				return ((InternalEList<?>)getActions()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -224,15 +171,12 @@ public abstract class OfferRuleImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OffersPackage.OFFER_RULE__NAME:
-				return getName();
-			case OffersPackage.OFFER_RULE__MIN_ORDER_VALUE:
-				return getMinOrderValue();
-			case OffersPackage.OFFER_RULE__TRIGGERS:
-				return getTriggers();
-			case OffersPackage.OFFER_RULE__ORDERS_BY_DAY:
-				if (resolve) return getOrdersByDay();
-				return basicGetOrdersByDay();
+			case OffersPackage.OFFER_RULE__DESCRIPTION:
+				return getDescription();
+			case OffersPackage.OFFER_RULE__CONDITIONS:
+				return getConditions();
+			case OffersPackage.OFFER_RULE__ACTIONS:
+				return getActions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -246,18 +190,16 @@ public abstract class OfferRuleImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OffersPackage.OFFER_RULE__NAME:
-				setName((String)newValue);
+			case OffersPackage.OFFER_RULE__DESCRIPTION:
+				setDescription((String)newValue);
 				return;
-			case OffersPackage.OFFER_RULE__MIN_ORDER_VALUE:
-				setMinOrderValue((Float)newValue);
+			case OffersPackage.OFFER_RULE__CONDITIONS:
+				getConditions().clear();
+				getConditions().addAll((Collection<? extends Condition>)newValue);
 				return;
-			case OffersPackage.OFFER_RULE__TRIGGERS:
-				getTriggers().clear();
-				getTriggers().addAll((Collection<? extends TriggerRule>)newValue);
-				return;
-			case OffersPackage.OFFER_RULE__ORDERS_BY_DAY:
-				setOrdersByDay((OrdersByDay)newValue);
+			case OffersPackage.OFFER_RULE__ACTIONS:
+				getActions().clear();
+				getActions().addAll((Collection<? extends Action>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -271,17 +213,14 @@ public abstract class OfferRuleImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OffersPackage.OFFER_RULE__NAME:
-				setName(NAME_EDEFAULT);
+			case OffersPackage.OFFER_RULE__DESCRIPTION:
+				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case OffersPackage.OFFER_RULE__MIN_ORDER_VALUE:
-				setMinOrderValue(MIN_ORDER_VALUE_EDEFAULT);
+			case OffersPackage.OFFER_RULE__CONDITIONS:
+				getConditions().clear();
 				return;
-			case OffersPackage.OFFER_RULE__TRIGGERS:
-				getTriggers().clear();
-				return;
-			case OffersPackage.OFFER_RULE__ORDERS_BY_DAY:
-				setOrdersByDay((OrdersByDay)null);
+			case OffersPackage.OFFER_RULE__ACTIONS:
+				getActions().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -295,14 +234,12 @@ public abstract class OfferRuleImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OffersPackage.OFFER_RULE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case OffersPackage.OFFER_RULE__MIN_ORDER_VALUE:
-				return minOrderValue != MIN_ORDER_VALUE_EDEFAULT;
-			case OffersPackage.OFFER_RULE__TRIGGERS:
-				return triggers != null && !triggers.isEmpty();
-			case OffersPackage.OFFER_RULE__ORDERS_BY_DAY:
-				return ordersByDay != null;
+			case OffersPackage.OFFER_RULE__DESCRIPTION:
+				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			case OffersPackage.OFFER_RULE__CONDITIONS:
+				return conditions != null && !conditions.isEmpty();
+			case OffersPackage.OFFER_RULE__ACTIONS:
+				return actions != null && !actions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -317,10 +254,8 @@ public abstract class OfferRuleImpl extends MinimalEObjectImpl.Container impleme
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", minOrderValue: ");
-		result.append(minOrderValue);
+		result.append(" (description: ");
+		result.append(description);
 		result.append(')');
 		return result.toString();
 	}

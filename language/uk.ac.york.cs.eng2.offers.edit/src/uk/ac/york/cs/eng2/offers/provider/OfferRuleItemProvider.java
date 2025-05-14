@@ -11,6 +11,8 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -23,6 +25,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import uk.ac.york.cs.eng2.offers.OfferRule;
+import uk.ac.york.cs.eng2.offers.OffersFactory;
 import uk.ac.york.cs.eng2.offers.OffersPackage;
 
 /**
@@ -60,28 +63,25 @@ public class OfferRuleItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
-			addMinOrderValuePropertyDescriptor(object);
-			addTriggersPropertyDescriptor(object);
-			addOrdersByDayPropertyDescriptor(object);
+			addDescriptionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
+	 * This adds a property descriptor for the Description feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object) {
+	protected void addDescriptionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_OfferRule_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_OfferRule_name_feature", "_UI_OfferRule_type"),
-				 OffersPackage.Literals.OFFER_RULE__NAME,
+				 getString("_UI_OfferRule_description_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_OfferRule_description_feature", "_UI_OfferRule_type"),
+				 OffersPackage.Literals.OFFER_RULE__DESCRIPTION,
 				 true,
 				 false,
 				 false,
@@ -91,69 +91,34 @@ public class OfferRuleItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Min Order Value feature.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMinOrderValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_OfferRule_minOrderValue_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_OfferRule_minOrderValue_feature", "_UI_OfferRule_type"),
-				 OffersPackage.Literals.OFFER_RULE__MIN_ORDER_VALUE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
-				 null,
-				 null));
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(OffersPackage.Literals.OFFER_RULE__CONDITIONS);
+			childrenFeatures.add(OffersPackage.Literals.OFFER_RULE__ACTIONS);
+		}
+		return childrenFeatures;
 	}
 
 	/**
-	 * This adds a property descriptor for the Triggers feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTriggersPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_OfferRule_triggers_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_OfferRule_triggers_feature", "_UI_OfferRule_type"),
-				 OffersPackage.Literals.OFFER_RULE__TRIGGERS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
 
-	/**
-	 * This adds a property descriptor for the Orders By Day feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addOrdersByDayPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_OfferRule_ordersByDay_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_OfferRule_ordersByDay_feature", "_UI_OfferRule_type"),
-				 OffersPackage.Literals.OFFER_RULE__ORDERS_BY_DAY,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		return super.getChildFeature(object, child);
 	}
 
 	/**
@@ -164,7 +129,7 @@ public class OfferRuleItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((OfferRule)object).getName();
+		String label = ((OfferRule)object).getDescription();
 		return label == null || label.length() == 0 ?
 			getString("_UI_OfferRule_type") :
 			getString("_UI_OfferRule_type") + " " + label;
@@ -183,9 +148,12 @@ public class OfferRuleItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(OfferRule.class)) {
-			case OffersPackage.OFFER_RULE__NAME:
-			case OffersPackage.OFFER_RULE__MIN_ORDER_VALUE:
+			case OffersPackage.OFFER_RULE__DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case OffersPackage.OFFER_RULE__CONDITIONS:
+			case OffersPackage.OFFER_RULE__ACTIONS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -201,6 +169,51 @@ public class OfferRuleItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OffersPackage.Literals.OFFER_RULE__CONDITIONS,
+				 OffersFactory.eINSTANCE.createMinOrderValueCondition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OffersPackage.Literals.OFFER_RULE__CONDITIONS,
+				 OffersFactory.eINSTANCE.createProductTagCondition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OffersPackage.Literals.OFFER_RULE__CONDITIONS,
+				 OffersFactory.eINSTANCE.createProductCategoryCondition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OffersPackage.Literals.OFFER_RULE__CONDITIONS,
+				 OffersFactory.eINSTANCE.createFirstNOrdersCondition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OffersPackage.Literals.OFFER_RULE__ACTIONS,
+				 OffersFactory.eINSTANCE.createFixedAmountDiscountAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OffersPackage.Literals.OFFER_RULE__ACTIONS,
+				 OffersFactory.eINSTANCE.createFixedPriceDiscountAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OffersPackage.Literals.OFFER_RULE__ACTIONS,
+				 OffersFactory.eINSTANCE.createPercentageDiscountAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OffersPackage.Literals.OFFER_RULE__ACTIONS,
+				 OffersFactory.eINSTANCE.createPercentageProductDiscountAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OffersPackage.Literals.OFFER_RULE__ACTIONS,
+				 OffersFactory.eINSTANCE.createFreeItemAction()));
 	}
 
 	/**

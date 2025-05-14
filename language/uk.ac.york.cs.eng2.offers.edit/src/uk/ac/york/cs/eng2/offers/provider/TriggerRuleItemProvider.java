@@ -61,26 +61,26 @@ public class TriggerRuleItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTriggerTypePropertyDescriptor(object);
-			addTargetRulePropertyDescriptor(object);
+			addTriggerPropertyDescriptor(object);
+			addSecondaryRulePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Trigger Type feature.
+	 * This adds a property descriptor for the Trigger feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTriggerTypePropertyDescriptor(Object object) {
+	protected void addTriggerPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TriggerRule_triggerType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TriggerRule_triggerType_feature", "_UI_TriggerRule_type"),
-				 OffersPackage.Literals.TRIGGER_RULE__TRIGGER_TYPE,
+				 getString("_UI_TriggerRule_trigger_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TriggerRule_trigger_feature", "_UI_TriggerRule_type"),
+				 OffersPackage.Literals.TRIGGER_RULE__TRIGGER,
 				 true,
 				 false,
 				 false,
@@ -90,19 +90,19 @@ public class TriggerRuleItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Target Rule feature.
+	 * This adds a property descriptor for the Secondary Rule feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTargetRulePropertyDescriptor(Object object) {
+	protected void addSecondaryRulePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TriggerRule_targetRule_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TriggerRule_targetRule_feature", "_UI_TriggerRule_type"),
-				 OffersPackage.Literals.TRIGGER_RULE__TARGET_RULE,
+				 getString("_UI_TriggerRule_secondaryRule_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TriggerRule_secondaryRule_feature", "_UI_TriggerRule_type"),
+				 OffersPackage.Literals.TRIGGER_RULE__SECONDARY_RULE,
 				 true,
 				 false,
 				 true,
@@ -130,7 +130,7 @@ public class TriggerRuleItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		TriggerType labelValue = ((TriggerRule)object).getTriggerType();
+		TriggerType labelValue = ((TriggerRule)object).getTrigger();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
 			getString("_UI_TriggerRule_type") :
@@ -150,7 +150,7 @@ public class TriggerRuleItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(TriggerRule.class)) {
-			case OffersPackage.TRIGGER_RULE__TRIGGER_TYPE:
+			case OffersPackage.TRIGGER_RULE__TRIGGER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

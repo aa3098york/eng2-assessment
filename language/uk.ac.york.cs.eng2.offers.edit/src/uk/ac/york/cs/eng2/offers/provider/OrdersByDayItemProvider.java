@@ -4,6 +4,7 @@ package uk.ac.york.cs.eng2.offers.provider;
 
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -60,27 +61,49 @@ public class OrdersByDayItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addDateCreatedPropertyDescriptor(object);
-			addCountPropertyDescriptor(object);
 			addProductPropertyDescriptor(object);
+			addDayPropertyDescriptor(object);
+			addCountPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Date Created feature.
+	 * This adds a property descriptor for the Product feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDateCreatedPropertyDescriptor(Object object) {
+	protected void addProductPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_OrdersByDay_dateCreated_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_OrdersByDay_dateCreated_feature", "_UI_OrdersByDay_type"),
-				 OffersPackage.Literals.ORDERS_BY_DAY__DATE_CREATED,
+				 getString("_UI_OrdersByDay_product_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_OrdersByDay_product_feature", "_UI_OrdersByDay_type"),
+				 OffersPackage.Literals.ORDERS_BY_DAY__PRODUCT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Day feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDayPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_OrdersByDay_day_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_OrdersByDay_day_feature", "_UI_OrdersByDay_type"),
+				 OffersPackage.Literals.ORDERS_BY_DAY__DAY,
 				 true,
 				 false,
 				 false,
@@ -112,28 +135,6 @@ public class OrdersByDayItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Product feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addProductPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_OrdersByDay_product_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_OrdersByDay_product_feature", "_UI_OrdersByDay_type"),
-				 OffersPackage.Literals.ORDERS_BY_DAY__PRODUCT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This returns OrdersByDay.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -152,7 +153,8 @@ public class OrdersByDayItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((OrdersByDay)object).getDateCreated();
+		Date labelValue = ((OrdersByDay)object).getDay();
+		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
 			getString("_UI_OrdersByDay_type") :
 			getString("_UI_OrdersByDay_type") + " " + label;
@@ -171,7 +173,7 @@ public class OrdersByDayItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(OrdersByDay.class)) {
-			case OffersPackage.ORDERS_BY_DAY__DATE_CREATED:
+			case OffersPackage.ORDERS_BY_DAY__DAY:
 			case OffersPackage.ORDERS_BY_DAY__COUNT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

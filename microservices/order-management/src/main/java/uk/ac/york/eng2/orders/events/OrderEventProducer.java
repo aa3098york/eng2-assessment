@@ -13,7 +13,7 @@ public interface OrderEventProducer {
     HttpStatus orderPlaced(@KafkaKey long orderId, List<OrderInfo> orderInfos);
 
     @Topic(OrderTopicFactory.TOPIC_ORDER_UPDATED)
-    HttpStatus orderUpdated(@KafkaKey long orderId, ProductInfoChanges productInfoChanges);
+    HttpStatus orderUpdated(@KafkaKey long orderId, OrderInfoChanges orderInfoChanges);
 
     @Topic(OrderTopicFactory.TOPIC_ORDER_DELETED)
     HttpStatus orderDeleted(@KafkaKey long orderId, List<OrderInfo> orderInfos);

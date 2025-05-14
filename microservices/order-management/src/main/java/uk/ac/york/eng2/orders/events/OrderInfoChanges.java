@@ -5,5 +5,5 @@ import io.micronaut.serde.annotation.Serdeable;
 import java.util.List;
 
 @Serdeable
-public record ProductInfoChanges(List<OrderInfo> oldOrderInfos, List<OrderInfo> newOrderInfos) {
+public record OrderInfoChanges(List<OrderInfo> oldOrderInfos, List<OrderInfo> newOrderInfos) {
 }

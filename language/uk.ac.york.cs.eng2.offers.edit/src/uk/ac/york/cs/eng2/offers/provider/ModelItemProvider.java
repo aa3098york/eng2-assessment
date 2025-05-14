@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -18,6 +19,10 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ViewerNotification;
+import uk.ac.york.cs.eng2.offers.Model;
+import uk.ac.york.cs.eng2.offers.OffersFactory;
+import uk.ac.york.cs.eng2.offers.OffersPackage;
 
 /**
  * This is the item provider adapter for a {@link uk.ac.york.cs.eng2.offers.Model} object.
@@ -59,6 +64,41 @@ public class ModelItemProvider
 	}
 
 	/**
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(OffersPackage.Literals.MODEL__PRODUCTS);
+			childrenFeatures.add(OffersPackage.Literals.MODEL__TAGS);
+			childrenFeatures.add(OffersPackage.Literals.MODEL__ORDERS);
+			childrenFeatures.add(OffersPackage.Literals.MODEL__OFFERS);
+			childrenFeatures.add(OffersPackage.Literals.MODEL__ORDERS_BY_DAY);
+			childrenFeatures.add(OffersPackage.Literals.MODEL__CATEGORIES);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+	/**
 	 * This returns Model.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -91,6 +131,17 @@ public class ModelItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(Model.class)) {
+			case OffersPackage.MODEL__PRODUCTS:
+			case OffersPackage.MODEL__TAGS:
+			case OffersPackage.MODEL__ORDERS:
+			case OffersPackage.MODEL__OFFERS:
+			case OffersPackage.MODEL__ORDERS_BY_DAY:
+			case OffersPackage.MODEL__CATEGORIES:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 
@@ -104,6 +155,36 @@ public class ModelItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OffersPackage.Literals.MODEL__PRODUCTS,
+				 OffersFactory.eINSTANCE.createProduct()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OffersPackage.Literals.MODEL__TAGS,
+				 OffersFactory.eINSTANCE.createTag()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OffersPackage.Literals.MODEL__ORDERS,
+				 OffersFactory.eINSTANCE.createOrder()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OffersPackage.Literals.MODEL__OFFERS,
+				 OffersFactory.eINSTANCE.createOffer()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OffersPackage.Literals.MODEL__ORDERS_BY_DAY,
+				 OffersFactory.eINSTANCE.createOrdersByDay()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OffersPackage.Literals.MODEL__CATEGORIES,
+				 OffersFactory.eINSTANCE.createCategory()));
 	}
 
 	/**

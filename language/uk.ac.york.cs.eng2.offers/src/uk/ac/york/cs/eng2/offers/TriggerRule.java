@@ -13,8 +13,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.york.cs.eng2.offers.TriggerRule#getTriggerType <em>Trigger Type</em>}</li>
- *   <li>{@link uk.ac.york.cs.eng2.offers.TriggerRule#getTargetRule <em>Target Rule</em>}</li>
+ *   <li>{@link uk.ac.york.cs.eng2.offers.TriggerRule#getTrigger <em>Trigger</em>}</li>
+ *   <li>{@link uk.ac.york.cs.eng2.offers.TriggerRule#getSecondaryRule <em>Secondary Rule</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.cs.eng2.offers.OffersPackage#getTriggerRule()
@@ -23,50 +23,50 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface TriggerRule extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Trigger Type</b></em>' attribute.
+	 * Returns the value of the '<em><b>Trigger</b></em>' attribute.
 	 * The literals are from the enumeration {@link uk.ac.york.cs.eng2.offers.TriggerType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Trigger Type</em>' attribute.
+	 * @return the value of the '<em>Trigger</em>' attribute.
 	 * @see uk.ac.york.cs.eng2.offers.TriggerType
-	 * @see #setTriggerType(TriggerType)
-	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getTriggerRule_TriggerType()
+	 * @see #setTrigger(TriggerType)
+	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getTriggerRule_Trigger()
 	 * @model
 	 * @generated
 	 */
-	TriggerType getTriggerType();
+	TriggerType getTrigger();
 
 	/**
-	 * Sets the value of the '{@link uk.ac.york.cs.eng2.offers.TriggerRule#getTriggerType <em>Trigger Type</em>}' attribute.
+	 * Sets the value of the '{@link uk.ac.york.cs.eng2.offers.TriggerRule#getTrigger <em>Trigger</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Trigger Type</em>' attribute.
+	 * @param value the new value of the '<em>Trigger</em>' attribute.
 	 * @see uk.ac.york.cs.eng2.offers.TriggerType
-	 * @see #getTriggerType()
+	 * @see #getTrigger()
 	 * @generated
 	 */
-	void setTriggerType(TriggerType value);
+	void setTrigger(TriggerType value);
 
 	/**
-	 * Returns the value of the '<em><b>Target Rule</b></em>' reference.
+	 * Returns the value of the '<em><b>Secondary Rule</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target Rule</em>' reference.
-	 * @see #setTargetRule(OfferRule)
-	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getTriggerRule_TargetRule()
+	 * @return the value of the '<em>Secondary Rule</em>' reference.
+	 * @see #setSecondaryRule(SingleOfferRule)
+	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getTriggerRule_SecondaryRule()
 	 * @model
 	 * @generated
 	 */
-	OfferRule getTargetRule();
+	SingleOfferRule getSecondaryRule();
 
 	/**
-	 * Sets the value of the '{@link uk.ac.york.cs.eng2.offers.TriggerRule#getTargetRule <em>Target Rule</em>}' reference.
+	 * Sets the value of the '{@link uk.ac.york.cs.eng2.offers.TriggerRule#getSecondaryRule <em>Secondary Rule</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target Rule</em>' reference.
-	 * @see #getTargetRule()
+	 * @param value the new value of the '<em>Secondary Rule</em>' reference.
+	 * @see #getSecondaryRule()
 	 * @generated
 	 */
-	void setTargetRule(OfferRule value);
+	void setSecondaryRule(SingleOfferRule value);
 
 } // TriggerRule

@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.cs.eng2.offers.Category#getName <em>Name</em>}</li>
+ *   <li>{@link uk.ac.york.cs.eng2.offers.Category#getSubcategories <em>Subcategories</em>}</li>
  *   <li>{@link uk.ac.york.cs.eng2.offers.Category#getProducts <em>Products</em>}</li>
  * </ul>
  *
@@ -45,6 +46,18 @@ public interface Category extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Subcategories</b></em>' containment reference list.
+	 * The list contents are of type {@link uk.ac.york.cs.eng2.offers.Category}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Subcategories</em>' containment reference list.
+	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getCategory_Subcategories()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Category> getSubcategories();
 
 	/**
 	 * Returns the value of the '<em><b>Products</b></em>' reference list.

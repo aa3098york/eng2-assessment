@@ -11,4 +11,7 @@ import java.util.List;
 public interface ProductEventProducer {
     @Topic(ProductTopicFactory.TOPIC_UNIT_PRICING_CONFIRMATION)
     public void confirmOrder(@KafkaKey long orderId, List<ProductInfo> productInfos);
+
+    @Topic(ProductTopicFactory.TOPIC_ORDER_ITEM_ADDED)
+    public void addOrderItem(@KafkaKey long orderId, ProductInfo productInfo);
 }

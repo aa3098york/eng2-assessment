@@ -15,10 +15,9 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.york.cs.eng2.offers.OfferRule#getName <em>Name</em>}</li>
- *   <li>{@link uk.ac.york.cs.eng2.offers.OfferRule#getMinOrderValue <em>Min Order Value</em>}</li>
- *   <li>{@link uk.ac.york.cs.eng2.offers.OfferRule#getTriggers <em>Triggers</em>}</li>
- *   <li>{@link uk.ac.york.cs.eng2.offers.OfferRule#getOrdersByDay <em>Orders By Day</em>}</li>
+ *   <li>{@link uk.ac.york.cs.eng2.offers.OfferRule#getDescription <em>Description</em>}</li>
+ *   <li>{@link uk.ac.york.cs.eng2.offers.OfferRule#getConditions <em>Conditions</em>}</li>
+ *   <li>{@link uk.ac.york.cs.eng2.offers.OfferRule#getActions <em>Actions</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.cs.eng2.offers.OffersPackage#getOfferRule()
@@ -27,81 +26,49 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface OfferRule extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getOfferRule_Name()
+	 * @return the value of the '<em>Description</em>' attribute.
+	 * @see #setDescription(String)
+	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getOfferRule_Description()
 	 * @model
 	 * @generated
 	 */
-	String getName();
+	String getDescription();
 
 	/**
-	 * Sets the value of the '{@link uk.ac.york.cs.eng2.offers.OfferRule#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link uk.ac.york.cs.eng2.offers.OfferRule#getDescription <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
+	 * @param value the new value of the '<em>Description</em>' attribute.
+	 * @see #getDescription()
 	 * @generated
 	 */
-	void setName(String value);
+	void setDescription(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Min Order Value</b></em>' attribute.
+	 * Returns the value of the '<em><b>Conditions</b></em>' containment reference list.
+	 * The list contents are of type {@link uk.ac.york.cs.eng2.offers.Condition}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Min Order Value</em>' attribute.
-	 * @see #setMinOrderValue(float)
-	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getOfferRule_MinOrderValue()
-	 * @model
+	 * @return the value of the '<em>Conditions</em>' containment reference list.
+	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getOfferRule_Conditions()
+	 * @model containment="true"
 	 * @generated
 	 */
-	float getMinOrderValue();
+	EList<Condition> getConditions();
 
 	/**
-	 * Sets the value of the '{@link uk.ac.york.cs.eng2.offers.OfferRule#getMinOrderValue <em>Min Order Value</em>}' attribute.
+	 * Returns the value of the '<em><b>Actions</b></em>' containment reference list.
+	 * The list contents are of type {@link uk.ac.york.cs.eng2.offers.Action}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Min Order Value</em>' attribute.
-	 * @see #getMinOrderValue()
+	 * @return the value of the '<em>Actions</em>' containment reference list.
+	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getOfferRule_Actions()
+	 * @model containment="true"
 	 * @generated
 	 */
-	void setMinOrderValue(float value);
-
-	/**
-	 * Returns the value of the '<em><b>Triggers</b></em>' reference list.
-	 * The list contents are of type {@link uk.ac.york.cs.eng2.offers.TriggerRule}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Triggers</em>' reference list.
-	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getOfferRule_Triggers()
-	 * @model
-	 * @generated
-	 */
-	EList<TriggerRule> getTriggers();
-
-	/**
-	 * Returns the value of the '<em><b>Orders By Day</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Orders By Day</em>' reference.
-	 * @see #setOrdersByDay(OrdersByDay)
-	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getOfferRule_OrdersByDay()
-	 * @model
-	 * @generated
-	 */
-	OrdersByDay getOrdersByDay();
-
-	/**
-	 * Sets the value of the '{@link uk.ac.york.cs.eng2.offers.OfferRule#getOrdersByDay <em>Orders By Day</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Orders By Day</em>' reference.
-	 * @see #getOrdersByDay()
-	 * @generated
-	 */
-	void setOrdersByDay(OrdersByDay value);
+	EList<Action> getActions();
 
 } // OfferRule

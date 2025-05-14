@@ -22,13 +22,13 @@ public interface OffersFactory extends EFactory {
 	OffersFactory eINSTANCE = uk.ac.york.cs.eng2.offers.impl.OffersFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Offer</em>'.
+	 * Returns a new object of class '<em>Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Offer</em>'.
+	 * @return a new object of class '<em>Model</em>'.
 	 * @generated
 	 */
-	Offer createOffer();
+	Model createModel();
 
 	/**
 	 * Returns a new object of class '<em>Category</em>'.
@@ -38,6 +38,123 @@ public interface OffersFactory extends EFactory {
 	 * @generated
 	 */
 	Category createCategory();
+
+	/**
+	 * Returns a new object of class '<em>Offer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Offer</em>'.
+	 * @generated
+	 */
+	Offer createOffer();
+
+	/**
+	 * Returns a new object of class '<em>Fixed Amount Discount Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Fixed Amount Discount Action</em>'.
+	 * @generated
+	 */
+	FixedAmountDiscountAction createFixedAmountDiscountAction();
+
+	/**
+	 * Returns a new object of class '<em>Fixed Price Discount Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Fixed Price Discount Action</em>'.
+	 * @generated
+	 */
+	FixedPriceDiscountAction createFixedPriceDiscountAction();
+
+	/**
+	 * Returns a new object of class '<em>Percentage Discount Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Percentage Discount Action</em>'.
+	 * @generated
+	 */
+	PercentageDiscountAction createPercentageDiscountAction();
+
+	/**
+	 * Returns a new object of class '<em>Percentage Product Discount Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Percentage Product Discount Action</em>'.
+	 * @generated
+	 */
+	PercentageProductDiscountAction createPercentageProductDiscountAction();
+
+	/**
+	 * Returns a new object of class '<em>Free Item Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Free Item Action</em>'.
+	 * @generated
+	 */
+	FreeItemAction createFreeItemAction();
+
+	/**
+	 * Returns a new object of class '<em>Single Offer Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Single Offer Rule</em>'.
+	 * @generated
+	 */
+	SingleOfferRule createSingleOfferRule();
+
+	/**
+	 * Returns a new object of class '<em>Multi Offer Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Multi Offer Rule</em>'.
+	 * @generated
+	 */
+	MultiOfferRule createMultiOfferRule();
+
+	/**
+	 * Returns a new object of class '<em>Trigger Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Trigger Rule</em>'.
+	 * @generated
+	 */
+	TriggerRule createTriggerRule();
+
+	/**
+	 * Returns a new object of class '<em>Min Order Value Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Min Order Value Condition</em>'.
+	 * @generated
+	 */
+	MinOrderValueCondition createMinOrderValueCondition();
+
+	/**
+	 * Returns a new object of class '<em>Product Tag Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Product Tag Condition</em>'.
+	 * @generated
+	 */
+	ProductTagCondition createProductTagCondition();
+
+	/**
+	 * Returns a new object of class '<em>Product Category Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Product Category Condition</em>'.
+	 * @generated
+	 */
+	ProductCategoryCondition createProductCategoryCondition();
+
+	/**
+	 * Returns a new object of class '<em>First NOrders Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>First NOrders Condition</em>'.
+	 * @generated
+	 */
+	FirstNOrdersCondition createFirstNOrdersCondition();
 
 	/**
 	 * Returns a new object of class '<em>Product</em>'.
@@ -58,24 +175,6 @@ public interface OffersFactory extends EFactory {
 	Tag createTag();
 
 	/**
-	 * Returns a new object of class '<em>Order</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Order</em>'.
-	 * @generated
-	 */
-	Order createOrder();
-
-	/**
-	 * Returns a new object of class '<em>Order Items</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Order Items</em>'.
-	 * @generated
-	 */
-	OrderItems createOrderItems();
-
-	/**
 	 * Returns a new object of class '<em>Orders By Day</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -85,31 +184,22 @@ public interface OffersFactory extends EFactory {
 	OrdersByDay createOrdersByDay();
 
 	/**
-	 * Returns a new object of class '<em>Percentage Discount Rule</em>'.
+	 * Returns a new object of class '<em>Order</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Percentage Discount Rule</em>'.
+	 * @return a new object of class '<em>Order</em>'.
 	 * @generated
 	 */
-	PercentageDiscountRule createPercentageDiscountRule();
+	Order createOrder();
 
 	/**
-	 * Returns a new object of class '<em>Fixed Amount Discount Rule</em>'.
+	 * Returns a new object of class '<em>Order Item</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Fixed Amount Discount Rule</em>'.
+	 * @return a new object of class '<em>Order Item</em>'.
 	 * @generated
 	 */
-	FixedAmountDiscountRule createFixedAmountDiscountRule();
-
-	/**
-	 * Returns a new object of class '<em>Trigger Rule</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Trigger Rule</em>'.
-	 * @generated
-	 */
-	TriggerRule createTriggerRule();
+	OrderItem createOrderItem();
 
 	/**
 	 * Returns the package supported by this factory.

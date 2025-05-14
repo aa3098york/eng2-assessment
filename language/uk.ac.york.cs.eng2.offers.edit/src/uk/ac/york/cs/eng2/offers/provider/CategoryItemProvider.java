@@ -102,6 +102,7 @@ public class CategoryItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(OffersPackage.Literals.CATEGORY__SUBCATEGORIES);
 			childrenFeatures.add(OffersPackage.Literals.CATEGORY__PRODUCTS);
 		}
 		return childrenFeatures;
@@ -161,6 +162,7 @@ public class CategoryItemProvider
 			case OffersPackage.CATEGORY__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case OffersPackage.CATEGORY__SUBCATEGORIES:
 			case OffersPackage.CATEGORY__PRODUCTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -178,6 +180,11 @@ public class CategoryItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OffersPackage.Literals.CATEGORY__SUBCATEGORIES,
+				 OffersFactory.eINSTANCE.createCategory()));
 
 		newChildDescriptors.add
 			(createChildParameter
