@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ASCII"?>
+<dis:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dis="http://cs.york.ac.uk/eng2/202425/offers" xmi:id="_vtA3sDACEfCV_Z4C-ovJGw">
+  <products xmi:id="_e_k0oC8_EfCV_Z4C-ovJGw" name="Bakewell Tarts" unitPrice="12.0" tags="_hnEwcC9BEfCV_Z4C-ovJGw"/>
+  <products xmi:id="_fkgtsC8_EfCV_Z4C-ovJGw" name="Large Margarita Pizza" unitPrice="17.5" tags="_hF9ncC9BEfCV_Z4C-ovJGw _-5uVsC9CEfCV_Z4C-ovJGw"/>
+  <products xmi:id="_f2X5wC8_EfCV_Z4C-ovJGw" name="Medium Margarita Pizza" unitPrice="12.5" tags="_iDPIAC9BEfCV_Z4C-ovJGw _-5uVsC9CEfCV_Z4C-ovJGw"/>
+  <products xmi:id="_gL3BkC8_EfCV_Z4C-ovJGw" name="Large Mint Chocolate Ice Cream" unitPrice="10.0" tags="_hF9ncC9BEfCV_Z4C-ovJGw _mN9EEC-FEfCV_Z4C-ovJGw"/>
+  <products xmi:id="_fUZ1IC8_EfCV_Z4C-ovJGw" name="Triple Chocolate Cake" unitPrice="18.0" tags="_hW60kC9BEfCV_Z4C-ovJGw _hnEwcC9BEfCV_Z4C-ovJGw"/>
+  <tags xmi:id="_-5uVsC9CEfCV_Z4C-ovJGw" name="pizza"/>
+  <tags xmi:id="_mN9EEC-FEfCV_Z4C-ovJGw" name="ice cream"/>
+  <tags xmi:id="_hF9ncC9BEfCV_Z4C-ovJGw" name="large"/>
+  <tags xmi:id="_iDPIAC9BEfCV_Z4C-ovJGw" name="medium"/>
+  <tags xmi:id="_hW60kC9BEfCV_Z4C-ovJGw" name="chocolate"/>
+  <tags xmi:id="_hnEwcC9BEfCV_Z4C-ovJGw" name="cake"/>
+  <offers xmi:id="_iUpxsC9NEfCV_Z4C-ovJGw" name="10% off from the first 10 orders of Bakewell Tarts in the day">
+    <offerRule xsi:type="dis:SingleOfferRule" xmi:id="_1o2M8C9SEfCV_Z4C-ovJGw" name="Bakewell Tarts Ten Percent Off">
+      <conditions xsi:type="dis:FirstNOrdersCondition" xmi:id="_ZR5fUC9vEfCV_Z4C-ovJGw" numberOfOrders="10" day="2024-11-11T00:00:00.000+0000"/>
+      <conditions xsi:type="dis:ContainsProductCondition" xmi:id="_jTAX4C9vEfCV_Z4C-ovJGw" product="_e_k0oC8_EfCV_Z4C-ovJGw"/>
+      <actions xsi:type="dis:PercentageProductDiscountAction" xmi:id="_lysGYC9vEfCV_Z4C-ovJGw" discountPercentage="10" product="_e_k0oC8_EfCV_Z4C-ovJGw"/>
+    </offerRule>
+  </offers>
+  <offers xmi:id="_XGXCYC9PEfCV_Z4C-ovJGw" name="2 large pizzas for 10 pounds, with one free large ice cream">
+    <offerRule xsi:type="dis:SingleOfferRule" xmi:id="_2Oa_MC9SEfCV_Z4C-ovJGw" name="Two Large Pizzas for Ten Pounds with Ice Cream">
+      <conditions xsi:type="dis:ProductQuantityCondition" xmi:id="_ojy8EC9vEfCV_Z4C-ovJGw" product="_fkgtsC8_EfCV_Z4C-ovJGw" quantity="2"/>
+      <actions xsi:type="dis:FreeItemAction" xmi:id="_dNSIoC_kEfCV_Z4C-ovJGw" product="_gL3BkC8_EfCV_Z4C-ovJGw" quantity="1"/>
+      <actions xsi:type="dis:FixedAmountDiscountAction" xmi:id="_xlgDUDACEfCV_Z4C-ovJGw" discountAmount="25.0"/>
+    </offerRule>
+  </offers>
+  <offers xmi:id="_Xh35sC9PEfCV_Z4C-ovJGw" name="2 pizzas for the price of 1">
+    <offerRule xsi:type="dis:MultiOfferRule" xmi:id="_-xwSMC9SEfCV_Z4C-ovJGw" name="2 pizzas for the price of 1">
+      <conditions xsi:type="dis:ProductQuantityCondition" xmi:id="_iUBQ0C9TEfCV_Z4C-ovJGw" product="_fkgtsC8_EfCV_Z4C-ovJGw" quantity="2"/>
+      <actions xsi:type="dis:FixedAmountDiscountAction" xmi:id="_LBBQ4DACEfCV_Z4C-ovJGw" discountAmount="7.0"/>
+      <triggerRule xmi:id="_hW3SwC9YEfCV_Z4C-ovJGw" trigger="IF_NOT_MATCH" secondaryRule="_2Oa_MC9SEfCV_Z4C-ovJGw"/>
+    </offerRule>
+  </offers>
+  <offers xmi:id="_X2yZwC9PEfCV_Z4C-ovJGw" name="10% discount on Christmas Day (60 GBP minimum order)">
+    <offerRule xsi:type="dis:SingleOfferRule" xmi:id="_45JRUC9YEfCV_Z4C-ovJGw" name="10% discount on Christmas Day (60 GBP minimum order)">
+      <conditions xsi:type="dis:MinOrderValueCondition" xmi:id="_7lMn4C9YEfCV_Z4C-ovJGw" minimumAmount="60.0"/>
+      <conditions xsi:type="dis:OrderDateCondition" xmi:id="_8M3E0C9YEfCV_Z4C-ovJGw" date="2025-12-25T00:00:00.000+0000"/>
+      <actions xsi:type="dis:PercentageDiscountAction" xmi:id="_IdqvIC9ZEfCV_Z4C-ovJGw" discountPercentage="10"/>
+    </offerRule>
+  </offers>
+  <offers xmi:id="_YNH2IC9PEfCV_Z4C-ovJGw" name="5 pounds off on orders with chocolate cake">
+    <offerRule xsi:type="dis:MultiOfferRule" xmi:id="_8hro0C9ZEfCV_Z4C-ovJGw" name="5 pounds off on orders with chocolate cake">
+      <conditions xsi:type="dis:ContainsProductCondition" xmi:id="_tO9I0C9dEfCV_Z4C-ovJGw" product="_fUZ1IC8_EfCV_Z4C-ovJGw"/>
+      <actions xsi:type="dis:FixedAmountDiscountAction" xmi:id="_jKz1QC9bEfCV_Z4C-ovJGw" discountAmount="5.0"/>
+      <triggerRule xmi:id="_98DVEC9ZEfCV_Z4C-ovJGw" trigger="IF_NOT_MATCH" secondaryRule="_45JRUC9YEfCV_Z4C-ovJGw"/>
+    </offerRule>
+  </offers>
+  <categories xmi:id="_C_ZKkC9DEfCV_Z4C-ovJGw" name="Sweets" products="_gL3BkC8_EfCV_Z4C-ovJGw">
+    <subcategories xmi:id="_bYJE0C9IEfCV_Z4C-ovJGw" name="Cake" products="_fUZ1IC8_EfCV_Z4C-ovJGw"/>
+  </categories>
+  <categories xmi:id="_jsRr8C9NEfCV_Z4C-ovJGw" name="Pizza" products="_fkgtsC8_EfCV_Z4C-ovJGw"/>
+</dis:Model>

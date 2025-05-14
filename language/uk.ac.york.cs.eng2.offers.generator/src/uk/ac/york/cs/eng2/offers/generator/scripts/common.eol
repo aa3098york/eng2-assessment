@@ -1,0 +1,5 @@
+operation EDate toLocalDate() : Any {
+    var instant = new java.util.Date(this.longValue()).toInstant();
+    var zoneId = java.time.ZoneId.systemDefault();
+    return java.time.LocalDate.ofInstant(instant, zoneId);
+}

@@ -1,0 +1,110 @@
+public class [%= orule.name.replace(" ", "") %] {
+
+    [% if (orule.actions.exists(a | a.isTypeOf(FreeItemAction))) { %]
+    @Inject
+    ProductEventProducer productEventProducer;
+    [% } %]
+
+    [% for (cond in orule.conditions) { %]
+        [% if (cond.isTypeOf(FirstNOrdersCondition)) { %]
+            [% var orderDay = java.time.Instant.ofEpochMilli(cond.day.time).atZone(java.time.ZoneId.systemDefault()).toLocalDate(); %]
+            String firstNumProductName = "[%= cond.product.name %]";
+            LocalDate orderDay = [%= orderDay %];
+            int numberOfOrders = [%= cond.numberOfOrders %];
+        [% } else if (cond.isTypeOf(ProductQuantityCondition)) { %]
+            private String productQuantityProductName = "[%= cond.product.name %]";
+            private int requiredQuantity = [%= cond.quantity %];
+        [% } %]
+    [% } %]
+
+    public boolean meetsCondition(List<Product> products, BigDecimal orderTotal, LocalDate orderDate, long orderId) {
+        boolean conditionMet = true;
+
+        [% for (cond in orule.conditions) { %]
+            [% if (cond.isTypeOf(MinOrderValueCondition)) { %]
+                conditionMet = conditionMet && (orderTotal.compareTo(new BigDecimal("[%= cond.minOrderValue %]")) >= 0);
+            [% } else if (cond.isTypeOf(ContainsProductCondition)) { %]
+                boolean containsProduct = false;
+                for (Product p : products) {
+                    if (p.getName().equals("[%= cond.product.name %]")) {
+                        containsProduct = true;
+                        break;
+                    }
+                }
+                conditionMet = conditionMet && containsProduct;
+            [% } else if (cond.isTypeOf(OrderDateCondition)) { %]
+                LocalDate requiredDate = LocalDate.ofEpochDay([%= cond.orderDate.time %] / 86400000);
+                conditionMet = conditionMet && orderDate.equals(requiredDate);
+            [% } else if (cond.isTypeOf(FirstNOrdersCondition)) { %]
+                Long productId = productRepository.findByName(firstNumProductName).getId();
+                OrdersByDay ordersByDay = ordersByDayRepository.findByProductIdAndDay(productId, orderDay);
+                conditionMet = conditionMet && (ordersByDay.getCount() <= numberOfOrders);
+            [% } else if (cond.isTypeOf(ProductQuantityCondition)) { %]
+                int totalQuantity = 0;
+                Long productId = productRepository.findByName(productQuantityProductName).getId();
+                for (Product p : products) {
+                    if (p.getId().equals(productId)) {
+                        totalQuantity += p.getQuantity();
+                    }
+                }
+                conditionMet = conditionMet && (totalQuantity >= requiredQuantity);
+            [% } %]
+        [% } %]
+
+        return conditionMet;
+    }
+
+    public BigDecimal apply(List<Product> products, BigDecimal orderTotal, LocalDate orderDate, long orderId) {
+        BigDecimal computedTotal = orderTotal;
+
+        [% if (orule.isTypeOf(MultiOfferRule)) { %]
+            // Evaluate secondary rule's condition
+            boolean secondaryConditionMet = new [%= orule.triggerRule.target.name.replace(" ", "") %]().meetsCondition(products, orderTotal, orderDate, orderId);
+
+            // Determine whether to apply MAIN OfferRule's actions
+            boolean shouldApplyMainRule = false;
+
+            [% if (orule.triggerRule.type.equals("IF_MATCH")) { %]
+                if (secondaryConditionMet) {
+                    shouldApplyMainRule = true;
+                }
+            [% } else if (orule.triggerRule.type.equals("IF_NOT_MATCH")) { %]
+                if (!secondaryConditionMet) {
+                    shouldApplyMainRule = true;
+                }
+            [% } else if (orule.triggerRule.type.equals("ALWAYS")) { %]
+                shouldApplyMainRule = true;
+            [% } %]
+
+            if (!shouldApplyMainRule) {
+                computedTotal = BigDecimal.ZERO;
+                for (Product p : products) {
+                    computedTotal = computedTotal.add(p.getUnitPrice().multiply(new BigDecimal(p.getQuantity())));
+                }
+            }
+
+            if (shouldApplyMainRule && meetsCondition(products, orderTotal, orderDate, orderId)) {
+        [% } else { %]
+            if (meetsCondition(products, orderTotal, orderDate, orderId)) {
+        [% } %]
+
+            [% for (action in orule.actions) { %]
+                [% if (action.isTypeOf(FixedAmountDiscountAction)) { %]
+                    computedTotal = computedTotal.subtract(new BigDecimal("[%= action.discountAmount %]"));
+                [% } else if (action.isTypeOf(PercentageDiscountAction)) { %]
+                    BigDecimal discountMultiplier = new BigDecimal("1").subtract(
+                        new BigDecimal("[%= action.discountPercentage %]").divide(new BigDecimal("100"))
+                    );
+                    computedTotal = computedTotal.multiply(discountMultiplier);
+                [% } else if (action.isTypeOf(FreeItemAction)) { %]
+                    products.add(new Product("[%= action.freeProductName %]", BigDecimal.ZERO, 1));
+                    productEventProducer.addOrderItem(orderId, new ProductInfo("[%= action.freeProductName %]", BigDecimal.ZERO));
+                [% } else { %]
+                    new [%= action.eClass.name %]().execute(products);
+                [% } %]
+            [% } %]
+        }
+
+        return computedTotal;
+    }
+}
