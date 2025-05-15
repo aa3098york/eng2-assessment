@@ -3,25 +3,19 @@
 package uk.ac.york.cs.eng2.offers.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import uk.ac.york.cs.eng2.offers.Category;
 import uk.ac.york.cs.eng2.offers.Model;
-import uk.ac.york.cs.eng2.offers.Offer;
+import uk.ac.york.cs.eng2.offers.OfferRule;
 import uk.ac.york.cs.eng2.offers.OffersPackage;
-import uk.ac.york.cs.eng2.offers.Order;
-import uk.ac.york.cs.eng2.offers.OrdersByDay;
 import uk.ac.york.cs.eng2.offers.Product;
 import uk.ac.york.cs.eng2.offers.Tag;
 
@@ -35,9 +29,7 @@ import uk.ac.york.cs.eng2.offers.Tag;
  * <ul>
  *   <li>{@link uk.ac.york.cs.eng2.offers.impl.ModelImpl#getProducts <em>Products</em>}</li>
  *   <li>{@link uk.ac.york.cs.eng2.offers.impl.ModelImpl#getTags <em>Tags</em>}</li>
- *   <li>{@link uk.ac.york.cs.eng2.offers.impl.ModelImpl#getOrders <em>Orders</em>}</li>
- *   <li>{@link uk.ac.york.cs.eng2.offers.impl.ModelImpl#getOffers <em>Offers</em>}</li>
- *   <li>{@link uk.ac.york.cs.eng2.offers.impl.ModelImpl#getOrdersByDay <em>Orders By Day</em>}</li>
+ *   <li>{@link uk.ac.york.cs.eng2.offers.impl.ModelImpl#getOfferRules <em>Offer Rules</em>}</li>
  *   <li>{@link uk.ac.york.cs.eng2.offers.impl.ModelImpl#getCategories <em>Categories</em>}</li>
  * </ul>
  *
@@ -53,7 +45,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	 * @ordered
 	 */
 	protected EList<Product> products;
-
 	/**
 	 * The cached value of the '{@link #getTags() <em>Tags</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -63,37 +54,15 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	 * @ordered
 	 */
 	protected EList<Tag> tags;
-
 	/**
-	 * The cached value of the '{@link #getOrders() <em>Orders</em>}' containment reference list.
+	 * The cached value of the '{@link #getOfferRules() <em>Offer Rules</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOrders()
+	 * @see #getOfferRules()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Order> orders;
-
-	/**
-	 * The cached value of the '{@link #getOffers() <em>Offers</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOffers()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Offer> offers;
-
-	/**
-	 * The cached value of the '{@link #getOrdersByDay() <em>Orders By Day</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOrdersByDay()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<OrdersByDay> ordersByDay;
-
+	protected EList<OfferRule> offerRules;
 	/**
 	 * The cached value of the '{@link #getCategories() <em>Categories</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -155,37 +124,11 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	 * @generated
 	 */
 	@Override
-	public EList<Order> getOrders() {
-		if (orders == null) {
-			orders = new EObjectContainmentEList<Order>(Order.class, this, OffersPackage.MODEL__ORDERS);
+	public EList<OfferRule> getOfferRules() {
+		if (offerRules == null) {
+			offerRules = new EObjectContainmentEList<OfferRule>(OfferRule.class, this, OffersPackage.MODEL__OFFER_RULES);
 		}
-		return orders;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Offer> getOffers() {
-		if (offers == null) {
-			offers = new EObjectContainmentEList<Offer>(Offer.class, this, OffersPackage.MODEL__OFFERS);
-		}
-		return offers;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<OrdersByDay> getOrdersByDay() {
-		if (ordersByDay == null) {
-			ordersByDay = new EObjectContainmentEList<OrdersByDay>(OrdersByDay.class, this, OffersPackage.MODEL__ORDERS_BY_DAY);
-		}
-		return ordersByDay;
+		return offerRules;
 	}
 
 	/**
@@ -213,12 +156,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 				return ((InternalEList<?>)getProducts()).basicRemove(otherEnd, msgs);
 			case OffersPackage.MODEL__TAGS:
 				return ((InternalEList<?>)getTags()).basicRemove(otherEnd, msgs);
-			case OffersPackage.MODEL__ORDERS:
-				return ((InternalEList<?>)getOrders()).basicRemove(otherEnd, msgs);
-			case OffersPackage.MODEL__OFFERS:
-				return ((InternalEList<?>)getOffers()).basicRemove(otherEnd, msgs);
-			case OffersPackage.MODEL__ORDERS_BY_DAY:
-				return ((InternalEList<?>)getOrdersByDay()).basicRemove(otherEnd, msgs);
+			case OffersPackage.MODEL__OFFER_RULES:
+				return ((InternalEList<?>)getOfferRules()).basicRemove(otherEnd, msgs);
 			case OffersPackage.MODEL__CATEGORIES:
 				return ((InternalEList<?>)getCategories()).basicRemove(otherEnd, msgs);
 		}
@@ -237,12 +176,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 				return getProducts();
 			case OffersPackage.MODEL__TAGS:
 				return getTags();
-			case OffersPackage.MODEL__ORDERS:
-				return getOrders();
-			case OffersPackage.MODEL__OFFERS:
-				return getOffers();
-			case OffersPackage.MODEL__ORDERS_BY_DAY:
-				return getOrdersByDay();
+			case OffersPackage.MODEL__OFFER_RULES:
+				return getOfferRules();
 			case OffersPackage.MODEL__CATEGORIES:
 				return getCategories();
 		}
@@ -266,17 +201,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 				getTags().clear();
 				getTags().addAll((Collection<? extends Tag>)newValue);
 				return;
-			case OffersPackage.MODEL__ORDERS:
-				getOrders().clear();
-				getOrders().addAll((Collection<? extends Order>)newValue);
-				return;
-			case OffersPackage.MODEL__OFFERS:
-				getOffers().clear();
-				getOffers().addAll((Collection<? extends Offer>)newValue);
-				return;
-			case OffersPackage.MODEL__ORDERS_BY_DAY:
-				getOrdersByDay().clear();
-				getOrdersByDay().addAll((Collection<? extends OrdersByDay>)newValue);
+			case OffersPackage.MODEL__OFFER_RULES:
+				getOfferRules().clear();
+				getOfferRules().addAll((Collection<? extends OfferRule>)newValue);
 				return;
 			case OffersPackage.MODEL__CATEGORIES:
 				getCategories().clear();
@@ -300,14 +227,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 			case OffersPackage.MODEL__TAGS:
 				getTags().clear();
 				return;
-			case OffersPackage.MODEL__ORDERS:
-				getOrders().clear();
-				return;
-			case OffersPackage.MODEL__OFFERS:
-				getOffers().clear();
-				return;
-			case OffersPackage.MODEL__ORDERS_BY_DAY:
-				getOrdersByDay().clear();
+			case OffersPackage.MODEL__OFFER_RULES:
+				getOfferRules().clear();
 				return;
 			case OffersPackage.MODEL__CATEGORIES:
 				getCategories().clear();
@@ -328,12 +249,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 				return products != null && !products.isEmpty();
 			case OffersPackage.MODEL__TAGS:
 				return tags != null && !tags.isEmpty();
-			case OffersPackage.MODEL__ORDERS:
-				return orders != null && !orders.isEmpty();
-			case OffersPackage.MODEL__OFFERS:
-				return offers != null && !offers.isEmpty();
-			case OffersPackage.MODEL__ORDERS_BY_DAY:
-				return ordersByDay != null && !ordersByDay.isEmpty();
+			case OffersPackage.MODEL__OFFER_RULES:
+				return offerRules != null && !offerRules.isEmpty();
 			case OffersPackage.MODEL__CATEGORIES:
 				return categories != null && !categories.isEmpty();
 		}

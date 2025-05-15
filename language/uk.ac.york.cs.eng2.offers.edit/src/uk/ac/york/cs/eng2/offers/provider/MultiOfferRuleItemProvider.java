@@ -62,7 +62,7 @@ public class MultiOfferRuleItemProvider extends OfferRuleItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(OffersPackage.Literals.MULTI_OFFER_RULE__TRIGGER);
+			childrenFeatures.add(OffersPackage.Literals.MULTI_OFFER_RULE__TRIGGER_RULE);
 		}
 		return childrenFeatures;
 	}
@@ -99,7 +99,7 @@ public class MultiOfferRuleItemProvider extends OfferRuleItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MultiOfferRule)object).getDescription();
+		String label = ((MultiOfferRule)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_MultiOfferRule_type") :
 			getString("_UI_MultiOfferRule_type") + " " + label;
@@ -118,7 +118,7 @@ public class MultiOfferRuleItemProvider extends OfferRuleItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MultiOfferRule.class)) {
-			case OffersPackage.MULTI_OFFER_RULE__TRIGGER:
+			case OffersPackage.MULTI_OFFER_RULE__TRIGGER_RULE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -138,7 +138,7 @@ public class MultiOfferRuleItemProvider extends OfferRuleItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(OffersPackage.Literals.MULTI_OFFER_RULE__TRIGGER,
+				(OffersPackage.Literals.MULTI_OFFER_RULE__TRIGGER_RULE,
 				 OffersFactory.eINSTANCE.createTriggerRule()));
 	}
 

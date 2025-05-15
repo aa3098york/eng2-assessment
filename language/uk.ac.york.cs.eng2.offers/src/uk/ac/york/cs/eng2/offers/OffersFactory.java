@@ -40,15 +40,6 @@ public interface OffersFactory extends EFactory {
 	Category createCategory();
 
 	/**
-	 * Returns a new object of class '<em>Offer</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Offer</em>'.
-	 * @generated
-	 */
-	Offer createOffer();
-
-	/**
 	 * Returns a new object of class '<em>Fixed Amount Discount Action</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -58,13 +49,13 @@ public interface OffersFactory extends EFactory {
 	FixedAmountDiscountAction createFixedAmountDiscountAction();
 
 	/**
-	 * Returns a new object of class '<em>Fixed Price Discount Action</em>'.
+	 * Returns a new object of class '<em>Set Fixed Price Action</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Fixed Price Discount Action</em>'.
+	 * @return a new object of class '<em>Set Fixed Price Action</em>'.
 	 * @generated
 	 */
-	FixedPriceDiscountAction createFixedPriceDiscountAction();
+	SetFixedPriceAction createSetFixedPriceAction();
 
 	/**
 	 * Returns a new object of class '<em>Percentage Discount Action</em>'.
@@ -130,6 +121,15 @@ public interface OffersFactory extends EFactory {
 	MinOrderValueCondition createMinOrderValueCondition();
 
 	/**
+	 * Returns a new object of class '<em>Contains Product Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Contains Product Condition</em>'.
+	 * @generated
+	 */
+	ContainsProductCondition createContainsProductCondition();
+
+	/**
 	 * Returns a new object of class '<em>Product Tag Condition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -139,13 +139,13 @@ public interface OffersFactory extends EFactory {
 	ProductTagCondition createProductTagCondition();
 
 	/**
-	 * Returns a new object of class '<em>Product Category Condition</em>'.
+	 * Returns a new object of class '<em>Order Date Condition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Product Category Condition</em>'.
+	 * @return a new object of class '<em>Order Date Condition</em>'.
 	 * @generated
 	 */
-	ProductCategoryCondition createProductCategoryCondition();
+	OrderDateCondition createOrderDateCondition();
 
 	/**
 	 * Returns a new object of class '<em>First NOrders Condition</em>'.
@@ -155,6 +155,15 @@ public interface OffersFactory extends EFactory {
 	 * @generated
 	 */
 	FirstNOrdersCondition createFirstNOrdersCondition();
+
+	/**
+	 * Returns a new object of class '<em>Product Quantity Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Product Quantity Condition</em>'.
+	 * @generated
+	 */
+	ProductQuantityCondition createProductQuantityCondition();
 
 	/**
 	 * Returns a new object of class '<em>Product</em>'.
@@ -173,33 +182,6 @@ public interface OffersFactory extends EFactory {
 	 * @generated
 	 */
 	Tag createTag();
-
-	/**
-	 * Returns a new object of class '<em>Orders By Day</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Orders By Day</em>'.
-	 * @generated
-	 */
-	OrdersByDay createOrdersByDay();
-
-	/**
-	 * Returns a new object of class '<em>Order</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Order</em>'.
-	 * @generated
-	 */
-	Order createOrder();
-
-	/**
-	 * Returns a new object of class '<em>Order Item</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Order Item</em>'.
-	 * @generated
-	 */
-	OrderItem createOrderItem();
 
 	/**
 	 * Returns the package supported by this factory.

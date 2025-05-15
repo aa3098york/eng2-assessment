@@ -13,6 +13,7 @@ package uk.ac.york.cs.eng2.offers;
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.cs.eng2.offers.FreeItemAction#getProduct <em>Product</em>}</li>
+ *   <li>{@link uk.ac.york.cs.eng2.offers.FreeItemAction#getQuantity <em>Quantity</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.cs.eng2.offers.OffersPackage#getFreeItemAction()
@@ -41,5 +42,27 @@ public interface FreeItemAction extends Action {
 	 * @generated
 	 */
 	void setProduct(Product value);
+
+	/**
+	 * Returns the value of the '<em><b>Quantity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Quantity</em>' attribute.
+	 * @see #setQuantity(int)
+	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getFreeItemAction_Quantity()
+	 * @model
+	 * @generated
+	 */
+	int getQuantity();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.cs.eng2.offers.FreeItemAction#getQuantity <em>Quantity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Quantity</em>' attribute.
+	 * @see #getQuantity()
+	 * @generated
+	 */
+	void setQuantity(int value);
 
 } // FreeItemAction

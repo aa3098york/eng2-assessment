@@ -70,13 +70,13 @@ public interface Product extends EObject {
 	void setUnitPrice(float value);
 
 	/**
-	 * Returns the value of the '<em><b>Tags</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Tags</b></em>' reference list.
 	 * The list contents are of type {@link uk.ac.york.cs.eng2.offers.Tag}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Tags</em>' containment reference list.
+	 * @return the value of the '<em>Tags</em>' reference list.
 	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getProduct_Tags()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
 	EList<Tag> getTags();

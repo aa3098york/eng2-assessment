@@ -12,7 +12,7 @@ package uk.ac.york.cs.eng2.offers;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.york.cs.eng2.offers.MultiOfferRule#getTrigger <em>Trigger</em>}</li>
+ *   <li>{@link uk.ac.york.cs.eng2.offers.MultiOfferRule#getTriggerRule <em>Trigger Rule</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.cs.eng2.offers.OffersPackage#getMultiOfferRule()
@@ -21,25 +21,25 @@ package uk.ac.york.cs.eng2.offers;
  */
 public interface MultiOfferRule extends OfferRule {
 	/**
-	 * Returns the value of the '<em><b>Trigger</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Trigger Rule</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Trigger</em>' containment reference.
-	 * @see #setTrigger(TriggerRule)
-	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getMultiOfferRule_Trigger()
+	 * @return the value of the '<em>Trigger Rule</em>' containment reference.
+	 * @see #setTriggerRule(TriggerRule)
+	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getMultiOfferRule_TriggerRule()
 	 * @model containment="true"
 	 * @generated
 	 */
-	TriggerRule getTrigger();
+	TriggerRule getTriggerRule();
 
 	/**
-	 * Sets the value of the '{@link uk.ac.york.cs.eng2.offers.MultiOfferRule#getTrigger <em>Trigger</em>}' containment reference.
+	 * Sets the value of the '{@link uk.ac.york.cs.eng2.offers.MultiOfferRule#getTriggerRule <em>Trigger Rule</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Trigger</em>' containment reference.
-	 * @see #getTrigger()
+	 * @param value the new value of the '<em>Trigger Rule</em>' containment reference.
+	 * @see #getTriggerRule()
 	 * @generated
 	 */
-	void setTrigger(TriggerRule value);
+	void setTriggerRule(TriggerRule value);
 
 } // MultiOfferRule

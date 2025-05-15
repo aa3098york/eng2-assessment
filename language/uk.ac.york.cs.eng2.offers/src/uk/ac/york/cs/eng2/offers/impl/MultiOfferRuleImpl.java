@@ -22,21 +22,21 @@ import uk.ac.york.cs.eng2.offers.TriggerRule;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.york.cs.eng2.offers.impl.MultiOfferRuleImpl#getTrigger <em>Trigger</em>}</li>
+ *   <li>{@link uk.ac.york.cs.eng2.offers.impl.MultiOfferRuleImpl#getTriggerRule <em>Trigger Rule</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class MultiOfferRuleImpl extends OfferRuleImpl implements MultiOfferRule {
 	/**
-	 * The cached value of the '{@link #getTrigger() <em>Trigger</em>}' containment reference.
+	 * The cached value of the '{@link #getTriggerRule() <em>Trigger Rule</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTrigger()
+	 * @see #getTriggerRule()
 	 * @generated
 	 * @ordered
 	 */
-	protected TriggerRule trigger;
+	protected TriggerRule triggerRule;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -63,8 +63,8 @@ public class MultiOfferRuleImpl extends OfferRuleImpl implements MultiOfferRule 
 	 * @generated
 	 */
 	@Override
-	public TriggerRule getTrigger() {
-		return trigger;
+	public TriggerRule getTriggerRule() {
+		return triggerRule;
 	}
 
 	/**
@@ -72,11 +72,11 @@ public class MultiOfferRuleImpl extends OfferRuleImpl implements MultiOfferRule 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTrigger(TriggerRule newTrigger, NotificationChain msgs) {
-		TriggerRule oldTrigger = trigger;
-		trigger = newTrigger;
+	public NotificationChain basicSetTriggerRule(TriggerRule newTriggerRule, NotificationChain msgs) {
+		TriggerRule oldTriggerRule = triggerRule;
+		triggerRule = newTriggerRule;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OffersPackage.MULTI_OFFER_RULE__TRIGGER, oldTrigger, newTrigger);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OffersPackage.MULTI_OFFER_RULE__TRIGGER_RULE, oldTriggerRule, newTriggerRule);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -88,18 +88,18 @@ public class MultiOfferRuleImpl extends OfferRuleImpl implements MultiOfferRule 
 	 * @generated
 	 */
 	@Override
-	public void setTrigger(TriggerRule newTrigger) {
-		if (newTrigger != trigger) {
+	public void setTriggerRule(TriggerRule newTriggerRule) {
+		if (newTriggerRule != triggerRule) {
 			NotificationChain msgs = null;
-			if (trigger != null)
-				msgs = ((InternalEObject)trigger).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OffersPackage.MULTI_OFFER_RULE__TRIGGER, null, msgs);
-			if (newTrigger != null)
-				msgs = ((InternalEObject)newTrigger).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OffersPackage.MULTI_OFFER_RULE__TRIGGER, null, msgs);
-			msgs = basicSetTrigger(newTrigger, msgs);
+			if (triggerRule != null)
+				msgs = ((InternalEObject)triggerRule).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OffersPackage.MULTI_OFFER_RULE__TRIGGER_RULE, null, msgs);
+			if (newTriggerRule != null)
+				msgs = ((InternalEObject)newTriggerRule).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OffersPackage.MULTI_OFFER_RULE__TRIGGER_RULE, null, msgs);
+			msgs = basicSetTriggerRule(newTriggerRule, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OffersPackage.MULTI_OFFER_RULE__TRIGGER, newTrigger, newTrigger));
+			eNotify(new ENotificationImpl(this, Notification.SET, OffersPackage.MULTI_OFFER_RULE__TRIGGER_RULE, newTriggerRule, newTriggerRule));
 	}
 
 	/**
@@ -110,8 +110,8 @@ public class MultiOfferRuleImpl extends OfferRuleImpl implements MultiOfferRule 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case OffersPackage.MULTI_OFFER_RULE__TRIGGER:
-				return basicSetTrigger(null, msgs);
+			case OffersPackage.MULTI_OFFER_RULE__TRIGGER_RULE:
+				return basicSetTriggerRule(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -124,8 +124,8 @@ public class MultiOfferRuleImpl extends OfferRuleImpl implements MultiOfferRule 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OffersPackage.MULTI_OFFER_RULE__TRIGGER:
-				return getTrigger();
+			case OffersPackage.MULTI_OFFER_RULE__TRIGGER_RULE:
+				return getTriggerRule();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -138,8 +138,8 @@ public class MultiOfferRuleImpl extends OfferRuleImpl implements MultiOfferRule 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OffersPackage.MULTI_OFFER_RULE__TRIGGER:
-				setTrigger((TriggerRule)newValue);
+			case OffersPackage.MULTI_OFFER_RULE__TRIGGER_RULE:
+				setTriggerRule((TriggerRule)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -153,8 +153,8 @@ public class MultiOfferRuleImpl extends OfferRuleImpl implements MultiOfferRule 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OffersPackage.MULTI_OFFER_RULE__TRIGGER:
-				setTrigger((TriggerRule)null);
+			case OffersPackage.MULTI_OFFER_RULE__TRIGGER_RULE:
+				setTriggerRule((TriggerRule)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -168,8 +168,8 @@ public class MultiOfferRuleImpl extends OfferRuleImpl implements MultiOfferRule 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OffersPackage.MULTI_OFFER_RULE__TRIGGER:
-				return trigger != null;
+			case OffersPackage.MULTI_OFFER_RULE__TRIGGER_RULE:
+				return triggerRule != null;
 		}
 		return super.eIsSet(featureID);
 	}

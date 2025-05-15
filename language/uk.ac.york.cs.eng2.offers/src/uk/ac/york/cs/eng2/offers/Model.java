@@ -3,7 +3,6 @@
 package uk.ac.york.cs.eng2.offers;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -17,9 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link uk.ac.york.cs.eng2.offers.Model#getProducts <em>Products</em>}</li>
  *   <li>{@link uk.ac.york.cs.eng2.offers.Model#getTags <em>Tags</em>}</li>
- *   <li>{@link uk.ac.york.cs.eng2.offers.Model#getOrders <em>Orders</em>}</li>
- *   <li>{@link uk.ac.york.cs.eng2.offers.Model#getOffers <em>Offers</em>}</li>
- *   <li>{@link uk.ac.york.cs.eng2.offers.Model#getOrdersByDay <em>Orders By Day</em>}</li>
+ *   <li>{@link uk.ac.york.cs.eng2.offers.Model#getOfferRules <em>Offer Rules</em>}</li>
  *   <li>{@link uk.ac.york.cs.eng2.offers.Model#getCategories <em>Categories</em>}</li>
  * </ul>
  *
@@ -28,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Model extends EObject {
+
 	/**
 	 * Returns the value of the '<em><b>Products</b></em>' containment reference list.
 	 * The list contents are of type {@link uk.ac.york.cs.eng2.offers.Product}.
@@ -53,40 +51,16 @@ public interface Model extends EObject {
 	EList<Tag> getTags();
 
 	/**
-	 * Returns the value of the '<em><b>Orders</b></em>' containment reference list.
-	 * The list contents are of type {@link uk.ac.york.cs.eng2.offers.Order}.
+	 * Returns the value of the '<em><b>Offer Rules</b></em>' containment reference list.
+	 * The list contents are of type {@link uk.ac.york.cs.eng2.offers.OfferRule}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Orders</em>' containment reference list.
-	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getModel_Orders()
+	 * @return the value of the '<em>Offer Rules</em>' containment reference list.
+	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getModel_OfferRules()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Order> getOrders();
-
-	/**
-	 * Returns the value of the '<em><b>Offers</b></em>' containment reference list.
-	 * The list contents are of type {@link uk.ac.york.cs.eng2.offers.Offer}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Offers</em>' containment reference list.
-	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getModel_Offers()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Offer> getOffers();
-
-	/**
-	 * Returns the value of the '<em><b>Orders By Day</b></em>' containment reference list.
-	 * The list contents are of type {@link uk.ac.york.cs.eng2.offers.OrdersByDay}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Orders By Day</em>' containment reference list.
-	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getModel_OrdersByDay()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<OrdersByDay> getOrdersByDay();
+	EList<OfferRule> getOfferRules();
 
 	/**
 	 * Returns the value of the '<em><b>Categories</b></em>' containment reference list.
@@ -99,5 +73,4 @@ public interface Model extends EObject {
 	 * @generated
 	 */
 	EList<Category> getCategories();
-
 } // Model

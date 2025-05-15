@@ -1,3 +1,5 @@
+package offers
+
 public class [%= orule.name.replace(" ", "") %] {
 
     [% if (orule.actions.exists(a | a.isTypeOf(FreeItemAction))) { %]

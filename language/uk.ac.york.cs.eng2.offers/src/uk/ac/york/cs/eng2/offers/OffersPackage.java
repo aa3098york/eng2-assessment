@@ -86,31 +86,13 @@ public interface OffersPackage extends EPackage {
 	int MODEL__TAGS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Orders</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Offer Rules</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__ORDERS = 2;
-
-	/**
-	 * The feature id for the '<em><b>Offers</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL__OFFERS = 3;
-
-	/**
-	 * The feature id for the '<em><b>Orders By Day</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL__ORDERS_BY_DAY = 4;
+	int MODEL__OFFER_RULES = 2;
 
 	/**
 	 * The feature id for the '<em><b>Categories</b></em>' containment reference list.
@@ -119,7 +101,7 @@ public interface OffersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__CATEGORIES = 5;
+	int MODEL__CATEGORIES = 3;
 
 	/**
 	 * The number of structural features of the '<em>Model</em>' class.
@@ -128,7 +110,7 @@ public interface OffersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_FEATURE_COUNT = 6;
+	int MODEL_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Model</em>' class.
@@ -138,6 +120,7 @@ public interface OffersPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_OPERATION_COUNT = 0;
+
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.cs.eng2.offers.impl.CategoryImpl <em>Category</em>}' class.
@@ -195,52 +178,6 @@ public interface OffersPackage extends EPackage {
 	int CATEGORY_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link uk.ac.york.cs.eng2.offers.impl.OfferImpl <em>Offer</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.cs.eng2.offers.impl.OfferImpl
-	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getOffer()
-	 * @generated
-	 */
-	int OFFER = 2;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OFFER__NAME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Offer Rule</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OFFER__OFFER_RULE = 1;
-
-	/**
-	 * The number of structural features of the '<em>Offer</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OFFER_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Offer</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OFFER_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link uk.ac.york.cs.eng2.offers.impl.ActionImpl <em>Action</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -248,7 +185,7 @@ public interface OffersPackage extends EPackage {
 	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getAction()
 	 * @generated
 	 */
-	int ACTION = 3;
+	int ACTION = 2;
 
 	/**
 	 * The number of structural features of the '<em>Action</em>' class.
@@ -276,7 +213,7 @@ public interface OffersPackage extends EPackage {
 	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getFixedAmountDiscountAction()
 	 * @generated
 	 */
-	int FIXED_AMOUNT_DISCOUNT_ACTION = 4;
+	int FIXED_AMOUNT_DISCOUNT_ACTION = 3;
 
 	/**
 	 * The feature id for the '<em><b>Discount Amount</b></em>' attribute.
@@ -306,14 +243,14 @@ public interface OffersPackage extends EPackage {
 	int FIXED_AMOUNT_DISCOUNT_ACTION_OPERATION_COUNT = ACTION_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link uk.ac.york.cs.eng2.offers.impl.FixedPriceDiscountActionImpl <em>Fixed Price Discount Action</em>}' class.
+	 * The meta object id for the '{@link uk.ac.york.cs.eng2.offers.impl.SetFixedPriceActionImpl <em>Set Fixed Price Action</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.cs.eng2.offers.impl.FixedPriceDiscountActionImpl
-	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getFixedPriceDiscountAction()
+	 * @see uk.ac.york.cs.eng2.offers.impl.SetFixedPriceActionImpl
+	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getSetFixedPriceAction()
 	 * @generated
 	 */
-	int FIXED_PRICE_DISCOUNT_ACTION = 5;
+	int SET_FIXED_PRICE_ACTION = 4;
 
 	/**
 	 * The feature id for the '<em><b>Fixed Price</b></em>' attribute.
@@ -322,25 +259,43 @@ public interface OffersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FIXED_PRICE_DISCOUNT_ACTION__FIXED_PRICE = ACTION_FEATURE_COUNT + 0;
+	int SET_FIXED_PRICE_ACTION__FIXED_PRICE = ACTION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Fixed Price Discount Action</em>' class.
+	 * The feature id for the '<em><b>Product</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FIXED_PRICE_DISCOUNT_ACTION_FEATURE_COUNT = ACTION_FEATURE_COUNT + 1;
+	int SET_FIXED_PRICE_ACTION__PRODUCT = ACTION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Fixed Price Discount Action</em>' class.
+	 * The feature id for the '<em><b>Quantity</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FIXED_PRICE_DISCOUNT_ACTION_OPERATION_COUNT = ACTION_OPERATION_COUNT + 0;
+	int SET_FIXED_PRICE_ACTION__QUANTITY = ACTION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Set Fixed Price Action</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_FIXED_PRICE_ACTION_FEATURE_COUNT = ACTION_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Set Fixed Price Action</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_FIXED_PRICE_ACTION_OPERATION_COUNT = ACTION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.cs.eng2.offers.impl.PercentageDiscountActionImpl <em>Percentage Discount Action</em>}' class.
@@ -350,7 +305,7 @@ public interface OffersPackage extends EPackage {
 	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getPercentageDiscountAction()
 	 * @generated
 	 */
-	int PERCENTAGE_DISCOUNT_ACTION = 6;
+	int PERCENTAGE_DISCOUNT_ACTION = 5;
 
 	/**
 	 * The feature id for the '<em><b>Discount Percentage</b></em>' attribute.
@@ -387,7 +342,7 @@ public interface OffersPackage extends EPackage {
 	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getPercentageProductDiscountAction()
 	 * @generated
 	 */
-	int PERCENTAGE_PRODUCT_DISCOUNT_ACTION = 7;
+	int PERCENTAGE_PRODUCT_DISCOUNT_ACTION = 6;
 
 	/**
 	 * The feature id for the '<em><b>Discount Percentage</b></em>' attribute.
@@ -433,7 +388,7 @@ public interface OffersPackage extends EPackage {
 	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getFreeItemAction()
 	 * @generated
 	 */
-	int FREE_ITEM_ACTION = 8;
+	int FREE_ITEM_ACTION = 7;
 
 	/**
 	 * The feature id for the '<em><b>Product</b></em>' reference.
@@ -445,13 +400,22 @@ public interface OffersPackage extends EPackage {
 	int FREE_ITEM_ACTION__PRODUCT = ACTION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Quantity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FREE_ITEM_ACTION__QUANTITY = ACTION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Free Item Action</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FREE_ITEM_ACTION_FEATURE_COUNT = ACTION_FEATURE_COUNT + 1;
+	int FREE_ITEM_ACTION_FEATURE_COUNT = ACTION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Free Item Action</em>' class.
@@ -470,16 +434,16 @@ public interface OffersPackage extends EPackage {
 	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getOfferRule()
 	 * @generated
 	 */
-	int OFFER_RULE = 9;
+	int OFFER_RULE = 8;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OFFER_RULE__DESCRIPTION = 0;
+	int OFFER_RULE__NAME = 0;
 
 	/**
 	 * The feature id for the '<em><b>Conditions</b></em>' containment reference list.
@@ -525,16 +489,16 @@ public interface OffersPackage extends EPackage {
 	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getSingleOfferRule()
 	 * @generated
 	 */
-	int SINGLE_OFFER_RULE = 10;
+	int SINGLE_OFFER_RULE = 9;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_OFFER_RULE__DESCRIPTION = OFFER_RULE__DESCRIPTION;
+	int SINGLE_OFFER_RULE__NAME = OFFER_RULE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Conditions</b></em>' containment reference list.
@@ -580,16 +544,16 @@ public interface OffersPackage extends EPackage {
 	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getMultiOfferRule()
 	 * @generated
 	 */
-	int MULTI_OFFER_RULE = 11;
+	int MULTI_OFFER_RULE = 10;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_OFFER_RULE__DESCRIPTION = OFFER_RULE__DESCRIPTION;
+	int MULTI_OFFER_RULE__NAME = OFFER_RULE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Conditions</b></em>' containment reference list.
@@ -610,13 +574,13 @@ public interface OffersPackage extends EPackage {
 	int MULTI_OFFER_RULE__ACTIONS = OFFER_RULE__ACTIONS;
 
 	/**
-	 * The feature id for the '<em><b>Trigger</b></em>' containment reference.
+	 * The feature id for the '<em><b>Trigger Rule</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_OFFER_RULE__TRIGGER = OFFER_RULE_FEATURE_COUNT + 0;
+	int MULTI_OFFER_RULE__TRIGGER_RULE = OFFER_RULE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Multi Offer Rule</em>' class.
@@ -644,7 +608,7 @@ public interface OffersPackage extends EPackage {
 	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getTriggerRule()
 	 * @generated
 	 */
-	int TRIGGER_RULE = 12;
+	int TRIGGER_RULE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Trigger</b></em>' attribute.
@@ -690,7 +654,7 @@ public interface OffersPackage extends EPackage {
 	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getCondition()
 	 * @generated
 	 */
-	int CONDITION = 13;
+	int CONDITION = 12;
 
 	/**
 	 * The number of structural features of the '<em>Condition</em>' class.
@@ -718,7 +682,7 @@ public interface OffersPackage extends EPackage {
 	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getMinOrderValueCondition()
 	 * @generated
 	 */
-	int MIN_ORDER_VALUE_CONDITION = 14;
+	int MIN_ORDER_VALUE_CONDITION = 13;
 
 	/**
 	 * The feature id for the '<em><b>Minimum Amount</b></em>' attribute.
@@ -746,6 +710,43 @@ public interface OffersPackage extends EPackage {
 	 * @ordered
 	 */
 	int MIN_ORDER_VALUE_CONDITION_OPERATION_COUNT = CONDITION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.cs.eng2.offers.impl.ContainsProductConditionImpl <em>Contains Product Condition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.cs.eng2.offers.impl.ContainsProductConditionImpl
+	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getContainsProductCondition()
+	 * @generated
+	 */
+	int CONTAINS_PRODUCT_CONDITION = 14;
+
+	/**
+	 * The feature id for the '<em><b>Product</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINS_PRODUCT_CONDITION__PRODUCT = CONDITION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Contains Product Condition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINS_PRODUCT_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Contains Product Condition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINS_PRODUCT_CONDITION_OPERATION_COUNT = CONDITION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.cs.eng2.offers.impl.ProductTagConditionImpl <em>Product Tag Condition</em>}' class.
@@ -785,41 +786,41 @@ public interface OffersPackage extends EPackage {
 	int PRODUCT_TAG_CONDITION_OPERATION_COUNT = CONDITION_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link uk.ac.york.cs.eng2.offers.impl.ProductCategoryConditionImpl <em>Product Category Condition</em>}' class.
+	 * The meta object id for the '{@link uk.ac.york.cs.eng2.offers.impl.OrderDateConditionImpl <em>Order Date Condition</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.cs.eng2.offers.impl.ProductCategoryConditionImpl
-	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getProductCategoryCondition()
+	 * @see uk.ac.york.cs.eng2.offers.impl.OrderDateConditionImpl
+	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getOrderDateCondition()
 	 * @generated
 	 */
-	int PRODUCT_CATEGORY_CONDITION = 16;
+	int ORDER_DATE_CONDITION = 16;
 
 	/**
-	 * The feature id for the '<em><b>Category</b></em>' reference.
+	 * The feature id for the '<em><b>Date</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_CATEGORY_CONDITION__CATEGORY = CONDITION_FEATURE_COUNT + 0;
+	int ORDER_DATE_CONDITION__DATE = CONDITION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Product Category Condition</em>' class.
+	 * The number of structural features of the '<em>Order Date Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_CATEGORY_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 1;
+	int ORDER_DATE_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Product Category Condition</em>' class.
+	 * The number of operations of the '<em>Order Date Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_CATEGORY_CONDITION_OPERATION_COUNT = CONDITION_OPERATION_COUNT + 0;
+	int ORDER_DATE_CONDITION_OPERATION_COUNT = CONDITION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.cs.eng2.offers.impl.FirstNOrdersConditionImpl <em>First NOrders Condition</em>}' class.
@@ -841,13 +842,31 @@ public interface OffersPackage extends EPackage {
 	int FIRST_NORDERS_CONDITION__NUMBER_OF_ORDERS = CONDITION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Day</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIRST_NORDERS_CONDITION__DAY = CONDITION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Product</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIRST_NORDERS_CONDITION__PRODUCT = CONDITION_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>First NOrders Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FIRST_NORDERS_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 1;
+	int FIRST_NORDERS_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>First NOrders Condition</em>' class.
@@ -859,6 +878,52 @@ public interface OffersPackage extends EPackage {
 	int FIRST_NORDERS_CONDITION_OPERATION_COUNT = CONDITION_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link uk.ac.york.cs.eng2.offers.impl.ProductQuantityConditionImpl <em>Product Quantity Condition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.cs.eng2.offers.impl.ProductQuantityConditionImpl
+	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getProductQuantityCondition()
+	 * @generated
+	 */
+	int PRODUCT_QUANTITY_CONDITION = 18;
+
+	/**
+	 * The feature id for the '<em><b>Product</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT_QUANTITY_CONDITION__PRODUCT = CONDITION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Quantity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT_QUANTITY_CONDITION__QUANTITY = CONDITION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Product Quantity Condition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT_QUANTITY_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Product Quantity Condition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT_QUANTITY_CONDITION_OPERATION_COUNT = CONDITION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link uk.ac.york.cs.eng2.offers.impl.ProductImpl <em>Product</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -866,7 +931,7 @@ public interface OffersPackage extends EPackage {
 	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getProduct()
 	 * @generated
 	 */
-	int PRODUCT = 18;
+	int PRODUCT = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -887,7 +952,7 @@ public interface OffersPackage extends EPackage {
 	int PRODUCT__UNIT_PRICE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Tags</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Tags</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -921,7 +986,7 @@ public interface OffersPackage extends EPackage {
 	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getTag()
 	 * @generated
 	 */
-	int TAG = 19;
+	int TAG = 20;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -951,153 +1016,6 @@ public interface OffersPackage extends EPackage {
 	int TAG_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link uk.ac.york.cs.eng2.offers.impl.OrdersByDayImpl <em>Orders By Day</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.cs.eng2.offers.impl.OrdersByDayImpl
-	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getOrdersByDay()
-	 * @generated
-	 */
-	int ORDERS_BY_DAY = 20;
-
-	/**
-	 * The feature id for the '<em><b>Product</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERS_BY_DAY__PRODUCT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Day</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERS_BY_DAY__DAY = 1;
-
-	/**
-	 * The feature id for the '<em><b>Count</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERS_BY_DAY__COUNT = 2;
-
-	/**
-	 * The number of structural features of the '<em>Orders By Day</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERS_BY_DAY_FEATURE_COUNT = 3;
-
-	/**
-	 * The number of operations of the '<em>Orders By Day</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERS_BY_DAY_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link uk.ac.york.cs.eng2.offers.impl.OrderImpl <em>Order</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.cs.eng2.offers.impl.OrderImpl
-	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getOrder()
-	 * @generated
-	 */
-	int ORDER = 21;
-
-	/**
-	 * The feature id for the '<em><b>Order Items</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDER__ORDER_ITEMS = 0;
-
-	/**
-	 * The feature id for the '<em><b>Total Amount</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDER__TOTAL_AMOUNT = 1;
-
-	/**
-	 * The number of structural features of the '<em>Order</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDER_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Order</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDER_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link uk.ac.york.cs.eng2.offers.impl.OrderItemImpl <em>Order Item</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.cs.eng2.offers.impl.OrderItemImpl
-	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getOrderItem()
-	 * @generated
-	 */
-	int ORDER_ITEM = 22;
-
-	/**
-	 * The feature id for the '<em><b>Product</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDER_ITEM__PRODUCT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Quantity</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDER_ITEM__QUANTITY = 1;
-
-	/**
-	 * The number of structural features of the '<em>Order Item</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDER_ITEM_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Order Item</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDER_ITEM_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link uk.ac.york.cs.eng2.offers.TriggerType <em>Trigger Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1105,7 +1023,7 @@ public interface OffersPackage extends EPackage {
 	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getTriggerType()
 	 * @generated
 	 */
-	int TRIGGER_TYPE = 23;
+	int TRIGGER_TYPE = 21;
 
 
 	/**
@@ -1141,37 +1059,15 @@ public interface OffersPackage extends EPackage {
 	EReference getModel_Tags();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link uk.ac.york.cs.eng2.offers.Model#getOrders <em>Orders</em>}'.
+	 * Returns the meta object for the containment reference list '{@link uk.ac.york.cs.eng2.offers.Model#getOfferRules <em>Offer Rules</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Orders</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.Model#getOrders()
+	 * @return the meta object for the containment reference list '<em>Offer Rules</em>'.
+	 * @see uk.ac.york.cs.eng2.offers.Model#getOfferRules()
 	 * @see #getModel()
 	 * @generated
 	 */
-	EReference getModel_Orders();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link uk.ac.york.cs.eng2.offers.Model#getOffers <em>Offers</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Offers</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.Model#getOffers()
-	 * @see #getModel()
-	 * @generated
-	 */
-	EReference getModel_Offers();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link uk.ac.york.cs.eng2.offers.Model#getOrdersByDay <em>Orders By Day</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Orders By Day</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.Model#getOrdersByDay()
-	 * @see #getModel()
-	 * @generated
-	 */
-	EReference getModel_OrdersByDay();
+	EReference getModel_OfferRules();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link uk.ac.york.cs.eng2.offers.Model#getCategories <em>Categories</em>}'.
@@ -1228,38 +1124,6 @@ public interface OffersPackage extends EPackage {
 	EReference getCategory_Products();
 
 	/**
-	 * Returns the meta object for class '{@link uk.ac.york.cs.eng2.offers.Offer <em>Offer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Offer</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.Offer
-	 * @generated
-	 */
-	EClass getOffer();
-
-	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.cs.eng2.offers.Offer#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.Offer#getName()
-	 * @see #getOffer()
-	 * @generated
-	 */
-	EAttribute getOffer_Name();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link uk.ac.york.cs.eng2.offers.Offer#getOfferRule <em>Offer Rule</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Offer Rule</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.Offer#getOfferRule()
-	 * @see #getOffer()
-	 * @generated
-	 */
-	EReference getOffer_OfferRule();
-
-	/**
 	 * Returns the meta object for class '{@link uk.ac.york.cs.eng2.offers.Action <em>Action</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1291,25 +1155,47 @@ public interface OffersPackage extends EPackage {
 	EAttribute getFixedAmountDiscountAction_DiscountAmount();
 
 	/**
-	 * Returns the meta object for class '{@link uk.ac.york.cs.eng2.offers.FixedPriceDiscountAction <em>Fixed Price Discount Action</em>}'.
+	 * Returns the meta object for class '{@link uk.ac.york.cs.eng2.offers.SetFixedPriceAction <em>Set Fixed Price Action</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Fixed Price Discount Action</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.FixedPriceDiscountAction
+	 * @return the meta object for class '<em>Set Fixed Price Action</em>'.
+	 * @see uk.ac.york.cs.eng2.offers.SetFixedPriceAction
 	 * @generated
 	 */
-	EClass getFixedPriceDiscountAction();
+	EClass getSetFixedPriceAction();
 
 	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.cs.eng2.offers.FixedPriceDiscountAction#getFixedPrice <em>Fixed Price</em>}'.
+	 * Returns the meta object for the attribute '{@link uk.ac.york.cs.eng2.offers.SetFixedPriceAction#getFixedPrice <em>Fixed Price</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Fixed Price</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.FixedPriceDiscountAction#getFixedPrice()
-	 * @see #getFixedPriceDiscountAction()
+	 * @see uk.ac.york.cs.eng2.offers.SetFixedPriceAction#getFixedPrice()
+	 * @see #getSetFixedPriceAction()
 	 * @generated
 	 */
-	EAttribute getFixedPriceDiscountAction_FixedPrice();
+	EAttribute getSetFixedPriceAction_FixedPrice();
+
+	/**
+	 * Returns the meta object for the reference '{@link uk.ac.york.cs.eng2.offers.SetFixedPriceAction#getProduct <em>Product</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Product</em>'.
+	 * @see uk.ac.york.cs.eng2.offers.SetFixedPriceAction#getProduct()
+	 * @see #getSetFixedPriceAction()
+	 * @generated
+	 */
+	EReference getSetFixedPriceAction_Product();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.cs.eng2.offers.SetFixedPriceAction#getQuantity <em>Quantity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Quantity</em>'.
+	 * @see uk.ac.york.cs.eng2.offers.SetFixedPriceAction#getQuantity()
+	 * @see #getSetFixedPriceAction()
+	 * @generated
+	 */
+	EAttribute getSetFixedPriceAction_Quantity();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.cs.eng2.offers.PercentageDiscountAction <em>Percentage Discount Action</em>}'.
@@ -1375,6 +1261,17 @@ public interface OffersPackage extends EPackage {
 	EReference getFreeItemAction_Product();
 
 	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.cs.eng2.offers.FreeItemAction#getQuantity <em>Quantity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Quantity</em>'.
+	 * @see uk.ac.york.cs.eng2.offers.FreeItemAction#getQuantity()
+	 * @see #getFreeItemAction()
+	 * @generated
+	 */
+	EAttribute getFreeItemAction_Quantity();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.cs.eng2.offers.OfferRule <em>Offer Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1385,15 +1282,15 @@ public interface OffersPackage extends EPackage {
 	EClass getOfferRule();
 
 	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.cs.eng2.offers.OfferRule#getDescription <em>Description</em>}'.
+	 * Returns the meta object for the attribute '{@link uk.ac.york.cs.eng2.offers.OfferRule#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Description</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.OfferRule#getDescription()
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see uk.ac.york.cs.eng2.offers.OfferRule#getName()
 	 * @see #getOfferRule()
 	 * @generated
 	 */
-	EAttribute getOfferRule_Description();
+	EAttribute getOfferRule_Name();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link uk.ac.york.cs.eng2.offers.OfferRule#getConditions <em>Conditions</em>}'.
@@ -1438,15 +1335,15 @@ public interface OffersPackage extends EPackage {
 	EClass getMultiOfferRule();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link uk.ac.york.cs.eng2.offers.MultiOfferRule#getTrigger <em>Trigger</em>}'.
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.cs.eng2.offers.MultiOfferRule#getTriggerRule <em>Trigger Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Trigger</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.MultiOfferRule#getTrigger()
+	 * @return the meta object for the containment reference '<em>Trigger Rule</em>'.
+	 * @see uk.ac.york.cs.eng2.offers.MultiOfferRule#getTriggerRule()
 	 * @see #getMultiOfferRule()
 	 * @generated
 	 */
-	EReference getMultiOfferRule_Trigger();
+	EReference getMultiOfferRule_TriggerRule();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.cs.eng2.offers.TriggerRule <em>Trigger Rule</em>}'.
@@ -1512,6 +1409,27 @@ public interface OffersPackage extends EPackage {
 	EAttribute getMinOrderValueCondition_MinimumAmount();
 
 	/**
+	 * Returns the meta object for class '{@link uk.ac.york.cs.eng2.offers.ContainsProductCondition <em>Contains Product Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Contains Product Condition</em>'.
+	 * @see uk.ac.york.cs.eng2.offers.ContainsProductCondition
+	 * @generated
+	 */
+	EClass getContainsProductCondition();
+
+	/**
+	 * Returns the meta object for the reference '{@link uk.ac.york.cs.eng2.offers.ContainsProductCondition#getProduct <em>Product</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Product</em>'.
+	 * @see uk.ac.york.cs.eng2.offers.ContainsProductCondition#getProduct()
+	 * @see #getContainsProductCondition()
+	 * @generated
+	 */
+	EReference getContainsProductCondition_Product();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.cs.eng2.offers.ProductTagCondition <em>Product Tag Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1533,25 +1451,25 @@ public interface OffersPackage extends EPackage {
 	EReference getProductTagCondition_Tags();
 
 	/**
-	 * Returns the meta object for class '{@link uk.ac.york.cs.eng2.offers.ProductCategoryCondition <em>Product Category Condition</em>}'.
+	 * Returns the meta object for class '{@link uk.ac.york.cs.eng2.offers.OrderDateCondition <em>Order Date Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Product Category Condition</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.ProductCategoryCondition
+	 * @return the meta object for class '<em>Order Date Condition</em>'.
+	 * @see uk.ac.york.cs.eng2.offers.OrderDateCondition
 	 * @generated
 	 */
-	EClass getProductCategoryCondition();
+	EClass getOrderDateCondition();
 
 	/**
-	 * Returns the meta object for the reference '{@link uk.ac.york.cs.eng2.offers.ProductCategoryCondition#getCategory <em>Category</em>}'.
+	 * Returns the meta object for the attribute '{@link uk.ac.york.cs.eng2.offers.OrderDateCondition#getDate <em>Date</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Category</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.ProductCategoryCondition#getCategory()
-	 * @see #getProductCategoryCondition()
+	 * @return the meta object for the attribute '<em>Date</em>'.
+	 * @see uk.ac.york.cs.eng2.offers.OrderDateCondition#getDate()
+	 * @see #getOrderDateCondition()
 	 * @generated
 	 */
-	EReference getProductCategoryCondition_Category();
+	EAttribute getOrderDateCondition_Date();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.cs.eng2.offers.FirstNOrdersCondition <em>First NOrders Condition</em>}'.
@@ -1573,6 +1491,60 @@ public interface OffersPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFirstNOrdersCondition_NumberOfOrders();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.cs.eng2.offers.FirstNOrdersCondition#getDay <em>Day</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Day</em>'.
+	 * @see uk.ac.york.cs.eng2.offers.FirstNOrdersCondition#getDay()
+	 * @see #getFirstNOrdersCondition()
+	 * @generated
+	 */
+	EAttribute getFirstNOrdersCondition_Day();
+
+	/**
+	 * Returns the meta object for the reference '{@link uk.ac.york.cs.eng2.offers.FirstNOrdersCondition#getProduct <em>Product</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Product</em>'.
+	 * @see uk.ac.york.cs.eng2.offers.FirstNOrdersCondition#getProduct()
+	 * @see #getFirstNOrdersCondition()
+	 * @generated
+	 */
+	EReference getFirstNOrdersCondition_Product();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.cs.eng2.offers.ProductQuantityCondition <em>Product Quantity Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Product Quantity Condition</em>'.
+	 * @see uk.ac.york.cs.eng2.offers.ProductQuantityCondition
+	 * @generated
+	 */
+	EClass getProductQuantityCondition();
+
+	/**
+	 * Returns the meta object for the reference '{@link uk.ac.york.cs.eng2.offers.ProductQuantityCondition#getProduct <em>Product</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Product</em>'.
+	 * @see uk.ac.york.cs.eng2.offers.ProductQuantityCondition#getProduct()
+	 * @see #getProductQuantityCondition()
+	 * @generated
+	 */
+	EReference getProductQuantityCondition_Product();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.cs.eng2.offers.ProductQuantityCondition#getQuantity <em>Quantity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Quantity</em>'.
+	 * @see uk.ac.york.cs.eng2.offers.ProductQuantityCondition#getQuantity()
+	 * @see #getProductQuantityCondition()
+	 * @generated
+	 */
+	EAttribute getProductQuantityCondition_Quantity();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.cs.eng2.offers.Product <em>Product</em>}'.
@@ -1607,10 +1579,10 @@ public interface OffersPackage extends EPackage {
 	EAttribute getProduct_UnitPrice();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link uk.ac.york.cs.eng2.offers.Product#getTags <em>Tags</em>}'.
+	 * Returns the meta object for the reference list '{@link uk.ac.york.cs.eng2.offers.Product#getTags <em>Tags</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Tags</em>'.
+	 * @return the meta object for the reference list '<em>Tags</em>'.
 	 * @see uk.ac.york.cs.eng2.offers.Product#getTags()
 	 * @see #getProduct()
 	 * @generated
@@ -1637,113 +1609,6 @@ public interface OffersPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getTag_Name();
-
-	/**
-	 * Returns the meta object for class '{@link uk.ac.york.cs.eng2.offers.OrdersByDay <em>Orders By Day</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Orders By Day</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.OrdersByDay
-	 * @generated
-	 */
-	EClass getOrdersByDay();
-
-	/**
-	 * Returns the meta object for the reference '{@link uk.ac.york.cs.eng2.offers.OrdersByDay#getProduct <em>Product</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Product</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.OrdersByDay#getProduct()
-	 * @see #getOrdersByDay()
-	 * @generated
-	 */
-	EReference getOrdersByDay_Product();
-
-	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.cs.eng2.offers.OrdersByDay#getDay <em>Day</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Day</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.OrdersByDay#getDay()
-	 * @see #getOrdersByDay()
-	 * @generated
-	 */
-	EAttribute getOrdersByDay_Day();
-
-	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.cs.eng2.offers.OrdersByDay#getCount <em>Count</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Count</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.OrdersByDay#getCount()
-	 * @see #getOrdersByDay()
-	 * @generated
-	 */
-	EAttribute getOrdersByDay_Count();
-
-	/**
-	 * Returns the meta object for class '{@link uk.ac.york.cs.eng2.offers.Order <em>Order</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Order</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.Order
-	 * @generated
-	 */
-	EClass getOrder();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link uk.ac.york.cs.eng2.offers.Order#getOrderItems <em>Order Items</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Order Items</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.Order#getOrderItems()
-	 * @see #getOrder()
-	 * @generated
-	 */
-	EReference getOrder_OrderItems();
-
-	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.cs.eng2.offers.Order#getTotalAmount <em>Total Amount</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Total Amount</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.Order#getTotalAmount()
-	 * @see #getOrder()
-	 * @generated
-	 */
-	EAttribute getOrder_TotalAmount();
-
-	/**
-	 * Returns the meta object for class '{@link uk.ac.york.cs.eng2.offers.OrderItem <em>Order Item</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Order Item</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.OrderItem
-	 * @generated
-	 */
-	EClass getOrderItem();
-
-	/**
-	 * Returns the meta object for the reference '{@link uk.ac.york.cs.eng2.offers.OrderItem#getProduct <em>Product</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Product</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.OrderItem#getProduct()
-	 * @see #getOrderItem()
-	 * @generated
-	 */
-	EReference getOrderItem_Product();
-
-	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.cs.eng2.offers.OrderItem#getQuantity <em>Quantity</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Quantity</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.OrderItem#getQuantity()
-	 * @see #getOrderItem()
-	 * @generated
-	 */
-	EAttribute getOrderItem_Quantity();
 
 	/**
 	 * Returns the meta object for enum '{@link uk.ac.york.cs.eng2.offers.TriggerType <em>Trigger Type</em>}'.
@@ -1787,7 +1652,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MODEL = eINSTANCE.getModel();
-
 		/**
 		 * The meta object literal for the '<em><b>Products</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
@@ -1795,7 +1659,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODEL__PRODUCTS = eINSTANCE.getModel_Products();
-
 		/**
 		 * The meta object literal for the '<em><b>Tags</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
@@ -1803,31 +1666,13 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODEL__TAGS = eINSTANCE.getModel_Tags();
-
 		/**
-		 * The meta object literal for the '<em><b>Orders</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Offer Rules</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL__ORDERS = eINSTANCE.getModel_Orders();
-
-		/**
-		 * The meta object literal for the '<em><b>Offers</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL__OFFERS = eINSTANCE.getModel_Offers();
-
-		/**
-		 * The meta object literal for the '<em><b>Orders By Day</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL__ORDERS_BY_DAY = eINSTANCE.getModel_OrdersByDay();
-
+		EReference MODEL__OFFER_RULES = eINSTANCE.getModel_OfferRules();
 		/**
 		 * The meta object literal for the '<em><b>Categories</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
@@ -1835,7 +1680,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODEL__CATEGORIES = eINSTANCE.getModel_Categories();
-
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.CategoryImpl <em>Category</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -1845,7 +1689,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CATEGORY = eINSTANCE.getCategory();
-
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -1853,7 +1696,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CATEGORY__NAME = eINSTANCE.getCategory_Name();
-
 		/**
 		 * The meta object literal for the '<em><b>Subcategories</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
@@ -1861,7 +1703,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CATEGORY__SUBCATEGORIES = eINSTANCE.getCategory_Subcategories();
-
 		/**
 		 * The meta object literal for the '<em><b>Products</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
@@ -1869,33 +1710,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CATEGORY__PRODUCTS = eINSTANCE.getCategory_Products();
-
-		/**
-		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.OfferImpl <em>Offer</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.cs.eng2.offers.impl.OfferImpl
-		 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getOffer()
-		 * @generated
-		 */
-		EClass OFFER = eINSTANCE.getOffer();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute OFFER__NAME = eINSTANCE.getOffer_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Offer Rule</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OFFER__OFFER_RULE = eINSTANCE.getOffer_OfferRule();
-
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.ActionImpl <em>Action</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -1905,7 +1719,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ACTION = eINSTANCE.getAction();
-
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.FixedAmountDiscountActionImpl <em>Fixed Amount Discount Action</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -1915,7 +1728,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EClass FIXED_AMOUNT_DISCOUNT_ACTION = eINSTANCE.getFixedAmountDiscountAction();
-
 		/**
 		 * The meta object literal for the '<em><b>Discount Amount</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -1923,25 +1735,36 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FIXED_AMOUNT_DISCOUNT_ACTION__DISCOUNT_AMOUNT = eINSTANCE.getFixedAmountDiscountAction_DiscountAmount();
-
 		/**
-		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.FixedPriceDiscountActionImpl <em>Fixed Price Discount Action</em>}' class.
+		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.SetFixedPriceActionImpl <em>Set Fixed Price Action</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.cs.eng2.offers.impl.FixedPriceDiscountActionImpl
-		 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getFixedPriceDiscountAction()
+		 * @see uk.ac.york.cs.eng2.offers.impl.SetFixedPriceActionImpl
+		 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getSetFixedPriceAction()
 		 * @generated
 		 */
-		EClass FIXED_PRICE_DISCOUNT_ACTION = eINSTANCE.getFixedPriceDiscountAction();
-
+		EClass SET_FIXED_PRICE_ACTION = eINSTANCE.getSetFixedPriceAction();
 		/**
 		 * The meta object literal for the '<em><b>Fixed Price</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FIXED_PRICE_DISCOUNT_ACTION__FIXED_PRICE = eINSTANCE.getFixedPriceDiscountAction_FixedPrice();
-
+		EAttribute SET_FIXED_PRICE_ACTION__FIXED_PRICE = eINSTANCE.getSetFixedPriceAction_FixedPrice();
+		/**
+		 * The meta object literal for the '<em><b>Product</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SET_FIXED_PRICE_ACTION__PRODUCT = eINSTANCE.getSetFixedPriceAction_Product();
+		/**
+		 * The meta object literal for the '<em><b>Quantity</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SET_FIXED_PRICE_ACTION__QUANTITY = eINSTANCE.getSetFixedPriceAction_Quantity();
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.PercentageDiscountActionImpl <em>Percentage Discount Action</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -1951,7 +1774,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PERCENTAGE_DISCOUNT_ACTION = eINSTANCE.getPercentageDiscountAction();
-
 		/**
 		 * The meta object literal for the '<em><b>Discount Percentage</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -1959,7 +1781,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PERCENTAGE_DISCOUNT_ACTION__DISCOUNT_PERCENTAGE = eINSTANCE.getPercentageDiscountAction_DiscountPercentage();
-
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.PercentageProductDiscountActionImpl <em>Percentage Product Discount Action</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -1969,7 +1790,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PERCENTAGE_PRODUCT_DISCOUNT_ACTION = eINSTANCE.getPercentageProductDiscountAction();
-
 		/**
 		 * The meta object literal for the '<em><b>Product</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
@@ -1977,7 +1797,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PERCENTAGE_PRODUCT_DISCOUNT_ACTION__PRODUCT = eINSTANCE.getPercentageProductDiscountAction_Product();
-
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.FreeItemActionImpl <em>Free Item Action</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -1987,7 +1806,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EClass FREE_ITEM_ACTION = eINSTANCE.getFreeItemAction();
-
 		/**
 		 * The meta object literal for the '<em><b>Product</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
@@ -1995,7 +1813,13 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FREE_ITEM_ACTION__PRODUCT = eINSTANCE.getFreeItemAction_Product();
-
+		/**
+		 * The meta object literal for the '<em><b>Quantity</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FREE_ITEM_ACTION__QUANTITY = eINSTANCE.getFreeItemAction_Quantity();
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.OfferRuleImpl <em>Offer Rule</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -2005,15 +1829,13 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EClass OFFER_RULE = eINSTANCE.getOfferRule();
-
 		/**
-		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute OFFER_RULE__DESCRIPTION = eINSTANCE.getOfferRule_Description();
-
+		EAttribute OFFER_RULE__NAME = eINSTANCE.getOfferRule_Name();
 		/**
 		 * The meta object literal for the '<em><b>Conditions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
@@ -2021,7 +1843,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EReference OFFER_RULE__CONDITIONS = eINSTANCE.getOfferRule_Conditions();
-
 		/**
 		 * The meta object literal for the '<em><b>Actions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
@@ -2029,7 +1850,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EReference OFFER_RULE__ACTIONS = eINSTANCE.getOfferRule_Actions();
-
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.SingleOfferRuleImpl <em>Single Offer Rule</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -2039,7 +1859,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EClass SINGLE_OFFER_RULE = eINSTANCE.getSingleOfferRule();
-
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.MultiOfferRuleImpl <em>Multi Offer Rule</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -2049,15 +1868,13 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MULTI_OFFER_RULE = eINSTANCE.getMultiOfferRule();
-
 		/**
-		 * The meta object literal for the '<em><b>Trigger</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Trigger Rule</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MULTI_OFFER_RULE__TRIGGER = eINSTANCE.getMultiOfferRule_Trigger();
-
+		EReference MULTI_OFFER_RULE__TRIGGER_RULE = eINSTANCE.getMultiOfferRule_TriggerRule();
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.TriggerRuleImpl <em>Trigger Rule</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -2067,7 +1884,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TRIGGER_RULE = eINSTANCE.getTriggerRule();
-
 		/**
 		 * The meta object literal for the '<em><b>Trigger</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -2075,7 +1891,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TRIGGER_RULE__TRIGGER = eINSTANCE.getTriggerRule_Trigger();
-
 		/**
 		 * The meta object literal for the '<em><b>Secondary Rule</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
@@ -2083,7 +1898,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TRIGGER_RULE__SECONDARY_RULE = eINSTANCE.getTriggerRule_SecondaryRule();
-
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.ConditionImpl <em>Condition</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -2093,7 +1907,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CONDITION = eINSTANCE.getCondition();
-
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.MinOrderValueConditionImpl <em>Min Order Value Condition</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -2103,7 +1916,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MIN_ORDER_VALUE_CONDITION = eINSTANCE.getMinOrderValueCondition();
-
 		/**
 		 * The meta object literal for the '<em><b>Minimum Amount</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -2111,7 +1923,22 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MIN_ORDER_VALUE_CONDITION__MINIMUM_AMOUNT = eINSTANCE.getMinOrderValueCondition_MinimumAmount();
-
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.ContainsProductConditionImpl <em>Contains Product Condition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.cs.eng2.offers.impl.ContainsProductConditionImpl
+		 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getContainsProductCondition()
+		 * @generated
+		 */
+		EClass CONTAINS_PRODUCT_CONDITION = eINSTANCE.getContainsProductCondition();
+		/**
+		 * The meta object literal for the '<em><b>Product</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONTAINS_PRODUCT_CONDITION__PRODUCT = eINSTANCE.getContainsProductCondition_Product();
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.ProductTagConditionImpl <em>Product Tag Condition</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -2121,7 +1948,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PRODUCT_TAG_CONDITION = eINSTANCE.getProductTagCondition();
-
 		/**
 		 * The meta object literal for the '<em><b>Tags</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
@@ -2129,25 +1955,22 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PRODUCT_TAG_CONDITION__TAGS = eINSTANCE.getProductTagCondition_Tags();
-
 		/**
-		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.ProductCategoryConditionImpl <em>Product Category Condition</em>}' class.
+		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.OrderDateConditionImpl <em>Order Date Condition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.cs.eng2.offers.impl.ProductCategoryConditionImpl
-		 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getProductCategoryCondition()
+		 * @see uk.ac.york.cs.eng2.offers.impl.OrderDateConditionImpl
+		 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getOrderDateCondition()
 		 * @generated
 		 */
-		EClass PRODUCT_CATEGORY_CONDITION = eINSTANCE.getProductCategoryCondition();
-
+		EClass ORDER_DATE_CONDITION = eINSTANCE.getOrderDateCondition();
 		/**
-		 * The meta object literal for the '<em><b>Category</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Date</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PRODUCT_CATEGORY_CONDITION__CATEGORY = eINSTANCE.getProductCategoryCondition_Category();
-
+		EAttribute ORDER_DATE_CONDITION__DATE = eINSTANCE.getOrderDateCondition_Date();
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.FirstNOrdersConditionImpl <em>First NOrders Condition</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -2157,7 +1980,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EClass FIRST_NORDERS_CONDITION = eINSTANCE.getFirstNOrdersCondition();
-
 		/**
 		 * The meta object literal for the '<em><b>Number Of Orders</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -2165,7 +1987,43 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FIRST_NORDERS_CONDITION__NUMBER_OF_ORDERS = eINSTANCE.getFirstNOrdersCondition_NumberOfOrders();
-
+		/**
+		 * The meta object literal for the '<em><b>Day</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIRST_NORDERS_CONDITION__DAY = eINSTANCE.getFirstNOrdersCondition_Day();
+		/**
+		 * The meta object literal for the '<em><b>Product</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FIRST_NORDERS_CONDITION__PRODUCT = eINSTANCE.getFirstNOrdersCondition_Product();
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.ProductQuantityConditionImpl <em>Product Quantity Condition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.cs.eng2.offers.impl.ProductQuantityConditionImpl
+		 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getProductQuantityCondition()
+		 * @generated
+		 */
+		EClass PRODUCT_QUANTITY_CONDITION = eINSTANCE.getProductQuantityCondition();
+		/**
+		 * The meta object literal for the '<em><b>Product</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PRODUCT_QUANTITY_CONDITION__PRODUCT = eINSTANCE.getProductQuantityCondition_Product();
+		/**
+		 * The meta object literal for the '<em><b>Quantity</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PRODUCT_QUANTITY_CONDITION__QUANTITY = eINSTANCE.getProductQuantityCondition_Quantity();
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.ProductImpl <em>Product</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -2175,7 +2033,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PRODUCT = eINSTANCE.getProduct();
-
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -2183,7 +2040,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PRODUCT__NAME = eINSTANCE.getProduct_Name();
-
 		/**
 		 * The meta object literal for the '<em><b>Unit Price</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -2191,15 +2047,13 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PRODUCT__UNIT_PRICE = eINSTANCE.getProduct_UnitPrice();
-
 		/**
-		 * The meta object literal for the '<em><b>Tags</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Tags</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference PRODUCT__TAGS = eINSTANCE.getProduct_Tags();
-
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.TagImpl <em>Tag</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -2209,7 +2063,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TAG = eINSTANCE.getTag();
-
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -2217,93 +2070,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TAG__NAME = eINSTANCE.getTag_Name();
-
-		/**
-		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.OrdersByDayImpl <em>Orders By Day</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.cs.eng2.offers.impl.OrdersByDayImpl
-		 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getOrdersByDay()
-		 * @generated
-		 */
-		EClass ORDERS_BY_DAY = eINSTANCE.getOrdersByDay();
-
-		/**
-		 * The meta object literal for the '<em><b>Product</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ORDERS_BY_DAY__PRODUCT = eINSTANCE.getOrdersByDay_Product();
-
-		/**
-		 * The meta object literal for the '<em><b>Day</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ORDERS_BY_DAY__DAY = eINSTANCE.getOrdersByDay_Day();
-
-		/**
-		 * The meta object literal for the '<em><b>Count</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ORDERS_BY_DAY__COUNT = eINSTANCE.getOrdersByDay_Count();
-
-		/**
-		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.OrderImpl <em>Order</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.cs.eng2.offers.impl.OrderImpl
-		 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getOrder()
-		 * @generated
-		 */
-		EClass ORDER = eINSTANCE.getOrder();
-
-		/**
-		 * The meta object literal for the '<em><b>Order Items</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ORDER__ORDER_ITEMS = eINSTANCE.getOrder_OrderItems();
-
-		/**
-		 * The meta object literal for the '<em><b>Total Amount</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ORDER__TOTAL_AMOUNT = eINSTANCE.getOrder_TotalAmount();
-
-		/**
-		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.OrderItemImpl <em>Order Item</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.cs.eng2.offers.impl.OrderItemImpl
-		 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getOrderItem()
-		 * @generated
-		 */
-		EClass ORDER_ITEM = eINSTANCE.getOrderItem();
-
-		/**
-		 * The meta object literal for the '<em><b>Product</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ORDER_ITEM__PRODUCT = eINSTANCE.getOrderItem_Product();
-
-		/**
-		 * The meta object literal for the '<em><b>Quantity</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ORDER_ITEM__QUANTITY = eINSTANCE.getOrderItem_Quantity();
-
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.TriggerType <em>Trigger Type</em>}' enum.
 		 * <!-- begin-user-doc -->

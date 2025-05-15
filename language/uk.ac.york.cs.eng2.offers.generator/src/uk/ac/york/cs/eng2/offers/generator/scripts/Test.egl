@@ -1,2 +1,1 @@
-public class [%= orule.name.replace(" ", "") %] {
-}
+Hello from EGL!

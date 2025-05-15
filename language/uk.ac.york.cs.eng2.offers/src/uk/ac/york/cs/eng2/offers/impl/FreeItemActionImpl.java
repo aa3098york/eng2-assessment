@@ -22,6 +22,7 @@ import uk.ac.york.cs.eng2.offers.Product;
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.cs.eng2.offers.impl.FreeItemActionImpl#getProduct <em>Product</em>}</li>
+ *   <li>{@link uk.ac.york.cs.eng2.offers.impl.FreeItemActionImpl#getQuantity <em>Quantity</em>}</li>
  * </ul>
  *
  * @generated
@@ -36,6 +37,26 @@ public class FreeItemActionImpl extends ActionImpl implements FreeItemAction {
 	 * @ordered
 	 */
 	protected Product product;
+
+	/**
+	 * The default value of the '{@link #getQuantity() <em>Quantity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getQuantity()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int QUANTITY_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getQuantity() <em>Quantity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getQuantity()
+	 * @generated
+	 * @ordered
+	 */
+	protected int quantity = QUANTITY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -102,11 +123,36 @@ public class FreeItemActionImpl extends ActionImpl implements FreeItemAction {
 	 * @generated
 	 */
 	@Override
+	public int getQuantity() {
+		return quantity;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setQuantity(int newQuantity) {
+		int oldQuantity = quantity;
+		quantity = newQuantity;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OffersPackage.FREE_ITEM_ACTION__QUANTITY, oldQuantity, quantity));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case OffersPackage.FREE_ITEM_ACTION__PRODUCT:
 				if (resolve) return getProduct();
 				return basicGetProduct();
+			case OffersPackage.FREE_ITEM_ACTION__QUANTITY:
+				return getQuantity();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -121,6 +167,9 @@ public class FreeItemActionImpl extends ActionImpl implements FreeItemAction {
 		switch (featureID) {
 			case OffersPackage.FREE_ITEM_ACTION__PRODUCT:
 				setProduct((Product)newValue);
+				return;
+			case OffersPackage.FREE_ITEM_ACTION__QUANTITY:
+				setQuantity((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -137,6 +186,9 @@ public class FreeItemActionImpl extends ActionImpl implements FreeItemAction {
 			case OffersPackage.FREE_ITEM_ACTION__PRODUCT:
 				setProduct((Product)null);
 				return;
+			case OffersPackage.FREE_ITEM_ACTION__QUANTITY:
+				setQuantity(QUANTITY_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -151,8 +203,26 @@ public class FreeItemActionImpl extends ActionImpl implements FreeItemAction {
 		switch (featureID) {
 			case OffersPackage.FREE_ITEM_ACTION__PRODUCT:
 				return product != null;
+			case OffersPackage.FREE_ITEM_ACTION__QUANTITY:
+				return quantity != QUANTITY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (quantity: ");
+		result.append(quantity);
+		result.append(')');
+		return result.toString();
 	}
 
 } //FreeItemActionImpl

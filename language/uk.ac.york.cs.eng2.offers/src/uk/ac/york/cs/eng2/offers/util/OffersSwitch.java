@@ -78,12 +78,6 @@ public class OffersSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OffersPackage.OFFER: {
-				Offer offer = (Offer)theEObject;
-				T result = caseOffer(offer);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case OffersPackage.ACTION: {
 				Action action = (Action)theEObject;
 				T result = caseAction(action);
@@ -97,10 +91,10 @@ public class OffersSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OffersPackage.FIXED_PRICE_DISCOUNT_ACTION: {
-				FixedPriceDiscountAction fixedPriceDiscountAction = (FixedPriceDiscountAction)theEObject;
-				T result = caseFixedPriceDiscountAction(fixedPriceDiscountAction);
-				if (result == null) result = caseAction(fixedPriceDiscountAction);
+			case OffersPackage.SET_FIXED_PRICE_ACTION: {
+				SetFixedPriceAction setFixedPriceAction = (SetFixedPriceAction)theEObject;
+				T result = caseSetFixedPriceAction(setFixedPriceAction);
+				if (result == null) result = caseAction(setFixedPriceAction);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -165,6 +159,13 @@ public class OffersSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case OffersPackage.CONTAINS_PRODUCT_CONDITION: {
+				ContainsProductCondition containsProductCondition = (ContainsProductCondition)theEObject;
+				T result = caseContainsProductCondition(containsProductCondition);
+				if (result == null) result = caseCondition(containsProductCondition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case OffersPackage.PRODUCT_TAG_CONDITION: {
 				ProductTagCondition productTagCondition = (ProductTagCondition)theEObject;
 				T result = caseProductTagCondition(productTagCondition);
@@ -172,10 +173,10 @@ public class OffersSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OffersPackage.PRODUCT_CATEGORY_CONDITION: {
-				ProductCategoryCondition productCategoryCondition = (ProductCategoryCondition)theEObject;
-				T result = caseProductCategoryCondition(productCategoryCondition);
-				if (result == null) result = caseCondition(productCategoryCondition);
+			case OffersPackage.ORDER_DATE_CONDITION: {
+				OrderDateCondition orderDateCondition = (OrderDateCondition)theEObject;
+				T result = caseOrderDateCondition(orderDateCondition);
+				if (result == null) result = caseCondition(orderDateCondition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -183,6 +184,13 @@ public class OffersSwitch<T> extends Switch<T> {
 				FirstNOrdersCondition firstNOrdersCondition = (FirstNOrdersCondition)theEObject;
 				T result = caseFirstNOrdersCondition(firstNOrdersCondition);
 				if (result == null) result = caseCondition(firstNOrdersCondition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OffersPackage.PRODUCT_QUANTITY_CONDITION: {
+				ProductQuantityCondition productQuantityCondition = (ProductQuantityCondition)theEObject;
+				T result = caseProductQuantityCondition(productQuantityCondition);
+				if (result == null) result = caseCondition(productQuantityCondition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -195,24 +203,6 @@ public class OffersSwitch<T> extends Switch<T> {
 			case OffersPackage.TAG: {
 				Tag tag = (Tag)theEObject;
 				T result = caseTag(tag);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case OffersPackage.ORDERS_BY_DAY: {
-				OrdersByDay ordersByDay = (OrdersByDay)theEObject;
-				T result = caseOrdersByDay(ordersByDay);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case OffersPackage.ORDER: {
-				Order order = (Order)theEObject;
-				T result = caseOrder(order);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case OffersPackage.ORDER_ITEM: {
-				OrderItem orderItem = (OrderItem)theEObject;
-				T result = caseOrderItem(orderItem);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -251,21 +241,6 @@ public class OffersSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Offer</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Offer</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOffer(Offer object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Action</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -296,17 +271,17 @@ public class OffersSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Fixed Price Discount Action</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Set Fixed Price Action</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Fixed Price Discount Action</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Set Fixed Price Action</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFixedPriceDiscountAction(FixedPriceDiscountAction object) {
+	public T caseSetFixedPriceAction(SetFixedPriceAction object) {
 		return null;
 	}
 
@@ -446,6 +421,21 @@ public class OffersSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Contains Product Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Contains Product Condition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseContainsProductCondition(ContainsProductCondition object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Product Tag Condition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -461,17 +451,17 @@ public class OffersSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Product Category Condition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Order Date Condition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Product Category Condition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Order Date Condition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseProductCategoryCondition(ProductCategoryCondition object) {
+	public T caseOrderDateCondition(OrderDateCondition object) {
 		return null;
 	}
 
@@ -487,6 +477,21 @@ public class OffersSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseFirstNOrdersCondition(FirstNOrdersCondition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Product Quantity Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Product Quantity Condition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseProductQuantityCondition(ProductQuantityCondition object) {
 		return null;
 	}
 
@@ -517,51 +522,6 @@ public class OffersSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTag(Tag object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Orders By Day</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Orders By Day</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOrdersByDay(OrdersByDay object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Order</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Order</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOrder(Order object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Order Item</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Order Item</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOrderItem(OrderItem object) {
 		return null;
 	}
 

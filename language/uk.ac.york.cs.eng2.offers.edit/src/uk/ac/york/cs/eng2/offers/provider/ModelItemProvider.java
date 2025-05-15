@@ -77,9 +77,7 @@ public class ModelItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(OffersPackage.Literals.MODEL__PRODUCTS);
 			childrenFeatures.add(OffersPackage.Literals.MODEL__TAGS);
-			childrenFeatures.add(OffersPackage.Literals.MODEL__ORDERS);
-			childrenFeatures.add(OffersPackage.Literals.MODEL__OFFERS);
-			childrenFeatures.add(OffersPackage.Literals.MODEL__ORDERS_BY_DAY);
+			childrenFeatures.add(OffersPackage.Literals.MODEL__OFFER_RULES);
 			childrenFeatures.add(OffersPackage.Literals.MODEL__CATEGORIES);
 		}
 		return childrenFeatures;
@@ -135,9 +133,7 @@ public class ModelItemProvider
 		switch (notification.getFeatureID(Model.class)) {
 			case OffersPackage.MODEL__PRODUCTS:
 			case OffersPackage.MODEL__TAGS:
-			case OffersPackage.MODEL__ORDERS:
-			case OffersPackage.MODEL__OFFERS:
-			case OffersPackage.MODEL__ORDERS_BY_DAY:
+			case OffersPackage.MODEL__OFFER_RULES:
 			case OffersPackage.MODEL__CATEGORIES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -168,18 +164,13 @@ public class ModelItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(OffersPackage.Literals.MODEL__ORDERS,
-				 OffersFactory.eINSTANCE.createOrder()));
+				(OffersPackage.Literals.MODEL__OFFER_RULES,
+				 OffersFactory.eINSTANCE.createSingleOfferRule()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(OffersPackage.Literals.MODEL__OFFERS,
-				 OffersFactory.eINSTANCE.createOffer()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(OffersPackage.Literals.MODEL__ORDERS_BY_DAY,
-				 OffersFactory.eINSTANCE.createOrdersByDay()));
+				(OffersPackage.Literals.MODEL__OFFER_RULES,
+				 OffersFactory.eINSTANCE.createMultiOfferRule()));
 
 		newChildDescriptors.add
 			(createChildParameter

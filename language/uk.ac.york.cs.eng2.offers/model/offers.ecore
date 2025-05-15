@@ -6,8 +6,8 @@
         eType="#//Product" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tags" upperBound="-1" eType="#//Tag"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="offers" upperBound="-1"
-        eType="#//Offer" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="offerRules" upperBound="-1"
+        eType="#//OfferRule" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="categories" upperBound="-1"
         eType="#//Category" containment="true"/>
   </eClassifiers>
@@ -17,11 +17,6 @@
         eType="#//Category" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="products" upperBound="-1"
         eType="#//Product"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Offer">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="offerRule" eType="#//OfferRule"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Action" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="FixedAmountDiscountAction" eSuperTypes="#//Action">
@@ -74,6 +69,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="FirstNOrdersCondition" eSuperTypes="#//Condition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberOfOrders" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="day" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="product" eType="#//Product"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProductQuantityCondition" eSuperTypes="#//Condition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="product" eType="#//Product"/>

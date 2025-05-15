@@ -63,25 +63,25 @@ public class OfferRuleItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addDescriptionPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Description feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDescriptionPropertyDescriptor(Object object) {
+	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_OfferRule_description_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_OfferRule_description_feature", "_UI_OfferRule_type"),
-				 OffersPackage.Literals.OFFER_RULE__DESCRIPTION,
+				 getString("_UI_OfferRule_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_OfferRule_name_feature", "_UI_OfferRule_type"),
+				 OffersPackage.Literals.OFFER_RULE__NAME,
 				 true,
 				 false,
 				 false,
@@ -129,7 +129,7 @@ public class OfferRuleItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((OfferRule)object).getDescription();
+		String label = ((OfferRule)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_OfferRule_type") :
 			getString("_UI_OfferRule_type") + " " + label;
@@ -148,7 +148,7 @@ public class OfferRuleItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(OfferRule.class)) {
-			case OffersPackage.OFFER_RULE__DESCRIPTION:
+			case OffersPackage.OFFER_RULE__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case OffersPackage.OFFER_RULE__CONDITIONS:
@@ -178,17 +178,27 @@ public class OfferRuleItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(OffersPackage.Literals.OFFER_RULE__CONDITIONS,
+				 OffersFactory.eINSTANCE.createContainsProductCondition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OffersPackage.Literals.OFFER_RULE__CONDITIONS,
 				 OffersFactory.eINSTANCE.createProductTagCondition()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(OffersPackage.Literals.OFFER_RULE__CONDITIONS,
-				 OffersFactory.eINSTANCE.createProductCategoryCondition()));
+				 OffersFactory.eINSTANCE.createOrderDateCondition()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(OffersPackage.Literals.OFFER_RULE__CONDITIONS,
 				 OffersFactory.eINSTANCE.createFirstNOrdersCondition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OffersPackage.Literals.OFFER_RULE__CONDITIONS,
+				 OffersFactory.eINSTANCE.createProductQuantityCondition()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -198,7 +208,7 @@ public class OfferRuleItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(OffersPackage.Literals.OFFER_RULE__ACTIONS,
-				 OffersFactory.eINSTANCE.createFixedPriceDiscountAction()));
+				 OffersFactory.eINSTANCE.createSetFixedPriceAction()));
 
 		newChildDescriptors.add
 			(createChildParameter

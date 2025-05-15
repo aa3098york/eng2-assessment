@@ -76,10 +76,6 @@ public class OffersAdapterFactory extends AdapterFactoryImpl {
 				return createCategoryAdapter();
 			}
 			@Override
-			public Adapter caseOffer(Offer object) {
-				return createOfferAdapter();
-			}
-			@Override
 			public Adapter caseAction(Action object) {
 				return createActionAdapter();
 			}
@@ -88,8 +84,8 @@ public class OffersAdapterFactory extends AdapterFactoryImpl {
 				return createFixedAmountDiscountActionAdapter();
 			}
 			@Override
-			public Adapter caseFixedPriceDiscountAction(FixedPriceDiscountAction object) {
-				return createFixedPriceDiscountActionAdapter();
+			public Adapter caseSetFixedPriceAction(SetFixedPriceAction object) {
+				return createSetFixedPriceActionAdapter();
 			}
 			@Override
 			public Adapter casePercentageDiscountAction(PercentageDiscountAction object) {
@@ -128,16 +124,24 @@ public class OffersAdapterFactory extends AdapterFactoryImpl {
 				return createMinOrderValueConditionAdapter();
 			}
 			@Override
+			public Adapter caseContainsProductCondition(ContainsProductCondition object) {
+				return createContainsProductConditionAdapter();
+			}
+			@Override
 			public Adapter caseProductTagCondition(ProductTagCondition object) {
 				return createProductTagConditionAdapter();
 			}
 			@Override
-			public Adapter caseProductCategoryCondition(ProductCategoryCondition object) {
-				return createProductCategoryConditionAdapter();
+			public Adapter caseOrderDateCondition(OrderDateCondition object) {
+				return createOrderDateConditionAdapter();
 			}
 			@Override
 			public Adapter caseFirstNOrdersCondition(FirstNOrdersCondition object) {
 				return createFirstNOrdersConditionAdapter();
+			}
+			@Override
+			public Adapter caseProductQuantityCondition(ProductQuantityCondition object) {
+				return createProductQuantityConditionAdapter();
 			}
 			@Override
 			public Adapter caseProduct(Product object) {
@@ -146,18 +150,6 @@ public class OffersAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseTag(Tag object) {
 				return createTagAdapter();
-			}
-			@Override
-			public Adapter caseOrdersByDay(OrdersByDay object) {
-				return createOrdersByDayAdapter();
-			}
-			@Override
-			public Adapter caseOrder(Order object) {
-				return createOrderAdapter();
-			}
-			@Override
-			public Adapter caseOrderItem(OrderItem object) {
-				return createOrderItemAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -208,20 +200,6 @@ public class OffersAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.cs.eng2.offers.Offer <em>Offer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.cs.eng2.offers.Offer
-	 * @generated
-	 */
-	public Adapter createOfferAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link uk.ac.york.cs.eng2.offers.Action <em>Action</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -250,16 +228,16 @@ public class OffersAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.cs.eng2.offers.FixedPriceDiscountAction <em>Fixed Price Discount Action</em>}'.
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.cs.eng2.offers.SetFixedPriceAction <em>Set Fixed Price Action</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see uk.ac.york.cs.eng2.offers.FixedPriceDiscountAction
+	 * @see uk.ac.york.cs.eng2.offers.SetFixedPriceAction
 	 * @generated
 	 */
-	public Adapter createFixedPriceDiscountActionAdapter() {
+	public Adapter createSetFixedPriceActionAdapter() {
 		return null;
 	}
 
@@ -390,6 +368,20 @@ public class OffersAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.cs.eng2.offers.ContainsProductCondition <em>Contains Product Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.cs.eng2.offers.ContainsProductCondition
+	 * @generated
+	 */
+	public Adapter createContainsProductConditionAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link uk.ac.york.cs.eng2.offers.ProductTagCondition <em>Product Tag Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -404,16 +396,16 @@ public class OffersAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.cs.eng2.offers.ProductCategoryCondition <em>Product Category Condition</em>}'.
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.cs.eng2.offers.OrderDateCondition <em>Order Date Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see uk.ac.york.cs.eng2.offers.ProductCategoryCondition
+	 * @see uk.ac.york.cs.eng2.offers.OrderDateCondition
 	 * @generated
 	 */
-	public Adapter createProductCategoryConditionAdapter() {
+	public Adapter createOrderDateConditionAdapter() {
 		return null;
 	}
 
@@ -428,6 +420,20 @@ public class OffersAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFirstNOrdersConditionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.cs.eng2.offers.ProductQuantityCondition <em>Product Quantity Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.cs.eng2.offers.ProductQuantityCondition
+	 * @generated
+	 */
+	public Adapter createProductQuantityConditionAdapter() {
 		return null;
 	}
 
@@ -456,48 +462,6 @@ public class OffersAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTagAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.cs.eng2.offers.OrdersByDay <em>Orders By Day</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.cs.eng2.offers.OrdersByDay
-	 * @generated
-	 */
-	public Adapter createOrdersByDayAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.cs.eng2.offers.Order <em>Order</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.cs.eng2.offers.Order
-	 * @generated
-	 */
-	public Adapter createOrderAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.cs.eng2.offers.OrderItem <em>Order Item</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.cs.eng2.offers.OrderItem
-	 * @generated
-	 */
-	public Adapter createOrderItemAdapter() {
 		return null;
 	}
 

@@ -46,6 +46,8 @@ public class FirstNOrdersConditionItemProvider extends ConditionItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addNumberOfOrdersPropertyDescriptor(object);
+			addDayPropertyDescriptor(object);
+			addProductPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -68,6 +70,50 @@ public class FirstNOrdersConditionItemProvider extends ConditionItemProvider {
 				 false,
 				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Day feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDayPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FirstNOrdersCondition_day_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FirstNOrdersCondition_day_feature", "_UI_FirstNOrdersCondition_type"),
+				 OffersPackage.Literals.FIRST_NORDERS_CONDITION__DAY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Product feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addProductPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FirstNOrdersCondition_product_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FirstNOrdersCondition_product_feature", "_UI_FirstNOrdersCondition_type"),
+				 OffersPackage.Literals.FIRST_NORDERS_CONDITION__PRODUCT,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -109,6 +155,7 @@ public class FirstNOrdersConditionItemProvider extends ConditionItemProvider {
 
 		switch (notification.getFeatureID(FirstNOrdersCondition.class)) {
 			case OffersPackage.FIRST_NORDERS_CONDITION__NUMBER_OF_ORDERS:
+			case OffersPackage.FIRST_NORDERS_CONDITION__DAY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

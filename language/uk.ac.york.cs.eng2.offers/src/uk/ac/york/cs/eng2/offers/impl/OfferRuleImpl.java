@@ -31,7 +31,7 @@ import uk.ac.york.cs.eng2.offers.OffersPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.york.cs.eng2.offers.impl.OfferRuleImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link uk.ac.york.cs.eng2.offers.impl.OfferRuleImpl#getName <em>Name</em>}</li>
  *   <li>{@link uk.ac.york.cs.eng2.offers.impl.OfferRuleImpl#getConditions <em>Conditions</em>}</li>
  *   <li>{@link uk.ac.york.cs.eng2.offers.impl.OfferRuleImpl#getActions <em>Actions</em>}</li>
  * </ul>
@@ -40,24 +40,24 @@ import uk.ac.york.cs.eng2.offers.OffersPackage;
  */
 public abstract class OfferRuleImpl extends MinimalEObjectImpl.Container implements OfferRule {
 	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDescription()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String DESCRIPTION_EDEFAULT = null;
+	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDescription()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected String description = DESCRIPTION_EDEFAULT;
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getConditions() <em>Conditions</em>}' containment reference list.
@@ -104,8 +104,8 @@ public abstract class OfferRuleImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public String getDescription() {
-		return description;
+	public String getName() {
+		return name;
 	}
 
 	/**
@@ -114,11 +114,11 @@ public abstract class OfferRuleImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public void setDescription(String newDescription) {
-		String oldDescription = description;
-		description = newDescription;
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OffersPackage.OFFER_RULE__DESCRIPTION, oldDescription, description));
+			eNotify(new ENotificationImpl(this, Notification.SET, OffersPackage.OFFER_RULE__NAME, oldName, name));
 	}
 
 	/**
@@ -171,8 +171,8 @@ public abstract class OfferRuleImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OffersPackage.OFFER_RULE__DESCRIPTION:
-				return getDescription();
+			case OffersPackage.OFFER_RULE__NAME:
+				return getName();
 			case OffersPackage.OFFER_RULE__CONDITIONS:
 				return getConditions();
 			case OffersPackage.OFFER_RULE__ACTIONS:
@@ -190,8 +190,8 @@ public abstract class OfferRuleImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OffersPackage.OFFER_RULE__DESCRIPTION:
-				setDescription((String)newValue);
+			case OffersPackage.OFFER_RULE__NAME:
+				setName((String)newValue);
 				return;
 			case OffersPackage.OFFER_RULE__CONDITIONS:
 				getConditions().clear();
@@ -213,8 +213,8 @@ public abstract class OfferRuleImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OffersPackage.OFFER_RULE__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
+			case OffersPackage.OFFER_RULE__NAME:
+				setName(NAME_EDEFAULT);
 				return;
 			case OffersPackage.OFFER_RULE__CONDITIONS:
 				getConditions().clear();
@@ -234,8 +234,8 @@ public abstract class OfferRuleImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OffersPackage.OFFER_RULE__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			case OffersPackage.OFFER_RULE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case OffersPackage.OFFER_RULE__CONDITIONS:
 				return conditions != null && !conditions.isEmpty();
 			case OffersPackage.OFFER_RULE__ACTIONS:
@@ -254,8 +254,8 @@ public abstract class OfferRuleImpl extends MinimalEObjectImpl.Container impleme
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (description: ");
-		result.append(description);
+		result.append(" (name: ");
+		result.append(name);
 		result.append(')');
 		return result.toString();
 	}

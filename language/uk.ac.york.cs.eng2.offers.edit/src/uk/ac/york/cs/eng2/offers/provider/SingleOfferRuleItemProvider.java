@@ -64,7 +64,7 @@ public class SingleOfferRuleItemProvider extends OfferRuleItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((SingleOfferRule)object).getDescription();
+		String label = ((SingleOfferRule)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_SingleOfferRule_type") :
 			getString("_UI_SingleOfferRule_type") + " " + label;

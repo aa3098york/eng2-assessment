@@ -2,20 +2,17 @@
  * Write your EGX rules here: template paths should be relative to the .egx folder.
  */
  
- pre {
+pre {
   "Starting EGX transformation...".println();
    var allRules = OfferRule.all;
    ("Found " + allRules.size() + " OfferRule instances").println();
 }
  
-rule GenerateOfferRules 
+rule OfferRules2Java 
   transform orule : OfferRule {
-    do {
-      var output = "Generated stub for: " + orule.name;
-      var filename = "src-gen/" + orule.name.replace(" ", "") + ".java";
-      ("Writing to: " + filename).println();
-      filename.write(output);
-    }
+	template: "Test.egl"
+	guard : true
+	target : "TestItWorks.txt"
 }
 
 

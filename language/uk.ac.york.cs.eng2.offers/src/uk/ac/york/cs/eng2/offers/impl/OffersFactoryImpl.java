@@ -59,9 +59,8 @@ public class OffersFactoryImpl extends EFactoryImpl implements OffersFactory {
 		switch (eClass.getClassifierID()) {
 			case OffersPackage.MODEL: return createModel();
 			case OffersPackage.CATEGORY: return createCategory();
-			case OffersPackage.OFFER: return createOffer();
 			case OffersPackage.FIXED_AMOUNT_DISCOUNT_ACTION: return createFixedAmountDiscountAction();
-			case OffersPackage.FIXED_PRICE_DISCOUNT_ACTION: return createFixedPriceDiscountAction();
+			case OffersPackage.SET_FIXED_PRICE_ACTION: return createSetFixedPriceAction();
 			case OffersPackage.PERCENTAGE_DISCOUNT_ACTION: return createPercentageDiscountAction();
 			case OffersPackage.PERCENTAGE_PRODUCT_DISCOUNT_ACTION: return createPercentageProductDiscountAction();
 			case OffersPackage.FREE_ITEM_ACTION: return createFreeItemAction();
@@ -69,14 +68,13 @@ public class OffersFactoryImpl extends EFactoryImpl implements OffersFactory {
 			case OffersPackage.MULTI_OFFER_RULE: return createMultiOfferRule();
 			case OffersPackage.TRIGGER_RULE: return createTriggerRule();
 			case OffersPackage.MIN_ORDER_VALUE_CONDITION: return createMinOrderValueCondition();
+			case OffersPackage.CONTAINS_PRODUCT_CONDITION: return createContainsProductCondition();
 			case OffersPackage.PRODUCT_TAG_CONDITION: return createProductTagCondition();
-			case OffersPackage.PRODUCT_CATEGORY_CONDITION: return createProductCategoryCondition();
+			case OffersPackage.ORDER_DATE_CONDITION: return createOrderDateCondition();
 			case OffersPackage.FIRST_NORDERS_CONDITION: return createFirstNOrdersCondition();
+			case OffersPackage.PRODUCT_QUANTITY_CONDITION: return createProductQuantityCondition();
 			case OffersPackage.PRODUCT: return createProduct();
 			case OffersPackage.TAG: return createTag();
-			case OffersPackage.ORDERS_BY_DAY: return createOrdersByDay();
-			case OffersPackage.ORDER: return createOrder();
-			case OffersPackage.ORDER_ITEM: return createOrderItem();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -140,17 +138,6 @@ public class OffersFactoryImpl extends EFactoryImpl implements OffersFactory {
 	 * @generated
 	 */
 	@Override
-	public Offer createOffer() {
-		OfferImpl offer = new OfferImpl();
-		return offer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public FixedAmountDiscountAction createFixedAmountDiscountAction() {
 		FixedAmountDiscountActionImpl fixedAmountDiscountAction = new FixedAmountDiscountActionImpl();
 		return fixedAmountDiscountAction;
@@ -162,9 +149,9 @@ public class OffersFactoryImpl extends EFactoryImpl implements OffersFactory {
 	 * @generated
 	 */
 	@Override
-	public FixedPriceDiscountAction createFixedPriceDiscountAction() {
-		FixedPriceDiscountActionImpl fixedPriceDiscountAction = new FixedPriceDiscountActionImpl();
-		return fixedPriceDiscountAction;
+	public SetFixedPriceAction createSetFixedPriceAction() {
+		SetFixedPriceActionImpl setFixedPriceAction = new SetFixedPriceActionImpl();
+		return setFixedPriceAction;
 	}
 
 	/**
@@ -250,6 +237,17 @@ public class OffersFactoryImpl extends EFactoryImpl implements OffersFactory {
 	 * @generated
 	 */
 	@Override
+	public ContainsProductCondition createContainsProductCondition() {
+		ContainsProductConditionImpl containsProductCondition = new ContainsProductConditionImpl();
+		return containsProductCondition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public ProductTagCondition createProductTagCondition() {
 		ProductTagConditionImpl productTagCondition = new ProductTagConditionImpl();
 		return productTagCondition;
@@ -261,9 +259,9 @@ public class OffersFactoryImpl extends EFactoryImpl implements OffersFactory {
 	 * @generated
 	 */
 	@Override
-	public ProductCategoryCondition createProductCategoryCondition() {
-		ProductCategoryConditionImpl productCategoryCondition = new ProductCategoryConditionImpl();
-		return productCategoryCondition;
+	public OrderDateCondition createOrderDateCondition() {
+		OrderDateConditionImpl orderDateCondition = new OrderDateConditionImpl();
+		return orderDateCondition;
 	}
 
 	/**
@@ -275,6 +273,17 @@ public class OffersFactoryImpl extends EFactoryImpl implements OffersFactory {
 	public FirstNOrdersCondition createFirstNOrdersCondition() {
 		FirstNOrdersConditionImpl firstNOrdersCondition = new FirstNOrdersConditionImpl();
 		return firstNOrdersCondition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ProductQuantityCondition createProductQuantityCondition() {
+		ProductQuantityConditionImpl productQuantityCondition = new ProductQuantityConditionImpl();
+		return productQuantityCondition;
 	}
 
 	/**
@@ -297,39 +306,6 @@ public class OffersFactoryImpl extends EFactoryImpl implements OffersFactory {
 	public Tag createTag() {
 		TagImpl tag = new TagImpl();
 		return tag;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public OrdersByDay createOrdersByDay() {
-		OrdersByDayImpl ordersByDay = new OrdersByDayImpl();
-		return ordersByDay;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Order createOrder() {
-		OrderImpl order = new OrderImpl();
-		return order;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public OrderItem createOrderItem() {
-		OrderItemImpl orderItem = new OrderItemImpl();
-		return orderItem;
 	}
 
 	/**
