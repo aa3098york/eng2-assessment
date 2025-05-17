@@ -19,7 +19,7 @@ public class [%= orule.name.replace(" ", "") %] {
         [% } %]
     [% } %]
 
-    public boolean meetsCondition(List<Product> products, BigDecimal orderTotal, LocalDate orderDate, long orderId) {
+    public boolean MeetsCondition(List<Product> products, BigDecimal orderTotal, LocalDate orderDate, long orderId) {
         boolean conditionMet = true;
 
         [% for (cond in orule.conditions) { %]
@@ -61,7 +61,7 @@ public class [%= orule.name.replace(" ", "") %] {
 
         [% if (orule.isTypeOf(MultiOfferRule)) { %]
             // Evaluate secondary rule's condition
-            boolean secondaryConditionMet = new [%= orule.triggerRule.target.name.replace(" ", "") %]().meetsCondition(products, orderTotal, orderDate, orderId);
+            boolean secondaryConditionMet = new [%= orule.triggerRule.target.name.replace(" ", "") %]().MeetsCondition(products, orderTotal, orderDate, orderId);
 
             // Determine whether to apply MAIN OfferRule's actions
             boolean shouldApplyMainRule = false;
@@ -85,9 +85,9 @@ public class [%= orule.name.replace(" ", "") %] {
                 }
             }
 
-            if (shouldApplyMainRule && meetsCondition(products, orderTotal, orderDate, orderId)) {
+            if (shouldApplyMainRule && MeetsCondition(products, orderTotal, orderDate, orderId)) {
         [% } else { %]
-            if (meetsCondition(products, orderTotal, orderDate, orderId)) {
+            if (MeetsCondition(products, orderTotal, orderDate, orderId)) {
         [% } %]
 
             [% for (action in orule.actions) { %]
