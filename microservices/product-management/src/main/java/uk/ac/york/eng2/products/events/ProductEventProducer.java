@@ -10,8 +10,8 @@ import java.util.List;
 @KafkaClient
 public interface ProductEventProducer {
     @Topic(ProductTopicFactory.TOPIC_UNIT_PRICING_CONFIRMATION)
-    public void confirmOrder(@KafkaKey long orderId, List<ProductInfo> productInfos);
+    public void confirmOrder(@KafkaKey long orderId, ProductInfoList productInfoList);
 
-    @Topic(ProductTopicFactory.TOPIC_ORDER_ITEM_ADDED)
-    public void addOrderItem(@KafkaKey long orderId, ProductInfo productInfo);
+    @Topic(ProductTopicFactory.TOPIC_INVALID_PRODUCT)
+    public void invalidProductId(@KafkaKey long orderId, long productId);
 }

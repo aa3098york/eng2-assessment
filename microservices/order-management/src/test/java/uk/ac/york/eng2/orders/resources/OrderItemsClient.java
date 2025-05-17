@@ -20,7 +20,7 @@ public interface OrderItemsClient {
     HttpResponse<Order> getOrder(@PathVariable long id);
 
     @Post
-    HttpResponse<Void> createOrderItem(OrderItemCreateDTO dto);
+    HttpResponse<Void> createOrderItem(@Body OrderItemCreateDTO dto);
 
     @Put("/{id}")
     HttpResponse updateOrderItem(@PathVariable long id,@Body OrderItemCreateDTO dto);

@@ -9,7 +9,7 @@ public class OrderItemCreateDTO {
     private Long productId;
     private Long orderId;
     private Integer quantity;
-    private BigDecimal unitPrice = BigDecimal.ZERO;
+
 
     public Long getProductId() {
         return productId;
@@ -33,13 +33,5 @@ public class OrderItemCreateDTO {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
-    }
-
-    public BigDecimal getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(BigDecimal unitPrice) {
-        this.unitPrice = unitPrice;
     }
 }

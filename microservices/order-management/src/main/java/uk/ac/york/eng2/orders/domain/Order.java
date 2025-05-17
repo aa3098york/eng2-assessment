@@ -18,16 +18,16 @@ public class Order {
     private Long id;
 
     @Column
-    private LocalDate dateCreated;
+    private LocalDate dateCreated = LocalDate.now();
 
     @Column
     private String address;
 
     @Column
-    private Boolean paid;
+    private Boolean paid = false;
 
     @Column
-    private Boolean delivered;
+    private Boolean delivered = false;
 
     @Column
     private BigDecimal totalAmount = BigDecimal.ZERO;

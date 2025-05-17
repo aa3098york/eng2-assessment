@@ -20,6 +20,7 @@ dependencies {
     implementation("io.micronaut.validation:micronaut-validation")
     implementation("jakarta.validation:jakarta.validation-api")
     runtimeOnly("ch.qos.logback:logback-classic")
+    testImplementation("org.awaitility:awaitility:4.3.0")
 }
 
 application {
@@ -41,9 +42,30 @@ micronaut {
     }
     openapi {
         // add OpenAPI configuration here
+        client("order-service", file("src/main/openapi/order-management-0.0.yml")) {
+            apiPackageName = "uk.ac.york.eng2.orders.api"
+            clientId = "order-service"
+            modelPackageName = "uk.ac.york.eng2.orders.model"
+            alwaysUseGenerateHttpResponse = true
+            useReactive = false
+        }
+        client("product-service", file("src/main/openapi/product-management-0.0.yml")) {
+            apiPackageName = "uk.ac.york.eng2.products.api"
+            clientId = "product-service"
+            modelPackageName = "uk.ac.york.eng2.products.model"
+            alwaysUseGenerateHttpResponse = true
+            useReactive = false
+        }
     }
 }
 
 test {
     // add test configuration here
+    useJUnitPlatform()
+
+    testLogging {
+        events("passed", "skipped", "failed")
+        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+        showStandardStreams = true
+    }
 }

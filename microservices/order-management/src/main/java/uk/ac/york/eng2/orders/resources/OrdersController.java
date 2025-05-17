@@ -12,6 +12,10 @@ import uk.ac.york.eng2.orders.domain.Customer;
 import uk.ac.york.eng2.orders.domain.Order;
 import uk.ac.york.eng2.orders.domain.OrderItem;
 import uk.ac.york.eng2.orders.dto.OrderCreateDTO;
+import uk.ac.york.eng2.orders.dto.OrderUpdateDTO;
+import uk.ac.york.eng2.orders.events.OrderEventProducer;
+import uk.ac.york.eng2.orders.events.OrderInfo;
+import uk.ac.york.eng2.orders.events.OrderInfoList;
 import uk.ac.york.eng2.orders.repository.CustomerRepository;
 import uk.ac.york.eng2.orders.repository.OrderItemRepository;
 import uk.ac.york.eng2.orders.repository.OrderRepository;
@@ -33,6 +37,9 @@ public class OrdersController {
 
     @Inject
     OrderItemRepository orderItemRepository;
+
+    @Inject
+    OrderEventProducer orderEventProducer;
 
     @Get
     public List<Order> getOrders() {
@@ -57,18 +64,15 @@ public class OrdersController {
     @Post
     public HttpResponse<Void> createOrder(@Body OrderCreateDTO dto) {
         Order order = new Order();
-        if(dto.getDateCreated() == null || dto.getAddress() == null || dto.getCustomerId() == null ||
-                dto.getPaid() == null || dto.getDelivered() == null || dto.getTotalAmount() == null) {
+        if(dto.getAddress() == null || dto.getCustomerId() == null) {
             throw new HttpStatusException(HttpStatus.BAD_REQUEST, "Required fields cannot be null");
         }
-        order.setDateCreated(dto.getDateCreated());
         order.setAddress(dto.getAddress());
-        order.setPaid(dto.getPaid());
-        order.setDelivered(dto.getDelivered());
-        order.setTotalAmount(dto.getTotalAmount());
+        order.setPaid(false);
+        order.setDelivered(false);
 
         Optional<Customer> customer = customerRepository.findById(dto.getCustomerId());
-        if (!customer.isPresent()) {
+        if (customer.isEmpty()) {
             throw new HttpStatusException(HttpStatus.NOT_FOUND, "Customer not found");
         }
         order.setCustomer(customer.get());
@@ -79,23 +83,21 @@ public class OrdersController {
 
     @Transactional
     @Put("/{id}")
-    public void updateOrder(@PathVariable long id, OrderCreateDTO dto) {
+    public void updateOrder(@PathVariable long id, @Body OrderUpdateDTO dto) {
         Optional<Order> optionalOrder = orderRepository.findById(id);
-        if (!optionalOrder.isPresent()) {
+        if (optionalOrder.isEmpty()) {
             throw new HttpStatusException(HttpStatus.NOT_FOUND, "Order not found");
         }
-        if(dto.getDateCreated() == null || dto.getAddress() == null ||
-                dto.getPaid() == null || dto.getDelivered() == null || dto.getTotalAmount() == null) {
+        if(dto.getAddress() == null || dto.getCustomerId() == null || dto.getPaid() == null
+        || dto.getDelivered() == null) {
             throw new HttpStatusException(HttpStatus.BAD_REQUEST, "Required fields cannot be null");
         }
         Order order = optionalOrder.get();
-        order.setDateCreated(dto.getDateCreated());
         order.setAddress(dto.getAddress());
         order.setPaid(dto.getPaid());
         order.setDelivered(dto.getDelivered());
-        order.setTotalAmount(dto.getTotalAmount());
         Optional<Customer> customer = customerRepository.findById(dto.getCustomerId());
-        if (!customer.isPresent()) {
+        if (customer.isEmpty()) {
             throw new HttpStatusException(HttpStatus.NOT_FOUND, "Customer not found");
         }
         order.setCustomer(customer.get());
@@ -111,7 +113,20 @@ public class OrdersController {
         else {
             List<OrderItem> orderItems = orderItemRepository.findByOrderId(id);
             if (!orderItems.isEmpty()) {
-                throw new HttpStatusException(HttpStatus.CONFLICT, "Order cannot be deleted because associated OrderItems exist.");
+                Optional<Order> optionalOrder = orderRepository.findById(id);
+                if (optionalOrder.isEmpty()) {
+                    throw new HttpStatusException(HttpStatus.NOT_FOUND, "Order not found");
+                }
+                Order orderEntity = optionalOrder.get();
+                List<OrderInfo> orderInfos = orderItems
+                        .stream()
+                        .map(oi -> new OrderInfo(oi.getProductId(), orderEntity.getDateCreated()))
+                        .toList();
+
+                orderEventProducer.orderDeleted(orderEntity.getId(), new OrderInfoList(orderInfos));
+                for(OrderItem orderItem : orderItems) {
+                    orderItemRepository.deleteById(orderItem.getId());
+                }
             }
             orderRepository.deleteById(id);
         }

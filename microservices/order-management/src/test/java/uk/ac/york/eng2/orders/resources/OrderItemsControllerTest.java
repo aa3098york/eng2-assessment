@@ -4,14 +4,17 @@ import io.micronaut.http.HttpHeaders;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.client.exceptions.HttpClientResponseException;
+import io.micronaut.test.annotation.MockBean;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import uk.ac.york.eng2.orders.domain.Customer;
 import uk.ac.york.eng2.orders.domain.Order;
 import uk.ac.york.eng2.orders.domain.OrderItem;
 import uk.ac.york.eng2.orders.dto.OrderItemCreateDTO;
+import uk.ac.york.eng2.orders.events.OrderEventProducer;
 import uk.ac.york.eng2.orders.repository.CustomerRepository;
 import uk.ac.york.eng2.orders.repository.OrderItemRepository;
 import uk.ac.york.eng2.orders.repository.OrderRepository;
@@ -21,6 +24,10 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
 
 @MicronautTest(transactional = false)
 public class OrderItemsControllerTest {
@@ -36,11 +43,19 @@ public class OrderItemsControllerTest {
     @Inject
     CustomerRepository customerRepository;
 
+    @Inject
+    OrderEventProducer orderEventProducer;
+
     @BeforeEach
     void setUp() {
         repository.deleteAll();
         orderRepository.deleteAll();
         customerRepository.deleteAll();
+    }
+
+    @MockBean(OrderEventProducer.class)
+    public OrderEventProducer mockProducer() {
+        return Mockito.mock(OrderEventProducer.class);
     }
 
     @Test
@@ -50,8 +65,10 @@ public class OrderItemsControllerTest {
 
     @Test
     public void createThenFetch() {
+        doNothing().when(orderEventProducer).orderUpdated(anyLong(), any());
+
+
         OrderItemCreateDTO dto = new OrderItemCreateDTO();
-        dto.setUnitPrice(new BigDecimal("12.00"));
         dto.setQuantity(1);
         dto.setProductId(1L);
 
@@ -82,14 +99,12 @@ public class OrderItemsControllerTest {
 
         assertEquals(dto.getOrderId(), fetchedOrder.getId());
         assertEquals(dto.getQuantity(), fetchedOrderItem.getQuantity());
-        assertEquals(dto.getUnitPrice(), fetchedOrderItem.getUnitPrice());
         assertEquals(dto.getProductId(), fetchedOrderItem.getProductId());
     }
 
     @Test
     public void createWithMissingQuantity() {
         OrderItemCreateDTO dto = new OrderItemCreateDTO();
-        dto.setUnitPrice(new BigDecimal("12.00"));
         dto.setQuantity(null);
         dto.setProductId(1L);
 
@@ -122,7 +137,6 @@ public class OrderItemsControllerTest {
     @Test
     public void createWithMissingProductId() {
         OrderItemCreateDTO dto = new OrderItemCreateDTO();
-        dto.setUnitPrice(BigDecimal.ZERO);
         dto.setQuantity(1);
         dto.setProductId(null);
 
@@ -155,7 +169,6 @@ public class OrderItemsControllerTest {
     @Test
     public void createWithMissingOrder() {
         OrderItemCreateDTO dto = new OrderItemCreateDTO();
-        dto.setUnitPrice(new BigDecimal("12.00"));
         dto.setQuantity(1);
         dto.setProductId(1L);
 
@@ -167,44 +180,14 @@ public class OrderItemsControllerTest {
         }
     }
 
-    @Test
-    public void updateOnlyUnitPrice() {
-        OrderItemCreateDTO dto = new OrderItemCreateDTO();
-        dto.setUnitPrice(new BigDecimal("12.00"));
-        dto.setQuantity(1);
-        dto.setProductId(1L);
 
-        Customer customer = new Customer();
-        customer.setFirstName("John");
-        customer.setFamilyName("Smith");
-        customer.setEmail("john.smith@example.com");
-        customer = customerRepository.save(customer);
-
-
-        Order order = new Order();
-        order.setAddress("Dummy Address");
-        order.setDateCreated(LocalDate.of(2020, 1, 1));
-        order.setTotalAmount(new BigDecimal("12.00"));
-        order.setDelivered(true);
-        order.setPaid(true);
-        order.setCustomer(customer);
-        order = orderRepository.save(order);
-
-        dto.setOrderId(order.getId());
-
-        Long id = createOrderItem(dto);
-
-        dto.setUnitPrice(new BigDecimal("22.00"));
-        orderItemsClient.updateOrderItem(id, dto);
-
-        OrderItem updatedOrderItem = orderItemsClient.getOrderItem(id);
-        assertEquals(dto.getUnitPrice(), updatedOrderItem.getUnitPrice());
-    }
 
     @Test
     public void updateOnlyQuantity() {
+        doNothing().when(orderEventProducer).orderUpdated(anyLong(), any());
+
+
         OrderItemCreateDTO dto = new OrderItemCreateDTO();
-        dto.setUnitPrice(new BigDecimal("12.00"));
         dto.setQuantity(1);
         dto.setProductId(1L);
 
@@ -237,8 +220,10 @@ public class OrderItemsControllerTest {
 
     @Test
     public void updateOnlyProductId() {
+        doNothing().when(orderEventProducer).orderUpdated(anyLong(), any());
+
+
         OrderItemCreateDTO dto = new OrderItemCreateDTO();
-        dto.setUnitPrice(new BigDecimal("12.00"));
         dto.setQuantity(1);
         dto.setProductId(1L);
 
@@ -271,8 +256,10 @@ public class OrderItemsControllerTest {
 
     @Test
     public void updateOnlyOrder() {
+        doNothing().when(orderEventProducer).orderUpdated(anyLong(), any());
+
+
         OrderItemCreateDTO dto = new OrderItemCreateDTO();
-        dto.setUnitPrice(new BigDecimal("12.00"));
         dto.setQuantity(1);
         dto.setProductId(1L);
 
@@ -319,7 +306,6 @@ public class OrderItemsControllerTest {
     @Test
     public void updateMissing() {
         OrderItemCreateDTO dto = new OrderItemCreateDTO();
-        dto.setUnitPrice(new BigDecimal("12.00"));
         dto.setQuantity(1);
         dto.setProductId(1L);
 
@@ -368,7 +354,6 @@ public class OrderItemsControllerTest {
 
         dto.setOrderId(order.getId());
 
-        dto.setUnitPrice(BigDecimal.ZERO);
         dto.setQuantity(1);
         dto.setProductId(null);
 
@@ -379,7 +364,6 @@ public class OrderItemsControllerTest {
             assertEquals(HttpStatus.BAD_REQUEST, e.getResponse().getStatus());
         }
 
-        dto.setUnitPrice(BigDecimal.ZERO);
         dto.setQuantity(null);
         dto.setProductId(1L);
 
@@ -393,8 +377,9 @@ public class OrderItemsControllerTest {
 
     @Test
     public void createThenDelete() {
+        doNothing().when(orderEventProducer).orderUpdated(anyLong(), any());
+
         OrderItemCreateDTO dto = new OrderItemCreateDTO();
-        dto.setUnitPrice(new BigDecimal("12.00"));
         dto.setQuantity(1);
         dto.setProductId(1L);
 

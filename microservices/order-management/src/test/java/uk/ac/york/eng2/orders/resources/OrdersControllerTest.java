@@ -13,6 +13,7 @@ import uk.ac.york.eng2.orders.domain.Customer;
 import uk.ac.york.eng2.orders.domain.Order;
 import uk.ac.york.eng2.orders.domain.OrderItem;
 import uk.ac.york.eng2.orders.dto.OrderCreateDTO;
+import uk.ac.york.eng2.orders.dto.OrderUpdateDTO;
 import uk.ac.york.eng2.orders.repository.CustomerRepository;
 import uk.ac.york.eng2.orders.repository.OrderItemRepository;
 import uk.ac.york.eng2.orders.repository.OrderRepository;
@@ -59,11 +60,7 @@ public class OrdersControllerTest {
         customer = customerRepository.save(customer);
 
         OrderCreateDTO dto = new OrderCreateDTO();
-        dto.setDelivered(false);
-        dto.setDateCreated(LocalDate.of(2025,12,31));
         dto.setAddress("Dummy Address");
-        dto.setPaid(false);
-        dto.setTotalAmount(new BigDecimal("9.99"));
         dto.setCustomerId(customer.getId());
 
         Long id = createOrder(dto);
@@ -74,10 +71,6 @@ public class OrdersControllerTest {
         Customer fetchedCustomer = orderCustomerResponse.getBody().get();
 
         assertEquals(dto.getAddress(), fetchedOrder.getAddress());
-        assertEquals(dto.getDateCreated(), fetchedOrder.getDateCreated());
-        assertEquals(dto.getPaid(), fetchedOrder.getPaid());
-        assertEquals(dto.getTotalAmount(), fetchedOrder.getTotalAmount());
-        assertEquals(dto.getDelivered(), fetchedOrder.getDelivered());
         assertEquals(dto.getCustomerId(), fetchedCustomer.getId());
     }
 
@@ -85,10 +78,7 @@ public class OrdersControllerTest {
     public void createWithMissingCustomer() {
         OrderCreateDTO dto = new OrderCreateDTO();
         dto.setAddress("Dummy Address");
-        dto.setDateCreated(LocalDate.of(2025,12,31));
-        dto.setPaid(false);
-        dto.setTotalAmount(new BigDecimal("9.99"));
-        dto.setDelivered(false);
+
 
         try {
             ordersClient.createOrder(dto); // This will throw an exception
@@ -106,13 +96,11 @@ public class OrdersControllerTest {
         customer.setEmail("john.smith@example.com");
         customer = customerRepository.save(customer);
 
-        OrderCreateDTO dto = new OrderCreateDTO();
-        dto.setDelivered(false);
-        dto.setDateCreated(LocalDate.of(2025,12,31));
+        OrderUpdateDTO dto = new OrderUpdateDTO();
         dto.setAddress("Dummy Address");
-        dto.setPaid(false);
-        dto.setTotalAmount(new BigDecimal("9.99"));
         dto.setCustomerId(customer.getId());
+        dto.setDelivered(true);
+        dto.setPaid(true);
 
         Long id = createOrder(dto);
 
@@ -124,109 +112,6 @@ public class OrdersControllerTest {
         assertEquals(dto.getAddress(), updatedOrder.getAddress());
     }
 
-    @Test
-    public void updateOnlyDateCreated() {
-        Customer customer = new Customer();
-        customer.setFirstName("John");
-        customer.setFamilyName("Smith");
-        customer.setEmail("john.smith@example.com");
-        customer = customerRepository.save(customer);
-
-        OrderCreateDTO dto = new OrderCreateDTO();
-        dto.setDelivered(false);
-        dto.setDateCreated(LocalDate.of(2025,12,31));
-        dto.setAddress("Dummy Address");
-        dto.setPaid(false);
-        dto.setTotalAmount(new BigDecimal("9.99"));
-        dto.setCustomerId(customer.getId());
-
-        Long id = createOrder(dto);
-
-        dto.setDateCreated(LocalDate.of(1997,1,31));
-
-        ordersClient.updateOrder(id, dto);
-        Order updatedOrder = ordersClient.getOrder(id);
-
-        assertEquals(dto.getDateCreated(), updatedOrder.getDateCreated());
-    }
-
-    @Test
-    public void updateOnlyDelivered() {
-        Customer customer = new Customer();
-        customer.setFirstName("John");
-        customer.setFamilyName("Smith");
-        customer.setEmail("john.smith@example.com");
-        customer = customerRepository.save(customer);
-
-        OrderCreateDTO dto = new OrderCreateDTO();
-        dto.setDelivered(false);
-        dto.setDateCreated(LocalDate.of(2025,12,31));
-        dto.setAddress("Dummy Address");
-        dto.setPaid(false);
-        dto.setTotalAmount(new BigDecimal("9.99"));
-        dto.setCustomerId(customer.getId());
-
-        Long id = createOrder(dto);
-
-        dto.setDelivered(true);
-
-        ordersClient.updateOrder(id, dto);
-        Order updatedOrder = ordersClient.getOrder(id);
-
-        assertEquals(dto.getDelivered(), updatedOrder.getDelivered());
-    }
-
-    @Test
-    public void updateOnlyPaid() {
-        Customer customer = new Customer();
-        customer.setFirstName("John");
-        customer.setFamilyName("Smith");
-        customer.setEmail("john.smith@example.com");
-        customer = customerRepository.save(customer);
-
-        OrderCreateDTO dto = new OrderCreateDTO();
-        dto.setDelivered(false);
-        dto.setDateCreated(LocalDate.of(2025,12,31));
-        dto.setAddress("Dummy Address");
-        dto.setPaid(false);
-        dto.setTotalAmount(new BigDecimal("9.99"));
-        dto.setCustomerId(customer.getId());
-
-        Long id = createOrder(dto);
-
-        dto.setPaid(true);
-
-        ordersClient.updateOrder(id, dto);
-        Order updatedOrder = ordersClient.getOrder(id);
-
-        assertEquals(dto.getPaid(), updatedOrder.getPaid());
-    }
-
-    @Test
-    public void updateOnlyTotalAmount() {
-        Customer customer = new Customer();
-        customer.setFirstName("John");
-        customer.setFamilyName("Smith");
-        customer.setEmail("john.smith@example.com");
-        customer = customerRepository.save(customer);
-
-        OrderCreateDTO dto = new OrderCreateDTO();
-        dto.setDelivered(false);
-        dto.setDateCreated(LocalDate.of(2025,12,31));
-        dto.setAddress("Dummy Address");
-        dto.setPaid(false);
-        dto.setTotalAmount(new BigDecimal("9.99"));
-        dto.setCustomerId(customer.getId());
-
-        Long id = createOrder(dto);
-
-        dto.setTotalAmount(new BigDecimal("999.99"));
-
-        ordersClient.updateOrder(id, dto);
-        Order updatedOrder = ordersClient.getOrder(id);
-
-        assertEquals(dto.getTotalAmount(), updatedOrder.getTotalAmount());
-    }
 
     @Test
     public void updateOnlyCustomer() {
@@ -242,13 +127,11 @@ public class OrdersControllerTest {
         customer2.setEmail("jane.doe@example.com");
         customer2 = customerRepository.save(customer2);
 
-        OrderCreateDTO dto = new OrderCreateDTO();
-        dto.setDelivered(false);
-        dto.setDateCreated(LocalDate.of(2025,12,31));
+        OrderUpdateDTO dto = new OrderUpdateDTO();
         dto.setAddress("Dummy Address");
-        dto.setPaid(false);
-        dto.setTotalAmount(new BigDecimal("9.99"));
         dto.setCustomerId(customer1.getId());
+        dto.setPaid(true);
+        dto.setDelivered(true);
 
         Long id = createOrder(dto);
 
@@ -264,6 +147,54 @@ public class OrdersControllerTest {
     }
 
     @Test
+    public void updateOnlyPaid(){
+        Customer customer = new Customer();
+        customer.setFirstName("John");
+        customer.setFamilyName("Smith");
+        customer.setEmail("john.smith@example.com");
+        customer = customerRepository.save(customer);
+
+        OrderUpdateDTO dto = new OrderUpdateDTO();
+        dto.setAddress("Dummy Address");
+        dto.setCustomerId(customer.getId());
+        dto.setPaid(false);
+        dto.setDelivered(false);
+
+        Long id = createOrder(dto);
+
+        dto.setPaid(true);
+
+        ordersClient.updateOrder(id, dto);
+        Order updatedOrder = ordersClient.getOrder(id);
+
+        assertEquals(true, updatedOrder.getPaid());
+    }
+
+    @Test
+    public void updateOnlyDelivered(){
+        Customer customer = new Customer();
+        customer.setFirstName("John");
+        customer.setFamilyName("Smith");
+        customer.setEmail("john.smith@example.com");
+        customer = customerRepository.save(customer);
+
+        OrderUpdateDTO dto = new OrderUpdateDTO();
+        dto.setAddress("Dummy Address");
+        dto.setCustomerId(customer.getId());
+        dto.setDelivered(false);
+        dto.setPaid(false);
+
+        Long id = createOrder(dto);
+
+        dto.setDelivered(true);
+
+        ordersClient.updateOrder(id, dto);
+        Order updatedOrder = ordersClient.getOrder(id);
+
+        assertEquals(true, updatedOrder.getDelivered());
+    }
+
+    @Test
     public void updateMissing() {
         Customer customer = new Customer();
         customer.setFirstName("John");
@@ -271,13 +202,11 @@ public class OrdersControllerTest {
         customer.setEmail("john.smith@example.com");
         customer = customerRepository.save(customer);
 
-        OrderCreateDTO dto = new OrderCreateDTO();
-        dto.setDelivered(false);
-        dto.setDateCreated(LocalDate.of(2025,12,31));
+        OrderUpdateDTO dto = new OrderUpdateDTO();
         dto.setAddress("Dummy Address");
-        dto.setPaid(false);
-        dto.setTotalAmount(new BigDecimal("9.99"));
         dto.setCustomerId(customer.getId());
+        dto.setDelivered(false);
+        dto.setPaid(true);
 
         HttpResponse response = ordersClient.updateOrder(123,dto);
         assertEquals(HttpStatus.NOT_FOUND, response.getStatus());
@@ -291,16 +220,15 @@ public class OrdersControllerTest {
         customer.setEmail("john.smith@example.com");
         customer = customerRepository.save(customer);
 
-        OrderCreateDTO dto = new OrderCreateDTO();
-        dto.setDelivered(false);
-        dto.setDateCreated(LocalDate.of(2025,12,31));
+        OrderUpdateDTO dto = new OrderUpdateDTO();
         dto.setAddress("Dummy Address");
-        dto.setPaid(false);
-        dto.setTotalAmount(new BigDecimal("9.99"));
         dto.setCustomerId(customer.getId());
+        dto.setDelivered(false);
+        dto.setPaid(true);
 
         Long id = createOrder(dto);
         dto.setCustomerId(123L);
+        dto.setAddress("123 Example Address");
 
         HttpResponse response = ordersClient.updateOrder(id,dto);
         assertEquals(HttpStatus.NOT_FOUND, response.getStatus());
@@ -313,7 +241,7 @@ public class OrdersControllerTest {
     }
 
     @Test
-    public void deleteWithActiveOrderItem() {
+    public void deleteWithOrderItems() {
         Customer customer = new Customer();
         customer.setFirstName("John");
         customer.setFamilyName("Smith");
@@ -336,16 +264,20 @@ public class OrdersControllerTest {
         item1.setUnitPrice(new BigDecimal(1));
         item1.setOrder(order);
         orderItemRepository.save(item1);
-        try {
-            ordersClient.deleteOrder(order.getId()); // This will throw an exception
-            fail("Expected HttpClientResponseException but none was thrown.");
-        } catch (HttpClientResponseException e) {
-            assertEquals(HttpStatus.CONFLICT, e.getResponse().getStatus());
-        }
 
-//        HttpResponse response = ordersClient.deleteOrder(order.getId());
-//        assertEquals(HttpStatus.CONFLICT, response.getStatus());
+        OrderItem item2 = new OrderItem();
+        item2.setQuantity(2);
+        item2.setProductId(2L);
+        item2.setUnitPrice(new BigDecimal(2));
+        item2.setOrder(order);
+        orderItemRepository.save(item2);
+
+        ordersClient.deleteOrder(order.getId());
+
+        List<OrderItem> orderItems = ordersClient.getOrderItems(order.getId());
+        assertEquals(0, orderItems.size());
     }
+
 
     @Test
     public void createThenDelete() {
@@ -356,11 +288,7 @@ public class OrdersControllerTest {
         customer = customerRepository.save(customer);
 
         OrderCreateDTO dto = new OrderCreateDTO();
-        dto.setDelivered(false);
-        dto.setDateCreated(LocalDate.of(2025,12,31));
         dto.setAddress("Dummy Address");
-        dto.setPaid(false);
-        dto.setTotalAmount(new BigDecimal("9.99"));
         dto.setCustomerId(customer.getId());
 
         Long id = createOrder(dto);

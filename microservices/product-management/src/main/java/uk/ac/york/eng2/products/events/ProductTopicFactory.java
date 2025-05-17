@@ -10,7 +10,7 @@ import org.apache.kafka.clients.admin.NewTopic;
 @Factory
 public class ProductTopicFactory {
     public static final String TOPIC_UNIT_PRICING_CONFIRMATION = "unit_pricing_confirmation";
-    public static final String TOPIC_ORDER_ITEM_ADDED = "order_item_added";
+    public static final String TOPIC_INVALID_PRODUCT = "invalid_product";
 
     @Bean
     public NewTopic orderPlacedTopic() {
@@ -18,6 +18,6 @@ public class ProductTopicFactory {
     }
 
     @Bean
-    public NewTopic orderItemAddedTopic() { return new NewTopic(TOPIC_ORDER_ITEM_ADDED, 3, (short) 1); }
+    public NewTopic invalidProductTopic() { return new NewTopic(TOPIC_INVALID_PRODUCT, 3, (short) 1); }
 
 }

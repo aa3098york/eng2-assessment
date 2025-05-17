@@ -54,4 +54,9 @@ public class OrdersByDay {
     public void setCount(int count) {
         this.count = count;
     }
+
+    @Transient
+    public Long getProductId() {
+        return product != null ? product.getId() : null;
+    }
 }

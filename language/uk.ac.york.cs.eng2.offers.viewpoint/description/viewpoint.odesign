@@ -33,7 +33,7 @@
           </style>
         </nodeMappings>
         <nodeMappings name="offers.percentageorderaction.node" label="Percentage Discount Action Node" domainClass="offers::PercentageDiscountAction">
-          <style xsi:type="style:SquareDescription" labelSize="12" labelExpression="aql:self.discountPercentage + '% off of product'" labelPosition="node" resizeKind="NSEW">
+          <style xsi:type="style:SquareDescription" labelSize="12" labelExpression="aql:self.discountPercentage + '% off of order'" labelPosition="node" resizeKind="NSEW">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
@@ -142,7 +142,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="offers.firstnorders.products.edge" label="First N Orders Product Condition Edge" sourceMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagram.offers']/@defaultLayer/@nodeMappings[name='offers.firstnorderscondition.node']" targetMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagram.offers']/@defaultLayer/@nodeMappings[name='offers.products.node']" targetFinderExpression="feature:product">
+        <edgeMappings name="offers.firstnorders.products.edge" label="First N Orders Product Condition Edge" sourceMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagram.offers']/@defaultLayer/@nodeMappings[name='offers.firstnorderscondition.node']" targetMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagram.offers']/@defaultLayer/@nodeMappings[name='offers.products.node']" targetFinderExpression="aql:self.product">
           <style targetArrow="NoDecoration" sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
             <centerLabelStyleDescription labelSize="12">
@@ -150,7 +150,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="offers.containsproduct.products.edge" label="Contains Product Condition Edge" sourceMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagram.offers']/@defaultLayer/@nodeMappings[name='offers.containsproductcondition.node']" targetMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagram.offers']/@defaultLayer/@nodeMappings[name='offers.products.node']" targetFinderExpression="feature:product">
+        <edgeMappings name="offers.containsproduct.products.edge" label="Contains Product Condition Edge" sourceMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagram.offers']/@defaultLayer/@nodeMappings[name='offers.containsproductcondition.node']" targetMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagram.offers']/@defaultLayer/@nodeMappings[name='offers.products.node']" targetFinderExpression="aql:self.product">
           <style targetArrow="NoDecoration" sizeComputationExpression="2" endsCentering="Both">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
             <centerLabelStyleDescription labelSize="12">
@@ -166,7 +166,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="offers.productpercentage.product.edge" label="Percentage Product Discount Action Product Edge" sourceMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagram.offers']/@defaultLayer/@nodeMappings[name='offers.productpercentaction.node']" targetMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagram.offers']/@defaultLayer/@nodeMappings[name='offers.products.node']" targetFinderExpression="feature:product">
+        <edgeMappings name="offers.productpercentage.product.edge" label="Percentage Product Discount Action Product Edge" sourceMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagram.offers']/@defaultLayer/@nodeMappings[name='offers.products.node']" targetMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagram.offers']/@defaultLayer/@nodeMappings[name='offers.productpercentaction.node']" targetFinderExpression="aql:self.eContainer()">
           <style targetArrow="NoDecoration" sizeComputationExpression="2" endsCentering="Both">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
             <centerLabelStyleDescription labelSize="12">
